@@ -61,8 +61,8 @@ The rest is up to you. Here are a few things you might want to start with:
 
 *   Update the ``settings/*.py`` files with project level settings.
 
-*   Update the ``requirements.txt`` file with additional dependencies. There
-    are many optional dependencies in the ``requirements-unpinned.txt`` file
+*   Update the ``requirements-unpinned.txt`` file with additional dependencies.
+    There are many frequently used but optional dependencies in the file
     (commented out), as well as instructions on how to pull a dependency into
     this project with ``git subtree``.
 
