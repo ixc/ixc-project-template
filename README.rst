@@ -5,7 +5,7 @@ This is a bare-bones skeleton project template, for use with the
 ``django-admin.py startproject`` command.
 
 It is assumed that your development environment is already setup, including
-having globally installed Django 1.4+ and ``virtualenvwrapper``.
+having globally installed Bower, Django 1.4+ and ``virtualenvwrapper``.
 
 Create a new project like this:
 
