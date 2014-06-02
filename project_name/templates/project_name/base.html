@@ -1,0 +1,96 @@
+{% verbatim %}{% extends "flatui/base.html" %}
+
+{% load staticfiles %}
+
+{% block style %}
+	{{ block.super }}
+	{% endverbatim %}<link type="text/x-scss" rel="stylesheet" href="{% templatetag openblock %} static '{{ project_name }}/scss/style.scss' {% templatetag closeblock %}">{% verbatim %}
+{% endblock style %}
+
+{% block nav %}
+	<div class="row">
+		<div class="col-md-12">
+			<div class="navbar navbar-default">
+				<div class="navbar-header">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
+					<a href="/" class="navbar-brand">{{ SITE_NAME }}</a>
+				</div>
+				<div class="navbar-collapse collapse navbar-collapse-01">
+					<ul class="nav navbar-nav">
+						<li {% if site_section.0 == "home" %}class="active"{% endif %}>
+							<a href="/">
+								Home
+							</a>
+						</li>
+						{% comment %}{# for example: #}
+						<li {% if site_section.0 == "about" %}class="selected"{% endif %}>
+							<a href="{% url pages:page 'about' %}">
+								About
+							</a>
+						</li>
+						<li {% if site_section.0 == "getting-here" %}class="selected"{% endif %}>
+							<a href="{% url pages:page 'getting-here' %}">
+								Getting Here
+							</a>
+						</li>
+						<li {% if site_section.0 == "contact" %}class="selected"{% endif %}>
+							<a href="{% url pages:page 'contact' %}">
+								Contact Us
+							</a>
+						</li>
+						{% endcomment %}
+						<li>
+							<form class="navbar-form" action="#" role="search">
+								<div class="form-group">
+									<div class="input-group input-group-sm">
+										<input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+										<span class="input-group-btn">
+											<button type="submit" class="btn">
+												<span class="fui-search"></span>
+											</button>
+										</span>
+									</div>
+								</div>
+							</form>
+						</li>
+					</ul>
+					{% if request.user.is_authenticated %}
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								{% if request.user.first_name %}
+									{{ request.user.first_name }}
+								{% else %}
+									{{ request.user }}
+								{% endif %}
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">
+										Settings
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="{% url 'logout' %}">
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					{% else %}
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="{% url 'login' %}">
+								Log in
+							</a>
+						</li>
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock nav %}{% endverbatim %}

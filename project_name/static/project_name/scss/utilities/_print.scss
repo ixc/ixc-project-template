@@ -1,0 +1,28 @@
+@media print {
+	* {
+		color: black !important;
+		text-shadow: none !important;
+		filter: none !important;
+		-ms-filter: none !important;
+	}
+	a {
+		text-decoration: underline;
+		&:visited { text-decoration: underline; }
+		&[href]:after { content: " (" attr(href) ")"; }
+		&[href^="javascript:"]:after, &[href^="#"]:after { content:s; }
+	}
+	abbr[title]:after { content: " (" attr(title) ")"; }
+	.ir a:after { content:; }
+	pre, blockquote {
+		border: 1px solid #999999;
+		page-break-inside: avoid;
+	}
+	thead { display: table-header-group; }
+	tr, img { page-break-inside: avoid; }
+	@page { margin: 0.5cm; }
+	p, h2, h3 {
+		orphans: 3;
+		widows: 3;
+	}
+	h2, h3 { page-break-after: avoid; }
+}

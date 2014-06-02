@@ -1,0 +1,23 @@
+# Global.
+*.egg-info/
+*.py[co]
+*~
+.DS_Store
+.svn/
+
+# Project.
+/*/settings/local.py
+/bower_components/
+/db.sqlite3
+/public/media/
+/public/static/
+/secret.txt
+/venv/
+/virtualenv/
+
+# Aptana, pycharm, pydev, etc.
+.env
+.idea
+.project
+.pydevproject
+.settings*

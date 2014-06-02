@@ -1,0 +1,10 @@
+@mixin at2x($path, $ext, $w:auto, $h:auto) {
+	background-image: url($path + '.' + $ext);
+
+	@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx) {
+		& {
+			-webkit-background-size: $w $h;
+			background-image: url($path + '@2x.' + $ext);
+		}
+	}
+}

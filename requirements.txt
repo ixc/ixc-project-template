@@ -1,0 +1,73 @@
+# You should freeze most of these requirements when development has stabilised
+# and a release is imminent.
+
+### Don't freeze ##############################################################
+
+# There's always an exception. These requirements should never be frozen.
+
+-e git+ssh://git@github.com/ixc/deployo.git@master#egg=deployo
+-e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
+
+### Used by almost every project ##############################################
+
+-e .
+
+-e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
+-e git+ssh://git@github.com/ixc/django-flatblocks.git@master#egg=django-flatblocks
+-e git+ssh://git@github.com/ixc/django-orm-fixtures.git@master#egg=django-orm-fixtures
+-e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
+-e git+ssh://git@github.com/ixc/feincms-redactor.git@master#egg=redactor
+-e git+ssh://git@github.com/ixc/ixc-accounts.git@master#egg=ixc-accounts
+-e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
+-e git+ssh://git@github.com/ixc/ixc-flatui.git@master#egg=ixc-flatui
+-e git+ssh://git@github.com/thirstydigital/django-generic-uid.git@master#egg=django-generic-uid
+
+### Optional, frequently used #################################################
+
+# Currently many apps are too tightly coupled. Below are the dependencies that
+# are required for some of the apps. For now, you'll need to install all the
+# requirements until we can decouple them.
+
+# ixc-accounts:
+# ixc-cms, feincms
+
+# ixc-blog:
+# glamkit-feincmstools, feincms, ixc-feincms-conf, ixc-assets,
+# ixc-smartlinks-conf, glamkit-smartlinks, django-oembed, glamkit-adminboost,
+# ixc-cms, ixc-pages
+
+# ixc-home:
+# django-singletons, glamkit-feincmstools, feincms, ixc-feincms-conf,
+# ixc-assets, ixc-smartlinks-conf, glamkit-smartlinks, django-oembed,
+# glamkit-adminboost, ixc-cms, ixc-pages
+
+# -e git+ssh://git@github.com/ixc/django-oembed.git@master#egg=django-oembed
+# -e git+ssh://git@github.com/ixc/django-singletons.git@master#egg=django-singletons
+-e git+ssh://git@github.com/ixc/feincms.git@master#egg=FeinCMS
+# -e git+ssh://git@github.com/ixc/glamkit-adminboost.git@master#egg=glamkit-adminboost
+# -e git+ssh://git@github.com/ixc/glamkit-feincmstools.git@master#egg=glamkit-feincmstools
+# -e git+ssh://git@github.com/ixc/glamkit-smartlinks.git@master#egg=smartlinks
+# -e git+ssh://git@github.com/ixc/ixc-assets.git@master#egg=ixc-assets
+# -e git+ssh://git@github.com/ixc/ixc-blog.git@master#egg=ixc-blog
+-e git+ssh://git@github.com/ixc/ixc-cms.git@master#egg=ixc-cms
+# -e git+ssh://git@github.com/ixc/ixc-feincms-conf.git@master#egg=ixc-feincms-conf
+# -e git+ssh://git@github.com/ixc/ixc-home.git@master#egg=ixc-home
+# -e git+ssh://git@github.com/ixc/ixc-pages.git@master#egg=ixc-pages
+# -e git+ssh://git@github.com/ixc/ixc-smartlinks-conf.git@master#egg=ixc-smartlinks-conf
+
+### Vendor ####################################################################
+
+# If you need to fork and hack on any requirements so extensively that they
+# will only be usable by this project, pull them into the ``vendor`` folder in
+# this project with ``git subtree``. For example::
+#
+#    $ mkdir -p vendor
+#    $ git subtree add -P vendor/ixc-blog git@github.com:ixc/ixc-blog.git master --squash
+#
+# Then install them directly from the vendor directory::
+#
+#    -e ./vendor/ixc-blog
+#
+# However, this should be avoided if at all possible, so that we can more easily
+# contribute bug fixes and feature enhancements back upstream to these external
+# projects.

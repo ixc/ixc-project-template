@@ -1,0 +1,76 @@
+/* humanstxt.org */
+
+/* TEAM */
+	CEO: Greg Turner
+	Site: http://gregturner.com/
+	Contact: greg at gregturner.com
+	Twitter: @gsta
+	From: ?
+
+	COO: Alastair Weakley
+	Site: ?
+	Contact: alastair at weakley.org.uk
+	Twitter: ?
+	From: ?
+
+	?: Aram Dulyan
+	Site: ?
+	Contact: aram00 at gmail.com
+	Twitter: @Aramgutang
+	From: ?
+
+	General Manager: Simon Johnson
+	Site: ?
+	Contact: simon at sjit.com.au
+	Twitter: ?
+	From: ?
+
+	Software Engineer: Stuart Dines
+	Site: ?
+	Contact: stu.dines at gmail.com
+	Twitter: @sjdines
+	From: ?
+
+	?: Mike Cronin
+	Site: http://www.torresiancrow.com.au/
+	Contact: mike at torresiancrow.com.au
+	Twitter: @MickCronin
+	From: ?
+
+	?: Pili Foss
+	Site: ?
+	Contact: pilarfoss at gmail.com
+	Twitter: ?
+	From: ?
+
+	?: Amber Todd
+	Site: http://ginjaninja.net.au/
+	Contact: ginjaninjaproductions at gmail.com
+	Twitter: ?
+	From: ?
+
+	?: Michael Gratton
+	Site: http://mjog.vee.net/
+	Contact: mike at vee.net
+	Twitter: @mjog
+	From: ?
+
+	Python Code Whisperer: Tai Lee
+	Site: http://mrmachine.net
+	Contact: real.human at mrmachine.net
+	Twitter: @mrmachine79
+	From: Byron Bay
+
+	?: Mark Finger
+	Site: http://markfinger.org/
+	Contact: mark.finger at gmail.com
+	Twitter: @_markfinger
+	From: ?
+
+/* THANKS */
+	Kitties: http://www.reddit.com/r/aww/search?q=kitty&restrict_sr=on
+
+/* SITE */
+	Components: Django, GLAMKit, jQuery, Modernizr, SCSS, Underscore.js
+	Software: Photoshop, PyCharm, PyDev, Sublime Text, Vim
+	Standards: CSS3, HTML5

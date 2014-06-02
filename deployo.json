@@ -1,0 +1,30 @@
+{
+	"project_slug": "{{ project_name }}",
+	"environments": {
+		"prd": {
+			"environment_slug": "prd",
+			"gunicorn_fully_qualified_slug": "{{ project_name }}-prd",
+			"celery_fully_qualified_slug": "{{ project_name }}-prd-celery",
+			"default_server": "{{ project_name }}.ixchosted.com",
+			"ssh_port": "22022",
+			"default_user": "ixc",
+			"project_directory": "/var/www/{{ project_name }}-prd",
+			"source_directory": "/var/www/{{ project_name }}-prd/djangosite",
+			"virtualenv_directory": "/var/www/{{ project_name }}-prd/venv",
+			"git_branch": "production",
+			"tags": ["gunicorn"]
+		},
+		"stg": {
+			"environment_slug": "stg",
+			"gunicorn_fully_qualified_slug": "{{ project_name }}-stg",
+			"default_server": "{{ project_name }}.stg.ixcsandbox.com",
+			"ssh_port": "22022",
+			"default_user": "ixc",
+			"project_directory": "/var/www/{{ project_name }}-stg",
+			"source_directory": "/var/www/{{ project_name }}-stg/djangosite",
+			"virtualenv_directory": "/var/www/{{ project_name }}-stg/venv",
+			"git_branch": "master",
+			"tags": ["gunicorn"]
+		}
+	}
+}
