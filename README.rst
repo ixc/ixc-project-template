@@ -127,7 +127,7 @@ Activate the ``virtualenv`` and change to project directory::
 
 Run management commands::
 
-    ({{ project_name }})$ ./manage.py runserver
+    ({{ project_name }})$ ./manage.py supervisor
     ({{ project_name }})$ ./manage.py shell
     ...
 
