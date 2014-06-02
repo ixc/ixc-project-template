@@ -20,8 +20,8 @@ Create a new project like this:
     template::
 
         $ cd ~/projects
-        $ django-admin.py startproject -n base.html -n deployo.json -n index.rst \
-        -n Makefile -n make.bat -n project_base.html -n README.rst \
+        $ django-admin.py startproject -n base.html -n deployo.json -n \
+        index.rst -n Makefile -n make.bat -n project_base.html -n README.rst \
         --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
         $PROJECT
 
@@ -94,7 +94,8 @@ info on how to setup a development environment on our internal wiki.
 
 3.  Configure the project settings for the local environment::
 
-        ({{ project_name }})$ cp djangosite/settings/local.tmpl.py djangosite/settings/local.py
+        ({{ project_name }})$ cp djangosite/settings/local.tmpl.py \
+        djangosite/settings/local.py
         ({{ project_name }})$ vi djangosite/settings/local.py
 
 4.  Sync the database, load ORM fixtures and download bower components::
