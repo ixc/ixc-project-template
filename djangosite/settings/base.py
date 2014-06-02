@@ -52,6 +52,7 @@ INSTALLED_APPS += (
     # 3rd party.
     'compressor',
     'django_extensions',
+    'djsupervisor',
     'easy_thumbnails',
     'flatblocks',
     'orm_fixtures',
@@ -289,3 +290,9 @@ SUIT_CONFIG = {
     # Misc.
     'LIST_PER_PAGE': 100,
 }
+
+### SUPERVISOR ################################################################
+
+SUPERVISOR.update({
+    'NAME': '{{ project_name }}',
+})

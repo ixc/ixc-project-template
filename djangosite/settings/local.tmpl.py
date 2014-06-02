@@ -44,3 +44,9 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # Enable view profiling. Add `prof` key to querystring to see profiling results
 # in your browser.
 # MIDDLEWARE_CLASSES += ('generic.middleware.ProfileMiddleware', )
+
+### SUPERVISOR ################################################################
+
+SUPERVISOR.update({
+    # 'ADDRESS': '127.0.0.1:8000', # TODO: Set this automatically.
+})

@@ -17,6 +17,7 @@ setuptools.setup(
         'django-supervisor>=0.3.2',
         'django-webtest>=1.7.7',
         'easy_thumbnails>=2.0.1',
+        'gunicorn>=18.0',
         'nose-cov>=1.6',
         'nose-progressive>=1.5.1',
         'pyScss>=1.2.0',
