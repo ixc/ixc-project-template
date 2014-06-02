@@ -13,9 +13,9 @@
 -e .
 
 -e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
+-e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
 -e git+ssh://git@github.com/ixc/django-flatblocks.git@master#egg=django-flatblocks
 -e git+ssh://git@github.com/ixc/django-orm-fixtures.git@master#egg=django-orm-fixtures
--e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
 -e git+ssh://git@github.com/ixc/feincms-redactor.git@master#egg=redactor
 -e git+ssh://git@github.com/ixc/ixc-accounts.git@master#egg=ixc-accounts
 -e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
