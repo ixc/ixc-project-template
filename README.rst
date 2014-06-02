@@ -21,7 +21,7 @@ Create a new project like this:
 
         $ cd ~/projects
         $ django-admin.py startproject -n base.html -n deployo.json -n \
-        index.rst -n Makefile -n make.bat -n project_base.html -n README.rst \
+        index.rst -n Makefile -n make.bat -n base.html -n README.rst \
         --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
         $PROJECT
 

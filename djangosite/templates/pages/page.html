@@ -1,4 +1,4 @@
-{% extends "project_base.html" %}
+{% extends "base.html" %}
 {% load feincms_tags feincms_page_tags %}
 
 {% block title %}{{ feincms_page.title }} {% firstof flatblocks.TITLE_SEPARATOR "::" %} {{ block.super }}{% endblock %}
