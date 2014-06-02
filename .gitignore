@@ -12,6 +12,8 @@
 /public/media/
 /public/static/
 /secret.txt
+/supervisord.log
+/supervisord.pid
 /venv/
 /virtualenv/
 
