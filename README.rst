@@ -59,7 +59,7 @@ The rest is up to you. Here are a few things you might want to start with:
 *   Update the ``README.rst`` file (this file). Remove the ``How to use``
     section (these instructions) and update the rest to suit your project.
 
-*   Update the ``settings/*.py`` files with project level settings.
+*   Update the ``djangosite/settings/*.py`` files.
 
 *   Update the ``requirements-unpinned.txt`` file with additional dependencies.
     There are many frequently used but optional dependencies in the file
