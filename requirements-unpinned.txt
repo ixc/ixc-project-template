@@ -6,7 +6,7 @@
 # There's always an exception. These requirements should never be frozen.
 
 -e git+ssh://git@github.com/ixc/deployo.git@master#egg=deployo
--e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
+-e git+ssh://git@github.com/ixc/ixc-settings.git@django-1.7.x#egg=ixc-settings
 
 ### Used by almost every project ##############################################
 
