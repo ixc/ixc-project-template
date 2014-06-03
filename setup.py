@@ -6,7 +6,7 @@ setuptools.setup(
     version=VERSION,
     packages=setuptools.find_packages(),
     install_requires=[
-        'Django>=1.7b4',
+        'Django>=1.6',
         'django-bower>=5.0.1',
         'django-debug-toolbar>=1.2.1',
         'django-dynamic-fixture>=1.7.0',
@@ -25,8 +25,5 @@ setuptools.setup(
         'raven>=5.0.0',
         'South>=0.8.4',
         'WebTest>=2.0.15',
-    ],
-    dependency_links=[
-        'https://github.com/django/django/archive/stable/1.7.x.zip#egg=django-1.7b4',
     ]
 )

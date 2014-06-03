@@ -12,6 +12,9 @@
 
 -e .
 
+# Use pre-release version of Django.
+https://github.com/django/django/archive/stable/1.7.x.zip#egg=django
+
 -e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
 -e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
 -e git+ssh://git@github.com/ixc/django-flatblocks.git@master#egg=django-flatblocks
