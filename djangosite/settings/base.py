@@ -57,7 +57,6 @@ INSTALLED_APPS += (
     'flatblocks',
     'orm_fixtures',
     'reversion',
-    'south',
 
     # IxC.
     'generic',
