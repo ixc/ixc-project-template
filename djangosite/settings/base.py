@@ -251,7 +251,7 @@ SUIT_CONFIG = {
             'label': 'Media',
             'icon':'icon-play',
             'models': (
-                'ixc_assets.assetcategory',
+                'ixc_content_types.assetcategory',
                 {
                     'label': 'Media file category',
                     'model': 'medialibrary.category',

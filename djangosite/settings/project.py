@@ -51,13 +51,13 @@ INSTALLED_APPS += (
 
     # 'adminboost',
     'ixc_accounts', # Also needs `AUTH_USER_MODEL = 'ixc_accounts.User'`.
-    # 'ixc_assets',
-    # 'ixc_assets.files',
-    # 'ixc_assets.galleries', # You must provide a front-end if you enable galleries.
-    # 'ixc_assets.images',
     # 'generic',
     # 'ixc_blog',
     # 'ixc_cms',
+    # 'ixc_content_types',
+    # 'ixc_content_types.files',
+    # 'ixc_content_types.galleries', # You must provide a front-end if you enable galleries.
+    # 'ixc_content_types.images',
     # 'ixc_core',
     # 'ixc_feincms_conf', # Must come after `feincms.*`.
     # 'ixc_flatui',
