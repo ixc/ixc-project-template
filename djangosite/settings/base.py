@@ -205,6 +205,7 @@ REDACTOR_UPLOAD = 'uploads/redactor/'
 
 SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',
+    'ixc_accounts': 'ixc_accounts.south_migrations',
     'page': 'ixc_feincms_conf.feincms_page_migrations',
 }
 
