@@ -38,12 +38,14 @@ EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 # feincms.module.medialibrary, ixc_feincms_conf.
 
 INSTALLED_APPS += (
+    # 3rd party.
     # 'feincms',
     # 'feincms.module.medialibrary',
     # 'feincms.module.page', # Only used for template tags.
     # 'feincmstools',
     # 'mptt',
     # 'oembed',
+    # 'orm_fixtures',
     # 'redactor',
     # 'singleton_models',
 
@@ -53,13 +55,19 @@ INSTALLED_APPS += (
     # 'ixc_assets.files',
     # 'ixc_assets.galleries', # You must provide a front-end if you enable galleries.
     # 'ixc_assets.images',
+    # 'generic',
     # 'ixc_blog',
     # 'ixc_cms',
+    # 'ixc_core',
     # 'ixc_feincms_conf', # Must come after `feincms.*`.
+    # 'ixc_flatui',
     # 'ixc_home',
     # 'ixc_pages',
     # 'ixc_smartlinks_conf',
     # 'smartlinks',
+
+    # This project.
+    '{{ project_name }}',
 )
 
 ### DJANGO AUTH ###############################################################

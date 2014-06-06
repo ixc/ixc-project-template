@@ -55,16 +55,8 @@ INSTALLED_APPS += (
     'djsupervisor',
     'easy_thumbnails',
     'flatblocks',
-    'orm_fixtures',
     'reversion',
     'south',
-
-    # IxC.
-    'generic',
-    'ixc_core',
-    'ixc_flatui',
-
-    '{{ project_name }}',
 )
 
 MEDIA_ROOT = os.path.join(PUBLIC_DIR, 'media')
