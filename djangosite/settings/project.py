@@ -30,15 +30,16 @@ INSTALLED_APPS += (
     # 'feincms',
     # 'feincms.module.medialibrary',
     # 'feincms.module.page', # Only used for template tags.
-    # 'feincmstools',
     # 'mptt',
     # 'oembed',
     # 'orm_fixtures',
     # 'redactor',
     # 'singleton_models',
 
+    # IxC.
     # 'adminboost',
     'ixc_accounts', # Also needs `AUTH_USER_MODEL = 'ixc_accounts.User'`.
+    # 'feincmstools',
     # 'generic',
     # 'ixc_blog',
     # 'ixc_cms',
