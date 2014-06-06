@@ -32,7 +32,8 @@ Create a new project like this:
 
 4.  Create a ``virtualenv`` for the project and pin its dependencies::
 
-        $ mkvirtualenv -a "$PWD" -r requirements-unpinned.txt $PROJECT
+        $ mkvirtualenv -a "$PWD" $PROJECT
+        $ pip install -r requirements-unpinned.txt
         $ pip freeze > requirements.txt
 
 5.  Create a private repository with the same name as your project owned by the
