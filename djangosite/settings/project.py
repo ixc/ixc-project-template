@@ -38,9 +38,9 @@ INSTALLED_APPS += (
 
     # IxC.
     # 'adminboost',
-    'ixc_accounts', # Also needs `AUTH_USER_MODEL = 'ixc_accounts.User'`.
     # 'feincmstools',
     # 'generic',
+    # 'ixc_accounts', # Also needs `AUTH_USER_MODEL = 'ixc_accounts.User'`.
     # 'ixc_blog',
     # 'ixc_cms',
     # 'ixc_content_types',
@@ -61,7 +61,7 @@ INSTALLED_APPS += (
 
 ### DJANGO AUTH ###############################################################
 
-AUTH_USER_MODEL = 'ixc_accounts.User'
+# AUTH_USER_MODEL = 'ixc_accounts.User'
 
 ### BOWER #####################################################################
 
