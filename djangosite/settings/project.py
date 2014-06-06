@@ -23,19 +23,7 @@ TEMPLATE_CONSTANTS = {
 
 EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 
-# Currently many apps are too tightly coupled. Below are the dependencies that
-# are required for some of the apps. For now, you'll need to install all the
-# requirements until we can decouple them.
-
-# ixc-blog:
-# feincmstools, feincms, ixc_assets, ixc_smartlinks_conf, smartlinks, oembed,
-# adminboost, ixc_cms, feincms.module.medialibrary, ixc_pages,
-# ixc_feincms_conf.
-
-# ixc-home:
-# singleton_models, feincmstools, feincms, mptt, ixc_smartlinks_conf,
-# smartlinks, oembed, adminboost, ixc_cms, ixc_pages,
-# feincms.module.medialibrary, ixc_feincms_conf.
+# Check `requirements.txt` for a list of dependencies for each app below.
 
 INSTALLED_APPS += (
     # 3rd party.
