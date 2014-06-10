@@ -259,7 +259,7 @@ SUIT_CONFIG = {
         },
         '-',
         {
-            'label': 'Settings',
+            'label': 'Configuration',
             'icon': 'icon-cog',
             'models': (
                 'model_settings.setting',
