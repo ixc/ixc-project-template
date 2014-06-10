@@ -54,7 +54,6 @@ INSTALLED_APPS += (
     'django_extensions',
     'djsupervisor',
     'easy_thumbnails',
-    'flatblocks',
     'reversion',
     'south',
 )
@@ -91,7 +90,6 @@ except IOError:
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
-    'flatblocks.context_processors.flatblocks',
     'generic.context_processors.generic',
 
     # TODO: Don't rely on URL fragments to apply styles. Use URL names or hard
@@ -161,17 +159,16 @@ FEINCMS_USE_PAGE_ADMIN = False
 TEMP_FOLDER = os.path.join(tempfile.gettempdir(), '{{ project_name }}')
 TMP_UPLOAD_FOLDER = os.path.join(TEMP_FOLDER, 'uploads')
 
-### FLATBLOCKS ################################################################
-
-FLATBLOCKS_AUTOCREATE_STATIC_BLOCKS = True
-FLATBLOCKS_STRICT_DEFAULT_CHECK = True
-FLATBLOCKS_STRICT_DEFAULT_CHECK_UPDATE = True
-
 ### GUARDIAN ##################################################################
 
 # ANONYMOUS_USER_ID = -1 # Syncdb to create the user
 # INSTALLED_APPS += ('guardian', )
 # AUTHENTICATION_BACKENDS += ('guardian.backends.ObjectPermissionBackend', )
+
+### MODEL SETTINGS ############################################################
+
+INSTALLED_APPS += ('model_settings', 'polymorphic')
+TEMPLATE_CONTEXT_PROCESSORS += ('model_settings.context_processors.settings', )
 
 ### REDACTOR ##################################################################
 
@@ -243,7 +240,6 @@ SUIT_CONFIG = {
                 'ixc_pages.page',
                 'ixc_home.homepage',
                 'redirects.redirect',
-                'flatblocks.flatblock',
                 # 'smartlinks.customsmartlink',
             ),
         },
@@ -266,6 +262,7 @@ SUIT_CONFIG = {
             'label': 'Settings',
             'icon': 'icon-cog',
             'models': (
+                'model_settings.setting',
                 'ixc_accounts.user',
                 'auth.group',
                 'oembed.providerrule',
