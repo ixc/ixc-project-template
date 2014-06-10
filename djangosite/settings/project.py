@@ -47,9 +47,9 @@ INSTALLED_APPS += (
     # 'ixc_content_types.files',
     # 'ixc_content_types.galleries', # You must provide a front-end if you enable galleries.
     # 'ixc_content_types.images',
-    # 'ixc_core',
+    'ixc_core',
     # 'ixc_feincms_conf', # Must come after `feincms.*`.
-    # 'ixc_flatui',
+    'ixc_flatui',
     # 'ixc_home',
     # 'ixc_pages',
     # 'ixc_smartlinks_conf',
