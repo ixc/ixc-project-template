@@ -22,7 +22,7 @@ TEMPLATE_DEBUG = DEBUG
 DEBUG_TOOLS = DEBUG # Use debug toolbar.
 
 if DEBUG:
-    # This is needed as DBT does not patch things that well. Refer to:
+    # This is needed as DDT does not patch things that well. Refer to:
     # https://github.com/django-debug-toolbar/django-debug-toolbar/issues/521
     DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
