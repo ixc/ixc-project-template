@@ -104,6 +104,7 @@ django-supervisor
 django-webtest
 easy_thumbnails
 gunicorn
+ipython
 nose-cov
 nose-progressive
 pyScss
@@ -111,6 +112,7 @@ pytz
 raven
 South
 WebTest
+Werkzeug
 
 ### Vendor ####################################################################
 

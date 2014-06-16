@@ -78,7 +78,7 @@ Description of your project.
 Installation
 ============
 
-You will need Git, Python 2.6.5+ or 3.2+, ``pip``, ``virtualenv`` and
+You will need Bower, Git, Python 2.6.5+ or 3.2+, ``pip``, ``virtualenv`` and
 ``virtualenvwrapper`` to install this project and its dependencies. Find more
 info on how to setup a development environment on our internal wiki.
 
@@ -88,25 +88,31 @@ info on how to setup a development environment on our internal wiki.
         $ git clone git@github.com:ixc/{{ project_name }}.git
 
 2.  Change to the project directory, create a ``virtualenv`` and install its
-    dependencies::
+    core dependencies::
 
         $ cd {{ project_name }}
         $ mkvirtualenv -a "$PWD" {{ project_name }}
         $ pip install -r requirements.txt
 
-3.  Configure the project settings for the local environment::
+3.  You might also want to install some of the following development and
+    production deployment specific dependencies::
+
+        $ pip install ipdb
+        $ pip install psycopg2
+
+4.  Configure the project settings for the local environment::
 
         ({{ project_name }})$ cp djangosite/settings/local.tmpl.py \
         djangosite/settings/local.py
         ({{ project_name }})$ vi djangosite/settings/local.py
 
-4.  Sync the database, load ORM fixtures and download bower components::
+5.  Sync the database, load ORM fixtures and download bower components::
 
         ({{ project_name }})$ ./manage.py syncdb --migrate --noinput
         ({{ project_name }})$ ./manage.py orm_fixtures
         ({{ project_name }})$ ./manage.py bower_install
 
-5.  If deploying to a development environment, you can also load the
+6.  If deploying to a development environment, you can also load the
     ``sample_data`` ORM fixture::
 
         ({{ project_name }})$ ./manage.py orm_fixtures sample_data
@@ -114,7 +120,7 @@ info on how to setup a development environment on our internal wiki.
     This will create a ``admin@example.com`` superuser with the password
     ``admin123``.
 
-6.  If deploying to a production environment, collect static files for
+7.  If deploying to a production environment, collect static files for
     installed apps::
 
         ({{ project_name }})$ ./manage.py collectstatic
