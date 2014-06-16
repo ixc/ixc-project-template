@@ -124,3 +124,8 @@ div.toolbar-content > div.object-tools > li {
 .control-unit a.redactorcontent:hover {
     background-position: 0 -70px;
 }
+
+/* hide move to other region by default */
+.item-control-unit.move-control {
+	display: none !important;
+}
