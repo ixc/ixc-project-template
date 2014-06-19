@@ -47,3 +47,7 @@ if DEBUG:
 ### SUIT ######################################################################
 
 SUIT_CONFIG['ADMIN_NAME'] = '%s Admin' % SITE_NAME
+
+if not 'feincms.module.medialibrary' in INSTALLED_APPS:
+    SUIT_CONFIG['MENU'][2]['models'] = SUIT_CONFIG['MENU'][2]['models'][:1] + SUIT_CONFIG['MENU'][2]['models'][3:]
+
