@@ -196,6 +196,9 @@ SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',
     'ixc_accounts': 'ixc_accounts.south_migrations',
     'page': 'ixc_feincms_conf.feincms_page_migrations',
+    'ixc_pages': '{{ project_name }}.ixc_migrations.ixc_pages_migrations',
+    'ixc_blog': '{{ project_name }}.ixc_migrations.ixc_blog_migrations',
+    'ixc_home': '{{ project_name }}.ixc_migrations.ixc_home_migrations',
 }
 
 ### SUIT ######################################################################
@@ -245,7 +248,7 @@ SUIT_CONFIG = {
         },
         {
             'label': 'Media',
-            'icon':'icon-play',
+            'icon': 'icon-play',
             'models': (
                 'ixc_content_types.assetcategory',
                 {
