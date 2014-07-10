@@ -71,3 +71,44 @@ INSTALLED_APPS += (
 
 # Get from: https://sentry.ixcsandbox.com
 SENTRY_DSN = ''
+
+### CONTENT TYPES #############################################################
+### Below is a sample of content types that may often be used in projects. If
+### they are not used and ixc_content_types is installed it will fall back to
+### some default choices
+
+# If you choose to use GalleryContent or GalleryContentWithDimensions uncomment
+# the following line
+# BOWER_INSTALLED_APPS += ('colorbox',)
+
+# DEFAULT_CONTENT_TYPES = {
+#     (
+#         'Images',
+#         (
+#             'ixc_content_types.images.content_types.OneOffImageContent',
+#             'ixc_content_types.images.content_types.OneOffImageContentWithStyles',
+#             'ixc_content_types.images.content_types.ReusableImageContent',
+#             'ixc_content_types.images.content_types.ReusableImageContentWithStyles',
+#             'ixc_content_types.images.content_types.GalleryContent',
+#             'ixc_content_types.images.content_types.GalleryContentWithDimensions',
+#             'ixc_content_types.images.content_types.CarouselContent',
+#             'ixc_content_types.images.content_types.CarouselContentWithDimensions',
+#         ),
+#     ),
+#     (
+#         'Files',
+#         (
+#             'ixc_content_types.files.content_types.OneOffFileContent',
+#             'ixc_content_types.files.content_types.ReusableFileContent',
+#             'ixc_content_types.files.content_types.OEmbedContent',
+#         ),
+#     ),
+#     (
+#         None,
+#         (
+#             'redactor.content_types.RedactorContent',
+#             'ixc_content_types.textual.content_types.QuoteContent',
+#             'ixc_content_types.textual.content_types.RawHTMLContent',
+#         ),
+#     ),
+# }
