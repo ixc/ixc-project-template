@@ -1,6 +1,6 @@
 # http://editorconfig.org
 
-root = true
+# Define your preferred indent size for tab style in your own `.editorconfig`.
 
 [*]
 charset = utf-8
