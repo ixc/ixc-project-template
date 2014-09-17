@@ -1,8 +1,8 @@
-from {{ project_name }} import VERSION
+from {{ project_name }} import __version__
 import setuptools
 
 setuptools.setup(
     name='{{ project_name }}',
-    version=VERSION,
+    version=__version__,
     packages=setuptools.find_packages()
 )
