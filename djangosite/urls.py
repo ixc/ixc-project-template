@@ -7,7 +7,6 @@ from django.conf.urls import include, patterns, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
-from django.views import defaults
 from django.views.generic import TemplateView
 from generic.views import relative_view_on_site_urls
 
@@ -20,22 +19,32 @@ sitemaps = {}
 # from feincms.module.page.sitemap import PageSitemap
 # sitemaps.update({'pages' : PageSitemap})
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Make "view on site" links use relative URLs.
     relative_view_on_site_urls,
 
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^sitemap\.xml$',
+        'django.contrib.sitemaps.views.sitemap',
+        {'sitemaps': sitemaps}),
 
     # Test templates.
-    url(r'^404/$', staff_member_required(TemplateView.as_view(template_name='404.html'))),
-    url(r'^500/$', staff_member_required(defaults.server_error)),
-    url(r'^kitchen-sink/$', staff_member_required(TemplateView.as_view(template_name='flatui/kitchen-sink.html'))),
+    url(r'^404/$', TemplateView.as_view(template_name='404.html')),
+    url(r'^500/$', TemplateView.as_view(template_name='500.html')),
+    url(r'^kitchen-sink/$',
+        staff_member_required(TemplateView.as_view(
+            template_name='flatui/kitchen-sink.html'))),
 
     # Optional.
     # url(r'^$', include('ixc_home.urls', namespace='home')),
-    # url(r'^ajax_delete/(?P<uuid>.*)/$', 'ixc_cms.views.admin_media_delete', name='ajax_delete'),
-    # url(r'^ajax_upload/$', 'ixc_cms.views.admin_media_upload', name='ajax_upload'),
-    # url(r'^blog/', include('ixc_blog.urls', app_name='blogtools', namespace='blog')),
+    # url(r'^ajax_delete/(?P<uuid>.*)/$',
+    #     'ixc_cms.views.admin_media_delete',
+    #     name='ajax_delete'),
+    # url(r'^ajax_upload/$',
+    #     'ixc_cms.views.admin_media_upload',
+    #     name='ajax_upload'),
+    # url(r'^blog/',
+    #     include('ixc_blog.urls', app_name='blogtools', namespace='blog')),
 
     # Included apps.
     url(r'^accounts/', include('django.contrib.auth.urls')),
