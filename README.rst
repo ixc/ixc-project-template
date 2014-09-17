@@ -92,17 +92,17 @@ info on how to setup a development environment on our internal wiki.
 
         $ cd {{ project_name }}
         $ mkvirtualenv -a "$PWD" {{ project_name }}
-        $ pip install -r requirements.txt
+        ({{ project_name }})$ pip install -r requirements.txt
 
 3.  You might also want to install some of the following development and
     production deployment specific dependencies::
 
-        $ pip install ipdb
-        $ pip install psycopg2
+        ({{ project_name }})$ pip install ipdb
+        ({{ project_name }})$ pip install psycopg2
 
 4.  Download bower components::
 
-        $ bower install
+        ({{ project_name }})$ bower install
 
 5.  Configure the project settings for the local environment::
 
