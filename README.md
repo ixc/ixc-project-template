@@ -78,7 +78,7 @@ Description of your project.
 Installation
 ============
 
-You will need Bower, Git, Python 2.6.5+ or 3.2+, `pip`, `virtualenv` and
+You will need Bower, Git, Python 2.7+ or 3.2+, `pip`, `virtualenv` and
 `virtualenvwrapper` to install this project and its dependencies. Find more
 info on how to setup a development environment on our internal wiki.
 
