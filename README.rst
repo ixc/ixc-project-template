@@ -20,9 +20,9 @@ Create a new project like this:
     template::
 
         $ cd ~/projects
-        $ django-admin.py startproject -n base.html -n deployo.json -n \
-        index.rst -n Makefile -n make.bat -n base.html -n README.rst \
-        --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
+        $ django-admin.py startproject -n base.html -n bower.json -n \
+        deployo.json -n index.rst -n Makefile -n make.bat -n base.html -n \
+        README.rst --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
         $PROJECT
 
 3.  Change to the project directory and make ``manage.py`` executable::
@@ -100,19 +100,22 @@ info on how to setup a development environment on our internal wiki.
         $ pip install ipdb
         $ pip install psycopg2
 
-4.  Configure the project settings for the local environment::
+4.  Download bower components::
+
+        $ bower install
+
+5.  Configure the project settings for the local environment::
 
         ({{ project_name }})$ cp djangosite/settings/local.tmpl.py \
         djangosite/settings/local.py
         ({{ project_name }})$ vi djangosite/settings/local.py
 
-5.  Sync the database, load ORM fixtures and download bower components::
+6.  Sync the database, load ORM fixtures::
 
         ({{ project_name }})$ ./manage.py syncdb --migrate --noinput
         ({{ project_name }})$ ./manage.py orm_fixtures
-        ({{ project_name }})$ ./manage.py bower_install
 
-6.  If deploying to a development environment, you can also load the
+7.  If deploying to a development environment, you can also load the
     ``sample_data`` ORM fixture::
 
         ({{ project_name }})$ ./manage.py orm_fixtures sample_data
@@ -120,7 +123,7 @@ info on how to setup a development environment on our internal wiki.
     This will create a ``admin@example.com`` superuser with the password
     ``admin123``.
 
-7.  If deploying to a production environment, collect static files for
+8.  If deploying to a production environment, collect static files for
     installed apps::
 
         ({{ project_name }})$ ./manage.py collectstatic

@@ -63,10 +63,6 @@ INSTALLED_APPS += (
 
 # AUTH_USER_MODEL = 'ixc_accounts.User'
 
-### BOWER #####################################################################
-
-# BOWER_INSTALLED_APPS += ()
-
 ### SENTRY ####################################################################
 
 # Get from: https://sentry.ixcsandbox.com
@@ -77,9 +73,8 @@ SENTRY_DSN = ''
 ### they are not used and ixc_content_types is installed it will fall back to
 ### some default choices
 
-# If you choose to use GalleryContent or GalleryContentWithDimensions uncomment
-# the following line
-# BOWER_INSTALLED_APPS += ('colorbox',)
+# If you choose to use GalleryContent or GalleryContentWithDimensions, remember
+# to run `bower install -S colorbox`.
 
 # DEFAULT_CONTENT_TYPES = {
 #     (

@@ -119,21 +119,9 @@ SITE_ID = 1
 STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
 
 STATICFILES_DIRS = (
+    os.path.abspath(os.path.join(BASE_DIR, 'bower_components')),
     os.path.abspath(os.path.join(BASE_DIR, 'djangosite', 'static')),
 )
-
-### BOWER #####################################################################
-
-BOWER_COMPONENTS_ROOT = BASE_DIR
-
-BOWER_INSTALLED_APPS = (
-    'bootstrap',
-    'jquery',
-    'jquery.placeholder',
-)
-
-INSTALLED_APPS += ('djangobower', )
-STATICFILES_FINDERS += ('djangobower.finders.BowerFinder', )
 
 ### COMPRESSOR ################################################################
 

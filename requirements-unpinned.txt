@@ -93,7 +93,6 @@
 ### 3rd party and public ######################################################
 
 Django
-django-bower
 django-debug-toolbar
 django-dynamic-fixture
 django-extensions
