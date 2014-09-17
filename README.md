@@ -37,7 +37,7 @@ Create a new project like this:
         $ pip freeze > requirements.txt
 
  5. Create a private repository with the same name as your project owned by the
-    IxC account at [GitHub](https://github.com/ixc/).
+    [IxC account at GitHub](https://github.com/ixc/).
 
  6. Initialize the project directory as a Git repository and push an initial
     commit:
