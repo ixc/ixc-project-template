@@ -55,7 +55,6 @@ INSTALLED_APPS += (
     'djsupervisor',
     'easy_thumbnails',
     'reversion',
-    'south',
 )
 
 MEDIA_ROOT = os.path.join(PUBLIC_DIR, 'media')
@@ -65,6 +64,13 @@ MIDDLEWARE_CLASSES += (
     'django.contrib.admindocs.middleware.XViewMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
+
+MIGRATION_MODULES = {
+    'ixc_blog': 'djangosite.migrations.ixc_blog',
+    'ixc_home': 'djangosite.migrations.ixc_home',
+    'ixc_pages': 'djangosite.migrations.ixc_pages',
+    'page': 'ixc_feincms_conf.feincms_page_migrations',
+}
 
 ROOT_URLCONF = 'djangosite.urls'
 
@@ -177,17 +183,6 @@ REDACTOR_OPTIONS = {
 }
 
 REDACTOR_UPLOAD = 'uploads/redactor/'
-
-### SOUTH #####################################################################
-
-SOUTH_MIGRATION_MODULES = {
-    'easy_thumbnails': 'easy_thumbnails.south_migrations',
-    'ixc_accounts': 'ixc_accounts.south_migrations',
-    'page': 'ixc_feincms_conf.feincms_page_migrations',
-    'ixc_pages': '{{ project_name }}.ixc_migrations.ixc_pages',
-    'ixc_blog': '{{ project_name }}.ixc_migrations.ixc_blog',
-    'ixc_home': '{{ project_name }}.ixc_migrations.ixc_home',
-}
 
 ### SUIT ######################################################################
 
