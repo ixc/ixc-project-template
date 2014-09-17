@@ -31,9 +31,8 @@ urlpatterns = patterns(
     # Test templates.
     url(r'^404/$', TemplateView.as_view(template_name='404.html')),
     url(r'^500/$', TemplateView.as_view(template_name='500.html')),
-    url(r'^kitchen-sink/$',
-        staff_member_required(TemplateView.as_view(
-            template_name='flatui/kitchen-sink.html'))),
+    url(r'^kitchen-sink/$', staff_member_required(
+        TemplateView.as_view(template_name='flatui/kitchen-sink.html'))),
 
     # Optional.
     # url(r'^$', include('ixc_home.urls', namespace='home')),
