@@ -110,7 +110,6 @@ nose-progressive
 pyScss
 pytz
 raven
-South
 WebTest
 Werkzeug
 
