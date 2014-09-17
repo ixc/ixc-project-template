@@ -1,11 +1,5 @@
 {
   "name": "{{ project_name }}",
-  "version": "0.0.0",
-  "homepage": "https://github.com/ixc/{{ project_name }}",
-  "authors": [
-    "Interaction Consortium"
-  ],
-  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
