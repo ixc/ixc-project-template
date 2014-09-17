@@ -19,9 +19,9 @@
 # -e git+ssh://git@github.com/ixc/ixc-blog.git@master#egg=ixc-blog
 # -e git+ssh://git@github.com/ixc/ixc-cms.git@decouple#egg=ixc-cms
 # -e git+ssh://git@github.com/ixc/ixc-content-types.git@decouple#egg=ixc-content-types
-# -e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
+-e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
 # -e git+ssh://git@github.com/ixc/ixc-feincms-conf.git@decouple#egg=ixc-feincms-conf
-# -e git+ssh://git@github.com/ixc/ixc-flatui.git@master#egg=ixc-flatui
+-e git+ssh://git@github.com/ixc/ixc-flatui.git@master#egg=ixc-flatui
 # -e git+ssh://git@github.com/ixc/ixc-home.git@decouple#egg=ixc-home
 # -e git+ssh://git@github.com/ixc/ixc-pages.git@decouple#egg=ixc-pages
 -e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
