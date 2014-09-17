@@ -56,6 +56,7 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Catch all, project URLs.
-urlpatterns += patterns('',
+urlpatterns += patterns(
+    '',
     url(r'^', include('{{ project_name }}.urls')),
 )
