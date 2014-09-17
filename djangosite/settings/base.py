@@ -94,6 +94,11 @@ except IOError:
             'Please create a %s file with 50 random characters to set your '
             'secret key.' % SECRET_FILE)
 
+SILENCED_SYSTEM_CHECKS = (
+    '1_6.W001',
+    '1_6.W002',
+)
+
 TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
     'generic.context_processors.generic',
