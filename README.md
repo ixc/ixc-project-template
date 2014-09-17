@@ -21,9 +21,9 @@ Create a new project like this:
     template:
 
         $ cd ~/projects
-        $ django-admin.py startproject -n base.html -n bower.json -n \
-        deployo.json -n index.rst -n Makefile -n make.bat -n base.html -n \
-        README.md --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
+        $ django-admin.py startproject -n .gitignore -n base.html -n \
+        bower.json -n deployo.json -n index.rst -n Makefile -n make.bat -n \
+        base.html -n README.md --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
         $PROJECT
 
  3. Change to the project directory and make `manage.py` executable:

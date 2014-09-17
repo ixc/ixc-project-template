@@ -6,7 +6,6 @@
 .svn/
 
 # Project.
-/*/settings/local.py
 /bower_components/
 /db.sqlite3
 /public/media/
@@ -16,6 +15,7 @@
 /supervisord.pid
 /venv/
 /virtualenv/
+/{{ project_name }}/settings/local.py
 
 # Aptana, pycharm, pydev, etc.
 .env
