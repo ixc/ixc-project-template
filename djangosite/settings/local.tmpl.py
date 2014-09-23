@@ -1,38 +1,84 @@
 """
-Local settings for this deployment. Sample values should be defined when a
-project is created from ``ixc-project-template``, and will need to be updated
-every time this project is deployed.
+Settings that apply to a single deployment.
 
-Includes things like: the primary domain name where this deployment will be
-accessed from; database credentials and secret keys; settings that are derived
-from other settings; and settings that frequently need to be toggled during
-development.
+Rename to ``local.py`` and uncomment or edit to suite the local environment.
 """
-from .project import *
 
-### IXC PROJECT  ##############################################################
+from .base import *
+
+### GLOBAL ####################################################################
+
+# Settings you will probably want to change for all environments.
 
 SITE_DOMAIN = 'localhost'
+SITE_PORT = 8000
 
-### DJANGO CORE ###############################################################
+ADMINS = (
+    ('Interaction Consortium', 'admins@interaction.net.au'),
+)
 
-# Uncomment if you don't want the default, sqlite3.
-DATABASES['default'].update({
-    # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    # 'NAME': '',
-    # 'USER': '',
-    # 'PASSWORD': '',
-})
-
-# DEBUG = False
+ALLOWED_HOSTS += (
+    SITE_DOMAIN,
+)
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
-# Enable site-wide caching.
+### DEVELOPMENT ###############################################################
+
+# Settings you might want to enable for development.
+
+# DEBUG = True  # Show detailed error pages when exceptions are raised
+# TEMPLATE_DEBUG = True  # Show details when exceptions are raised in templates
+
+# CSRF_COOKIE_SECURE = False  # Don't require HTTPS for CSRF cookie
+# SESSION_COOKIE_SECURE = False  # Don't require HTTPS for session cookie
+
+### STAGING ###################################################################
+
+# Settings you might want to enable for staging.
+
+# URLOPEN_AUTH_CACHE = {
+#     'realm@%s' % host: ('username', 'password') for host in ALLOWED_HOSTS
+# }
+
+### PRODUCTION ################################################################
+
+# Settings you might want to enable for production.
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#     }
+# }
+
+# CONN_MAX_AGE = 60  # Enable persistent database connections
+
+# DATABASES = {
+#     'default': {
+#         'ATOMIC_REQUESTS': True,
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'nsw-health',
+#         'HOST': '',
+#         'PORT': '',
+#         'USER': '',
+#         'PASSWORD': '',
+#     }
+# }
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Send emails
+
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'noreply@%s' % SITE_DOMAIN
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+# Enable site-wide caching middleware.
 # MIDDLEWARE_CLASSES = (
 #     ('django.middleware.cache.UpdateCacheMiddleware', ) +
 #     MIDDLEWARE_CLASSES +
-#     ('django.middleware.cache.FetchFromCacheMiddleware', ))
+#     ('django.middleware.cache.FetchFromCacheMiddleware', )
+# )
 
 # Enable cached template loader.
 # TEMPLATE_LOADERS = (
@@ -43,10 +89,25 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
 # Enable view profiling. Add `prof` key to querystring to see profiling results
 # in your browser.
-# MIDDLEWARE_CLASSES += ('generic.middleware.ProfileMiddleware', )
+if DEBUG:
+    MIDDLEWARE_CLASSES += ('generic.middleware.ProfileMiddleware', )
+
+TEMPLATE_CONSTANTS.update({
+    'SITE_DOMAIN': SITE_DOMAIN,
+    'SITE_PORT': SITE_PORT,
+})
+
+### HOSTS #####################################################################
+
+# PARENT_HOST = SITE_DOMAIN
+
+### SENTRY ####################################################################
+
+# See: https://sentry.ixcsandbox.com
+SENTRY_DSN = ''
 
 ### SUPERVISOR ################################################################
 
 SUPERVISOR.update({
-    # 'ADDRESS': '127.0.0.1:8000', # TODO: Set this automatically.
+    'ADDRESS': '127.0.0.1:%s' % SITE_PORT,  # Bind to loopback interface
 })
