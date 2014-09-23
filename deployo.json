@@ -9,8 +9,8 @@
 			"ssh_port": "22022",
 			"default_user": "ixc",
 			"project_directory": "/var/www/{{ project_name }}-prd",
-			"source_directory": "/var/www/{{ project_name }}-prd/djangosite",
-			"virtualenv_directory": "/var/www/{{ project_name }}-prd/venv",
+			"source_directory": "/var/www/{{ project_name }}-prd/{% verbatim %}{{ repos_name }}{% endverbatim %}",
+			"virtualenv_directory": "/var/www/{{ project_name }}-prd/{% verbatim %}{{ repos_name }}{% endverbatim %}/venv",
 			"git_branch": "master",
 			"tags": ["gunicorn"]
 		},
@@ -21,8 +21,8 @@
 			"ssh_port": "22022",
 			"default_user": "ixc",
 			"project_directory": "/var/www/{{ project_name }}-stg",
-			"source_directory": "/var/www/{{ project_name }}-stg/djangosite",
-			"virtualenv_directory": "/var/www/{{ project_name }}-stg/venv",
+			"source_directory": "/var/www/{{ project_name }}-stg/{% verbatim %}{{ repos_name }}{% endverbatim %}",
+			"virtualenv_directory": "/var/www/{{ project_name }}-stg/{% verbatim %}{{ repos_name }}{% endverbatim %}/venv",
 			"git_branch": "staging",
 			"tags": ["gunicorn"]
 		}
