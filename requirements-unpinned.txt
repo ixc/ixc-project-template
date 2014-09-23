@@ -1,3 +1,10 @@
+# This file should include dependencies used directly by this project, and
+# private or forked dependencies that can't be referenced in `setup.py`.
+
+# For deployment, all dependencies should be flattened (including dependencies
+# not used directly by this project) to `requirements.txt`, but this file
+# should remain as the authoritative list.
+
 ### Private and forked ########################################################
 
 -e .
