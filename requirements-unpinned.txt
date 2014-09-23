@@ -31,7 +31,7 @@
 -e git+ssh://git@github.com/ixc/ixc-flatui.git@master#egg=ixc-flatui
 # -e git+ssh://git@github.com/ixc/ixc-home.git@decouple#egg=ixc-home
 # -e git+ssh://git@github.com/ixc/ixc-pages.git@decouple#egg=ixc-pages
--e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
+# -e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
 # -e git+ssh://git@github.com/ixc/ixc-smartlinks-conf.git@decouple#egg=ixc-smartlinks-conf
 # -e git+ssh://git@github.com/thirstydigital/django-generic-uid.git@master#egg=django-generic-uid
 
