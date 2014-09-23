@@ -14,12 +14,12 @@ def site_section(request):
     """
     # TODO: Don't rely on URL fragments to apply styles. Use URL names or hard
     # coded variables in section base templates.
-    
+
     #Define your rules here
     url_based = request.get_full_path().split("/")[1:-1] #leading and trailing slashes
-    
+
     if url_based == []:
         url_based = ["home"]
-    
+
     url_based = [SITE_SECTION_OVERRIDES.get(x, x) for x in url_based]
     return {'site_section': url_based }
