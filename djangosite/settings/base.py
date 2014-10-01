@@ -296,10 +296,9 @@ SITE_ID = 1
 
 ### COMPRESSOR ################################################################
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', '%s --load-path={inpath} {infile}' %
-        os.path.join(sys.prefix, 'bin', 'pyscss')),
-)
+COMPRESS_CSS_FILTERS = [
+    'django_frontend_compiler.filters.clean_css.CleanCSSFilter',
+]
 
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
