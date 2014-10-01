@@ -194,9 +194,8 @@
 			{% compress js file %}
 				{% block base_js %}
 					<script>
-						window.context = {
-							DEBUG: {% if DEBUG %}true{% else %}false{% endif %}
-						};
+						window.context = window.context || {};
+						window.context.DEBUG = {% if DEBUG %}true{% else %}false{% endif %};
 					</script>
 					<script src="{% static 'jquery/dist/jquery.js' %}"></script>
 					<script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
