@@ -4,9 +4,9 @@ How to use
 This is a bare-bones skeleton project template, for use with the
 `django-admin.py startproject` command.
 
-You will need `Bower`, `Django 1.4+`, `Git`, `Python 2.7+` or `Python 3.2+`,
-`pip`, `virtualenv` and `virtualenvwrapper` to ceate a new project with this
-template.
+You will need `Git`, `Python 2.7+` or `Python 3.2+`,
+`pip`, `virtualenv`, `virtualenvwrapper`, `bower` and `npm` to
+create a new project with this template.
 
 Create a new project like this:
 
@@ -79,9 +79,9 @@ Description of your project.
 Installation
 ============
 
-You will need `Bower`, `Git`, `Python 2.7+` or `Python 3.2+`, `pip`,
-`virtualenv` and `virtualenvwrapper` to install this project and its
-dependencies.
+You will need `Django 1.4+`, `Git`, `Python 2.7+` or `Python 3.2+`,
+`pip`, `virtualenv`, `virtualenvwrapper`, `bower` and `npm` to
+install this project and its dependencies.
 
  1. Clone the project from GitHub to your `projects` folder:
 

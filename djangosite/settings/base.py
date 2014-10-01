@@ -181,7 +181,7 @@ INSTALLED_APPS = (
     # 'ixc_cms',
     'ixc_core',
     # 'ixc_feincms_conf',  # Must come after `feincms.*`
-    'ixc_flatui',
+    'django_frontend_compiler',
     # 'ixc_home',
     # 'ixc_pages',
     # 'ixc_smartlinks_conf',
@@ -256,6 +256,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # TODO: Don't rely on URL fragments to apply styles. Use URL names or hard
     # coded variables in section base templates.
     '{{ project_name }}.context_processors.site_section',
+    '{{ project_name }}.context_processors.django_environment',
+    '{{ project_name }}.context_processors.main_nav',
 )
 
 TEMPLATE_DIRS = (
