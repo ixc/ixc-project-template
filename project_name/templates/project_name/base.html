@@ -1,96 +1,214 @@
-{% verbatim %}{% extends "flatui/base.html" %}
+{% load staticfiles compress compile %}
 
-{% load staticfiles %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+	<head prefix="og: http://ogp.me/ns#">
+		<!-- Hello. We're the Interaction Consortium (http://interaction.net.au) -->
+		<!-- We made this. -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-{% block style %}
-	{{ block.super }}
-	{% endverbatim %}<link type="text/x-scss" rel="stylesheet" href="{% templatetag openblock %} static '{{ project_name }}/scss/style.scss' {% templatetag closeblock %}">{% verbatim %}
-{% endblock style %}
+		<title>{% block page_title %}{% if page_title %}{{ page_title }} :: {% endif %}{{ SITE_NAME }}{% endblock %}</title>
+		<meta name="description" content="{% block page_description %}{% endblock %}">
 
-{% block nav %}
-	<div class="row">
-		<div class="col-md-12">
-			<div class="navbar navbar-default">
-				<div class="navbar-header">
-					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
-					<a href="/" class="navbar-brand">{{ SITE_NAME }}</a>
-				</div>
-				<div class="navbar-collapse collapse navbar-collapse-01">
-					<ul class="nav navbar-nav">
-						<li {% if site_section.0 == "home" %}class="active"{% endif %}>
-							<a href="/">
-								Home
-							</a>
-						</li>
-						{% comment %}{# for example: #}
-						<li {% if site_section.0 == "about" %}class="selected"{% endif %}>
-							<a href="{% url pages:page 'about' %}">
-								About
-							</a>
-						</li>
-						<li {% if site_section.0 == "getting-here" %}class="selected"{% endif %}>
-							<a href="{% url pages:page 'getting-here' %}">
-								Getting Here
-							</a>
-						</li>
-						<li {% if site_section.0 == "contact" %}class="selected"{% endif %}>
-							<a href="{% url pages:page 'contact' %}">
-								Contact Us
-							</a>
-						</li>
-						{% endcomment %}
-						<li>
-							<form class="navbar-form" action="#" role="search">
-								<div class="form-group">
-									<div class="input-group input-group-sm">
-										<input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
-										<span class="input-group-btn">
-											<button type="submit" class="btn">
-												<span class="fui-search"></span>
-											</button>
-										</span>
+		{% block open_graph %}
+			<meta property="og:title" content="{% block og_title %}{% if page_title %}{{ page_title }} :: {% endif %}{{ SITE_NAME }}{% endblock %}">
+			<meta property="og:type" content="{% block og_type %}website{% endblock %}">
+			<meta property="og:image" content="{% block og_image %}{% endblock %}">
+			<meta property="og:site_name" content="{{ SITE_NAME }}">
+			<meta property="og:description" content="{% block og_description %}{% endblock %}">
+			{% block extra_open_graph %}{% endblock %}
+		{% endblock %}
+
+		{% if DEBUG %}
+			<meta name="robots" content="noindex">
+		{% endif %}
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		{# Base CSS files #}
+		{% compress css file %}
+			{% block base_css %}
+				<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" />
+				{% if COMPRESS_ENABLED %}
+					<link rel="stylesheet" href="{% compile rewrite-urls 'font-awesome/css/font-awesome.css' %}" />
+				{% else %}
+					<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}" />
+				{% endif %}
+				{% templatetag openblock %} compile less '{{ project_name }}/less/main.less' {% templatetag closeblock %}
+			{% endblock %}
+		{% endcompress %}
+		{# Extra CSS files - section/page specific, etc #}
+		{% compress css file %}
+			{% block css %}{% endblock %}
+		{% endcompress %}
+		{# CSS files hosted externally #}
+		{% block external_css %}{% endblock %}
+
+		{% compress js file %}
+			{% block head_js %}
+				{# Only put JS here if you need to block rendering, otherwise put it in the `js` block #}
+				<script type="text/javascript" src="{% static 'modernizr/modernizr.js' %}"></script>
+			{% endblock %}
+		{% endcompress %}
+
+		{% include 'core/analytics.html' %}
+
+		{% block extra_head %}{% endblock %}
+	</head>
+
+	<body class="{% block body_class %}{% endblock %}">
+		{% block body %}
+			{% block container %}
+				{% block header %}
+					<div class="container">
+						<header class="main-header">
+							<nav class="navbar navbar-default" role="navigation">
+								<div class="container-fluid">
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle" data-toggle="collapse"
+												data-target=".main-nav">
+											<span class="sr-only">Toggle navigation</span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+										<a class="navbar-brand" href="/">{{ SITE_NAME }}</a>
+									</div>
+									<div class="collapse navbar-collapse main-nav">
+										{% block nav %}
+											<ul class="nav navbar-nav">
+												{% for nav in main_nav %}
+													{% if nav.children %}
+														<li class="dropdown {% if nav.is_active %}active{% endif %}">
+															<a {% if nav.url %}href="{{ nav.url }}"{% endif %} class="dropdown-toggle" data-toggle="dropdown">
+																{{ nav.title }}
+																<span class="caret"></span>
+															</a>
+															<ul class="dropdown-menu" role="menu">
+																{% for child_nav in nav.children %}
+																	<li {% if child_nav.is_active %}class="active"{% endif %}>
+																		<a href="{{ child_nav.url }}">{{ child_nav.title }}</a>
+																	</li>
+																{% endfor %}
+															</ul>
+														</li>
+													{% else %}
+														<li {% if nav.is_active %}class="active"{% endif %}>
+															<a href="{{ nav.url }}">{{ nav.title }}</a>
+														</li>
+													{% endif %}
+												{% endfor %}
+											</ul>
+											<form class="navbar-form navbar-left" action="/search/" role="search">
+												<div class="form-group">
+													<input type="text" name="q" class="form-control" placeholder="Search" {% if request.GET.q %}value="{{ request.GET.q }}"{% endif %}>
+												</div>
+												<button type="submit" class="btn btn-default">Submit</button>
+											</form>
+											<ul class="nav navbar-nav navbar-right">
+												{% if request.user.is_authenticated %}
+													<li class="dropdown">
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+															{% if request.user.first_name %}
+																{{ request.user.first_name }}
+															{% else %}
+																{{ request.user }}
+															{% endif %}
+															<b class="caret"></b>
+														</a>
+														<ul class="dropdown-menu">
+															<li>
+																<a href="#">
+																	Settings
+																</a>
+															</li>
+															<li class="divider"></li>
+															<li>
+																<a href="{% url 'logout' %}">
+																	Logout
+																</a>
+															</li>
+														</ul>
+													</li>
+												{% else %}
+													<li>
+														<a href="{% url 'login' %}">
+															Log in
+														</a>
+													</li>
+												{% endif %}
+											</ul>
+										{% endblock %}
 									</div>
 								</div>
-							</form>
-						</li>
-					</ul>
-					{% if request.user.is_authenticated %}
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								{% if request.user.first_name %}
-									{{ request.user.first_name }}
-								{% else %}
-									{{ request.user }}
-								{% endif %}
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">
-										Settings
-									</a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="{% url 'logout' %}">
-										Logout
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					{% else %}
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="{% url 'login' %}">
-								Log in
-							</a>
-						</li>
-					</ul>
+							</nav>
+						</header>
+					</div>
+				{% endblock header %}
+
+				{% block messages %}
+					{% if messages %}
+						<div class="container messages">
+							<div class="row">
+								{% for message in messages %}
+									<div class="alert alert-warning alert-dismissible" role="alert">
+										<button type="button" class="close" data-dismiss="alert">
+											<span aria-hidden="true">&times;</span>
+											<span class="sr-only">Close</span>
+										</button>
+										{{ message }}
+									</div>
+								{% endfor %}
+							</div>
+						</div>
 					{% endif %}
+				{% endblock messages %}
+
+				<div class="main-content-container">
+					{% block content %}{% endblock %}
 				</div>
-			</div>
-		</div>
-	</div>
-{% endblock nav %}{% endverbatim %}
+
+				{% block footer %}
+					<div class="container">
+						<footer class="main-footer">
+							<nav class="navbar navbar-default" role="navigation">
+								<div class="container">
+									<ul class="nav navbar-nav">
+										<li><a href="#fakelink">About Us</a></li>
+										<li><a href="#fakelink">Store</a></li>
+										<li><a href="#fakelink">Jobs</a></li>
+										<li><a href="#fakelink">Privacy</a></li>
+										<li><a href="#fakelink">Terms</a></li>
+										<li><a href="#fakelink">Follow Us</a></li>
+										<li><a href="#fakelink">Support</a></li>
+										<li><a href="#fakelink">Links</a></li>
+									</ul>
+								</div>
+							</nav>
+						</footer>
+					</div>
+				{% endblock footer %}
+			{% endblock container %}
+			{# Base JS files #}
+			{% compress js file %}
+				{% block base_js %}
+					<script>
+						window.context = window.context || {};
+						window.context.DEBUG = {% if DEBUG %}true{% else %}false{% endif %};
+					</script>
+					<script src="{% static 'jquery/dist/jquery.js' %}"></script>
+					<script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+					<script src="{% static 'lodash/dist/lodash.js' %}"></script>
+				{% endblock %}
+			{% endcompress %}
+			{# Extra JS files - section/page specific, etc #}
+			{% compress js file %}
+				{% block js %}
+				{% endblock %}
+			{% endcompress %}
+			{# JS files hosted externally #}
+			{% block external_js %}{% endblock %}
+		{% endblock body %}
+	</body>
+</html>

@@ -8,8 +8,10 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": null,
     "jquery": null,
-    "jquery.placeholder": null
+    "bootstrap": null,
+    "lodash": null,
+    "modernizr": null,
+    "font-awesome": null
   }
 }

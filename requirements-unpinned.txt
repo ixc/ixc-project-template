@@ -28,7 +28,7 @@
 # -e git+ssh://git@github.com/ixc/ixc-content-types.git@decouple#egg=ixc-content-types
 -e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
 # -e git+ssh://git@github.com/ixc/ixc-feincms-conf.git@decouple#egg=ixc-feincms-conf
--e git+ssh://git@github.com/ixc/ixc-flatui.git@master#egg=ixc-flatui
+-e git+ssh://git@github.com/ixc/django-frontend-compiler.git@master#egg=django-frontend-compiler
 # -e git+ssh://git@github.com/ixc/ixc-home.git@decouple#egg=ixc-home
 # -e git+ssh://git@github.com/ixc/ixc-pages.git@decouple#egg=ixc-pages
 # -e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
@@ -114,7 +114,6 @@ gunicorn
 ipython
 nose-cov
 nose-progressive
-pyScss
 pytz
 raven
 WebTest
