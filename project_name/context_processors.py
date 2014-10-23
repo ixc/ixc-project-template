@@ -29,6 +29,11 @@ def site_section(request):
 
 
 def django_environment(request):
+    """
+    Return `DEBUG` and `COMPRESS_ENABLED` settings as context.
+    """
+    # TODO: Make a generic context processor in `ixc-core` for this, which gets
+    # the list of settings to be included as context from a setting.
     return {
         'DEBUG': settings.DEBUG,
         'COMPRESS_ENABLED': settings.COMPRESS_ENABLED,
