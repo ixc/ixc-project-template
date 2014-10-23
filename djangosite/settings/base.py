@@ -181,7 +181,6 @@ INSTALLED_APPS = (
     # 'ixc_cms',
     'ixc_core',
     # 'ixc_feincms_conf',  # Must come after `feincms.*`
-    'django_frontend_compiler',
     # 'ixc_home',
     # 'ixc_pages',
     # 'ixc_smartlinks_conf',
