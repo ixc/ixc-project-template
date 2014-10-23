@@ -34,27 +34,3 @@ def django_environment(request):
         'DEBUG': settings.DEBUG,
         'COMPRESS_ENABLED': settings.COMPRESS_ENABLED,
     }
-
-
-def main_nav(request):
-    url = request.get_full_path()
-
-    return {
-        'main_nav': [
-            {
-                'title': 'Home',
-                'url': '/',
-                'is_active': url == '/',
-            },
-            {
-                'title': 'Admin',
-                'url': '/admin/',
-                'is_active': url.startswith('/admin/'),
-            },
-            # {
-            #     'title': 'Foo App',
-            #     'url': reverse('foo-app-index'),
-            #     'is_active': url.startswith(reverse('foo-app-index')),
-            # },
-        ]
-    }

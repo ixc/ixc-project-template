@@ -257,7 +257,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # coded variables in section base templates.
     '{{ project_name }}.context_processors.site_section',
     '{{ project_name }}.context_processors.django_environment',
-    '{{ project_name }}.context_processors.main_nav',
 )
 
 TEMPLATE_DIRS = (
