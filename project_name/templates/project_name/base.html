@@ -1,134 +1,89 @@
-{% load staticfiles compress compile %}
+{% verbatim %}{% extends "ixc_core/boilerplate.html" %}
 
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-	<head prefix="og: http://ogp.me/ns#">
-		<!-- Hello. We're the Interaction Consortium (http://interaction.net.au) -->
-		<!-- We made this. -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% comment %}
+	You should override and extend as many or as few of the following blocks as
+	you need to, which are defined in `ixc_core/boilerplate.html`:
 
-		<title>{% block page_title %}{% if page_title %}{{ page_title }} :: {% endif %}{{ SITE_NAME }}{% endblock %}</title>
-		<meta name="description" content="{% block page_description %}{% endblock %}">
+		block                   default/comment
+		-----										---------------
+		doctype
+		html_lang               en
+		html_attributes
+		head_attributes
+		head
+			title                 SITE_NAME
+			meta
+				meta_description
+				meta_viewport
+				open_graph
+					og_title          SITE_NAME
+					og_type           website
+					og_image
+					og_site_name      SITE_NAME
+					og_description
+				head_css
+					external_css      all pages, hosted
+					base_css          all pages, local
+					css               individual pages
+				head_js
+					head_external_js  all pages, hosted
+					head_base_js      all pages, local
+					head_js           individual pages
+				analytics           includes `ixc_core/analytics.html` (google)
+		body_class
+		body_attributes
+		body
+		body_js
+			external_js						all pages, hosted
+			base_js								all pages, local
+			js										individual pages
+{% endcomment %}
 
-		{% block open_graph %}
-			<meta property="og:title" content="{% block og_title %}{% if page_title %}{{ page_title }} :: {% endif %}{{ SITE_NAME }}{% endblock %}">
-			<meta property="og:type" content="{% block og_type %}website{% endblock %}">
-			<meta property="og:image" content="{% block og_image %}{% endblock %}">
-			<meta property="og:site_name" content="{{ SITE_NAME }}">
-			<meta property="og:description" content="{% block og_description %}{% endblock %}">
-			{% block extra_open_graph %}{% endblock %}
+{% block base_css %}
+	<link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
+	{% if COMPRESS_ENABLED %}
+		<link rel="stylesheet" href="{% compile rewrite-urls "font-awesome/css/font-awesome.css" %}">
+	{% else %}
+		<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
+	{% endif %}
+	{% endverbatim %}{% templatetag openblock %} compile less "{{ project_name }}/less/main.less" {% templatetag closeblock %}{% verbatim %}
+{% endblock %}
+
+{% block head_js %}
+	{# Only put JS here if you need to block rendering #}
+	<script type="text/javascript" src="{% static "modernizr/modernizr.js" %}"></script>
+{% endblock %}
+
+{% block body %}
+	<div id="header">
+		{% block header %}{% endblock %}
+	</div>
+
+	<div id="navigation">
+		{% block navigation %}{% endblock %}
+	</div>
+
+	<div id="messages">
+		{% block messages %}
+			{% include "ixc_core/messages.html" %}
 		{% endblock %}
+	</div>
 
-		{% if DEBUG %}
-			<meta name="robots" content="noindex">
-		{% endif %}
+	<div id="content">
+		{% block content %}{% endblock %}
+	</div>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<div id="footer">
+		{% block footer %}{% endblock %}
+	</div>
+{% endblock %}
 
-		{# Base CSS files #}
-		{% compress css file %}
-			{% block base_css %}
-				<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.css' %}" />
-				{% if COMPRESS_ENABLED %}
-					<link rel="stylesheet" href="{% compile rewrite-urls 'font-awesome/css/font-awesome.css' %}" />
-				{% else %}
-					<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}" />
-				{% endif %}
-				{% templatetag openblock %} compile less '{{ project_name }}/less/main.less' {% templatetag closeblock %}
-			{% endblock %}
-		{% endcompress %}
-		{# Extra CSS files - section/page specific, etc #}
-		{% compress css file %}
-			{% block css %}{% endblock %}
-		{% endcompress %}
-		{# CSS files hosted externally #}
-		{% block external_css %}{% endblock %}
-
-		{% compress js file %}
-			{% block head_js %}
-				{# Only put JS here if you need to block rendering, otherwise put it in the `js` block #}
-				<script type="text/javascript" src="{% static 'modernizr/modernizr.js' %}"></script>
-			{% endblock %}
-		{% endcompress %}
-
-		{% include 'core/analytics.html' %}
-
-		{% block extra_head %}{% endblock %}
-	</head>
-
-	<body class="{% block body_class %}{% endblock %}">
-		{% block body %}
-			{% block container %}
-				{% block header %}
-					<div class="container">
-						<header class="main-header">
-						</header>
-					</div>
-				{% endblock header %}
-
-				{% block messages %}
-					{% if messages %}
-						<div class="container messages">
-							<div class="row">
-								{% for message in messages %}
-									<div class="alert alert-warning alert-dismissible" role="alert">
-										<button type="button" class="close" data-dismiss="alert">
-											<span aria-hidden="true">&times;</span>
-											<span class="sr-only">Close</span>
-										</button>
-										{{ message }}
-									</div>
-								{% endfor %}
-							</div>
-						</div>
-					{% endif %}
-				{% endblock messages %}
-
-				<div class="main-content-container">
-					{% block content %}{% endblock %}
-				</div>
-
-				{% block footer %}
-					<div class="container">
-						<footer class="main-footer">
-							<nav class="navbar navbar-default" role="navigation">
-								<div class="container">
-									<ul class="nav navbar-nav">
-										<li><a href="#fakelink">About Us</a></li>
-										<li><a href="#fakelink">Store</a></li>
-										<li><a href="#fakelink">Jobs</a></li>
-										<li><a href="#fakelink">Privacy</a></li>
-										<li><a href="#fakelink">Terms</a></li>
-										<li><a href="#fakelink">Follow Us</a></li>
-										<li><a href="#fakelink">Support</a></li>
-										<li><a href="#fakelink">Links</a></li>
-									</ul>
-								</div>
-							</nav>
-						</footer>
-					</div>
-				{% endblock footer %}
-			{% endblock container %}
-			{# Base JS files #}
-			{% compress js file %}
-				{% block base_js %}
-					<script>
-						window.context = window.context || {};
-						window.context.DEBUG = {% if DEBUG %}true{% else %}false{% endif %};
-					</script>
-					<script src="{% static 'jquery/dist/jquery.js' %}"></script>
-					<script src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
-					<script src="{% static 'lodash/dist/lodash.js' %}"></script>
-				{% endblock %}
-			{% endcompress %}
-			{# Extra JS files - section/page specific, etc #}
-			{% compress js file %}
-				{% block js %}
-				{% endblock %}
-			{% endcompress %}
-			{# JS files hosted externally #}
-			{% block external_js %}{% endblock %}
-		{% endblock body %}
-	</body>
-</html>
+{% block base_js %}
+	<script>
+		window.context = window.context || {};
+		window.context.DEBUG = {% if DEBUG %}true{% else %}false{% endif %};
+	</script>
+	<script src="{% static "jquery/dist/jquery.js" %}"></script>
+	<script src="{% static "bootstrap/dist/js/bootstrap.js" %}"></script>
+	<script src="{% static "lodash/dist/lodash.js" %}"></script>
+{% endblock %}{% endverbatim %}
