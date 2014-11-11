@@ -40,6 +40,8 @@
 			js                        individual pages
 {% endcomment %}
 
+{% load compress %}
+
 {% block base_css %}
 	<link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
 	{% if COMPRESS_ENABLED %}
@@ -47,14 +49,13 @@
 	{% else %}
 		<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
 	{% endif %}
-{% endblock %}
-
-{% block main_css %}
 	{% endverbatim %}{% templatetag openblock %} compile less "{{ project_name }}/less/main.less" {% templatetag closeblock %}{% verbatim %}
 {% endblock %}
 
 {% block head_js %}
-	<script src="{% static "modernizr/modernizr.js" %}"></script>
+	{% compress js file %}
+		<script src="{% static "modernizr/modernizr.js" %}"></script>
+	{% endcompress %}
 {% endblock %}
 
 {% block body %}
