@@ -4,14 +4,14 @@
 	You should override and extend as many or as few of the following blocks as
 	you need to, which are defined in `ixc_core/boilerplate.html`:
 
-		block                   default/comment
-		-----										---------------
+		block                        default/comment
+		-----                        ---------------
 		doctype
-		html_lang               en
+		html_lang                    en
 		html_attributes
 		head_attributes
 		head
-			title                 SITE_NAME
+			title                     SITE_NAME
 			meta
 				meta_description
 				meta_viewport
@@ -25,19 +25,22 @@
 					external_css      all pages, hosted
 					base_css          all pages, local
 					css               individual pages
-				head_js
+					main_css          the primary stylesheet
+				head_js               js that will block rendering
 					head_external_js  all pages, hosted
 					head_base_js      all pages, local
-					head_js           individual pages
-				analytics           includes `ixc_core/analytics.html` (google)
+					head_js_extra     individual pages
+				analytics             includes `ixc_core/analytics.html` (google)
 		body_class
 		body_attributes
 		body
 		body_js
-			external_js						all pages, hosted
-			base_js								all pages, local
-			js										individual pages
+			external_js               all pages, hosted
+			base_js                   all pages, local
+			js                        individual pages
 {% endcomment %}
+
+{% load compress %}
 
 {% block base_css %}
 	<link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
@@ -50,30 +53,31 @@
 {% endblock %}
 
 {% block head_js %}
-	{# Only put JS here if you need to block rendering #}
-	<script type="text/javascript" src="{% static "modernizr/modernizr.js" %}"></script>
+	{% compress js file %}
+		<script src="{% static "modernizr/modernizr.js" %}"></script>
+	{% endcompress %}
 {% endblock %}
 
 {% block body %}
-	<div id="header">
+	<div class="mainHeader">
 		{% block header %}{% endblock %}
 	</div>
 
-	<div id="navigation">
+	<div class="mainNavigation">
 		{% block navigation %}{% endblock %}
 	</div>
 
-	<div id="messages">
+	<div class="mainMessages">
 		{% block messages %}
 			{% include "ixc_core/messages.html" %}
 		{% endblock %}
 	</div>
 
-	<div id="content">
+	<div class="mainContent">
 		{% block content %}{% endblock %}
 	</div>
 
-	<div id="footer">
+	<div class="mainFooter">
 		{% block footer %}{% endblock %}
 	</div>
 {% endblock %}
