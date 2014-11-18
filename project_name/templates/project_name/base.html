@@ -49,7 +49,7 @@
 	{% else %}
 		<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
 	{% endif %}
-	{% endverbatim %}{% templatetag openblock %} compile less "{{ project_name }}/less/main.less" {% templatetag closeblock %}{% verbatim %}
+	{% endverbatim %}<link rel="stylesheet" href="{% templatetag openblock %} compile less "{{ project_name }}/less/main.less" {% templatetag closeblock %}">{% verbatim %}
 {% endblock %}
 
 {% block head_js %}
