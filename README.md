@@ -28,7 +28,7 @@ You will need `bower`, `django 1.4+`, `git`, `npm`, `python 2.7+`, `pip` and
     $ git init
     $ git add -A
     $ git commit -m 'Initial commit.'
-    $ git remote add origin git@github.com/ixc/$PROJECT.git
+    $ git remote add origin git@github.com:ixc/$PROJECT.git
     $ git push
 
     # Create virtualenv and install Python requirements.
