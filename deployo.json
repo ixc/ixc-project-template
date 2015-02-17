@@ -2,29 +2,24 @@
 	"project_slug": "{{ project_name }}",
 	"environments": {
 		"prd": {
-			"environment_slug": "prd",
-			"gunicorn_fully_qualified_slug": "{{ project_name }}-prd",
-			"celery_fully_qualified_slug": "{{ project_name }}-prd-celery",
 			"default_server": "{{ project_name }}.ixchosted.com",
 			"ssh_port": "22022",
 			"default_user": "ixc",
-			"project_directory": "/var/www/{{ project_name }}-prd",
-			"source_directory": "/var/www/{{ project_name }}-prd/{% verbatim %}{{ repos_name }}{% endverbatim %}",
-			"virtualenv_directory": "/var/www/{{ project_name }}-prd/{% verbatim %}{{ repos_name }}{% endverbatim %}/venv",
+			"project_directory": "/ixc/{{ project_name }}-prd/app",
+			"source_directory": "/ixc/{{ project_name }}-prd/app/{% verbatim %}{{ repos_name }}{% endverbatim %}",
+			"virtualenv_directory": "/ixc/{{ project_name }}-prd/app/{% verbatim %}{{ repos_name }}{% endverbatim %}/venv",
 			"git_branch": "master",
-			"tags": ["gunicorn"]
+			"tags": ["system-supervisor"]
 		},
 		"stg": {
-			"environment_slug": "stg",
-			"gunicorn_fully_qualified_slug": "{{ project_name }}-stg",
 			"default_server": "{{ project_name }}.stg.ixcsandbox.com",
 			"ssh_port": "22022",
 			"default_user": "ixc",
-			"project_directory": "/var/www/{{ project_name }}-stg",
-			"source_directory": "/var/www/{{ project_name }}-stg/{% verbatim %}{{ repos_name }}{% endverbatim %}",
-			"virtualenv_directory": "/var/www/{{ project_name }}-stg/{% verbatim %}{{ repos_name }}{% endverbatim %}/venv",
+			"project_directory": "/ixc/{{ project_name }}-stg/app",
+			"source_directory": "/ixc/{{ project_name }}-stg/app/{% verbatim %}{{ repos_name }}{% endverbatim %}",
+			"virtualenv_directory": "/ixc/{{ project_name }}-stg/app/{% verbatim %}{{ repos_name }}{% endverbatim %}/venv",
 			"git_branch": "staging",
-			"tags": ["gunicorn"]
+			"tags": ["system-supervisor"]
 		}
 	}
 }
