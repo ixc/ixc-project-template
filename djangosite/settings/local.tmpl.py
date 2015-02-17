@@ -105,3 +105,9 @@ TEMPLATE_CONSTANTS.update({
 
 # See: https://sentry.ixcsandbox.com
 SENTRY_DSN = ''
+
+### SUPERVISOR ################################################################
+
+SUPERVISOR.update({
+    'ADDRESS': '127.0.0.1:%s' % SITE_PORT,  # Bind to loopback interface
+})
