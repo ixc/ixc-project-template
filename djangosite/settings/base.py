@@ -513,7 +513,9 @@ SUIT_CONFIG = {
 INSTALLED_APPS += ('djsupervisor', )
 
 SUPERVISOR = {
-    'ADDRESS': os.environ.get('LISTEN_ADDRESS', 'localhost:8000'),
+    'ADDRESS': 'localhost:{}'.format(
+        os.environ.get('APP_PORT', '8000')
+    ),
     'NAME': '{{ project_name }}',
     'PREFIX': sys.prefix,
 }
