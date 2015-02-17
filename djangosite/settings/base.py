@@ -513,7 +513,7 @@ SUIT_CONFIG = {
 INSTALLED_APPS += ('djsupervisor', )
 
 SUPERVISOR = {
-    'ADDRESS': '127.0.0.1:8000',  # Bind to loopback interface
+    'ADDRESS': os.environ.get('LISTEN_ADDRESS', 'localhost:8000'),
     'NAME': '{{ project_name }}',
     'PREFIX': sys.prefix,
 }
