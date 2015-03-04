@@ -8,6 +8,7 @@ Uncomment or edit settings that apply to all deployments. Override settings for
 each deployed environment in ``local.py``.
 """
 
+import multiprocessing
 import os
 import sys
 import tempfile
@@ -517,4 +518,5 @@ SUPERVISOR = {
     'ADDRESS': '127.0.0.1:8000',  # Bind to loopback interface
     'NAME': '{{ project_name }}',
     'PREFIX': sys.prefix,
+    'WORKERS': multiprocessing.cpu_count() * 2 + 1,
 }
