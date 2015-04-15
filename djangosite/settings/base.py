@@ -146,7 +146,7 @@ EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 
 # Optional contrib and 3rd party apps that require additional configuration can
 # be enabled and configured in app-specific sections further below.
-INSTALLED_APPS += (
+INSTALLED_APPS = (
     # Default.
     'django.contrib.admin',
     'django.contrib.auth',
@@ -177,7 +177,7 @@ LOGIN_REDIRECT_URL = '/'  # Default: '/accounts/profile/'
 # LOGIN_URL = '/accounts/signin/'
 # LOGOUT_URL = '/accounts/signout/'
 
-MIDDLEWARE_CLASSES += (
+MIDDLEWARE_CLASSES = (
     # Default.
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
