@@ -81,9 +81,9 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # )
 
 # Enable cached template loader.
-# TEMPLATE_LOADERS = (
+# TEMPLATE_DJANGO['OPTIONS']['loaders'] = [
 #     ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
-# )
+# ]
 
 # GENERIC #####################################################################
 
