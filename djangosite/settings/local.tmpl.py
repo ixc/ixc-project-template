@@ -111,3 +111,9 @@ SENTRY_DSN = ''
 SUPERVISOR.update({
     'ADDRESS': '127.0.0.1:%s' % SITE_PORT,  # Bind to loopback interface
 })
+
+# CALCULATED ##################################################################
+
+# Settings that are calculated on the value of other settings.
+
+TEMPLATES = [TEMPLATES_DJANGO, TEMPLATES_JINJA2]
