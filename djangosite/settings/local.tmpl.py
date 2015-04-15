@@ -89,13 +89,13 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
 # Enable view profiling. Add `prof` key to querystring to see profiling results
 # in your browser.
-if DEBUG:
-    MIDDLEWARE_CLASSES += ('generic.middleware.ProfileMiddleware', )
+# if DEBUG:
+#     MIDDLEWARE_CLASSES += ('generic.middleware.ProfileMiddleware', )
 
-TEMPLATE_CONSTANTS.update({
-    'SITE_DOMAIN': SITE_DOMAIN,
-    'SITE_PORT': SITE_PORT,
-})
+# TEMPLATE_CONSTANTS.update({
+#     'SITE_DOMAIN': SITE_DOMAIN,
+#     'SITE_PORT': SITE_PORT,
+# })
 
 ### HOSTS #####################################################################
 
