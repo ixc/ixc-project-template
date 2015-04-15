@@ -1,53 +1,5 @@
 {% extends "admin/base.html" %}
-{% load admin_static suit_tags %}
 
-{% block title %}{{ title }} | {{ 'ADMIN_NAME'|suit_conf }}{% endblock %}</title>
-{% block extrahead %}
-  {% if 'SHOW_REQUIRED_ASTERISK'|suit_conf %}
-  <style type="text/css">.required:after { content: '*'; margin: 0 0 0 5px; position: absolute; color: #ccc;}</style>
-  {% endif %}
-{% endblock %}
-{# Additional CSS includes #}
-{% block blockbots %}
-	{{ block.super }}
-	{# using blockbots because feincms includes its css file after block 'extrahead' and we want to override it #}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/admin_extra.css' %}" media="all">
-
-	{# 'recover deleted page' button styling #}
-	<script type="text/javascript"> 
-		$(document).ready(function() {
-				$('a.recoverlink').addClass('btn'); 
-		});
-	</script>
-{% endblock %}
-
-{% block footer %}
-  {% if not is_popup %}
-  <div id="footer" class="footer">
-    <div class="content">
-      <div class="tools">
-        {% block footer_links %}
-          <a href="http://djangosuit.com/support/" target="_blank" class="icon"><i class="icon-question-sign"></i>Support</a>
-          <a href="http://djangosuit.com/pricing/" target="_blank" class="icon"><i class="icon-bookmark"></i>Licence</a>
-          <a href="http://github.com/darklow/django-suit/issues" target="_blank" class="icon"><i class="icon-comment"></i>Report a bug</a>
-        {% endblock %}
-      </div>
-
-      <div class="copyright">
-        {% block copyright %}
-		Copyright &copy; {% now "Y" %} <a href="http://interaction.net.au" target="_blank">the IC</a>
-        {% endblock %}
-      </div>
-
-      <div class="branding">{% block footer_branding %}
-        {% with 'ADMIN_NAME'|suit_conf as admin_name %}
-          {{ admin_name }}
-          {% if admin_name == 'Django Suit' %}
-            v{{ 'VERSION'|suit_conf }}
-          {% endif %}
-        {% endwith %}
-      {% endblock %}</div>
-    </div>
-  </div>
-  {% endif %}
+{% block copyright %}
+	Copyright &copy; {% now "Y" %} <a href="http://interaction.net.au" target="_blank">the IC</a>
 {% endblock %}

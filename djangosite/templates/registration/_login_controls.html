@@ -1,9 +1,0 @@
-<div class="row">
-	<div class="col-md-12">
-		{% if request.user.is_authenticated %}
-			<p>Welcome, {% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{ request.user }}{% endif %}. <a class="btn btn-xs btn-primary mhm" href="{% url 'django.contrib.auth.views.logout' %}">Log out</a></p>
-		{% else %}
-			<p><a class="btn btn-primary btn-xs mhm" href="{% url 'django.contrib.auth.views.login' %}">Log in</a></p>
-		{% endif %}
-	</div>
-</div>

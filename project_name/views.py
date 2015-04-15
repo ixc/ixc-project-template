@@ -1,5 +1,5 @@
 """
-Core views for ``{{ project_name }}`` app.
+Views for ``{{ project_name }}`` app.
 """
 
 from django.core.urlresolvers import reverse
