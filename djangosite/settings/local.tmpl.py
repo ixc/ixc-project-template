@@ -115,6 +115,6 @@ SUPERVISOR.update({
 
 # CALCULATED ##################################################################
 
-# Settings that are calculated on the value of other settings.
+# Settings that are calculated from the value of other settings.
 
 TEMPLATES = [TEMPLATES_DJANGO, TEMPLATES_JINJA2]
