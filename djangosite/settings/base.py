@@ -230,7 +230,7 @@ TEMPLATES_DJANGO = {
     'DIRS': [  # Default: empty
         os.path.join(BASE_DIR, 'djangosite', 'templates'),
     ],
-    'APP_DIRS': True,
+    # 'APP_DIRS': True,  # Must not be set when `loaders` is defined
     'OPTIONS': {
         'context_processors': [
             # Default.
