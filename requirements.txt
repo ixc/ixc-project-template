@@ -49,8 +49,10 @@ django-supervisor
 django-webtest
 easy_thumbnails
 gunicorn
+ipdb
 ipython
 Jinja2
+mkdocs
 nose-cov
 nose-progressive
 pytz

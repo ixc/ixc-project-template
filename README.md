@@ -36,8 +36,8 @@ You will need `bower`, `django 1.4+`, `git`, `npm`, `python 2.7+`, `pip` and
     $ source venv/bin/activate
     (venv)$ pip install -r requirements.txt
 
-    # Install optional and environment-specific Python requirements.
-    (venv)$ pip install ipdb ipython mkdocs psycopg2
+    # Install environment-specific Python requirements.
+    (venv)$ pip install psycopg2
 
     # Install front-end requirements.
     (venv)$ bower install
