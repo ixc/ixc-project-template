@@ -109,7 +109,8 @@ SENTRY_DSN = ''
 # SUPERVISOR ##################################################################
 
 SUPERVISOR.update({
-    'ADDRESS': '127.0.0.1:%s' % SITE_PORT,  # Bind to loopback interface
+    'GUNICORN_ADDRESS': '127.0.0.1:%s' % SITE_PORT,  # Default: 127.0.0.1:8000
+    # 'GUNICORN_WORKERS': N,  # Default: 2x CPU cores + 1
 })
 
 # CALCULATED ##################################################################
