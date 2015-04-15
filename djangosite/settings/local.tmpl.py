@@ -6,7 +6,7 @@ Rename to ``local.py`` and uncomment or edit to suite the local environment.
 
 from .base import *
 
-### GLOBAL ####################################################################
+# GLOBAL ######################################################################
 
 # Settings you will probably want to change for all environments.
 
@@ -23,7 +23,7 @@ ALLOWED_HOSTS += (
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
-### DEVELOPMENT ###############################################################
+# DEVELOPMENT #################################################################
 
 # Settings you might want to enable for development.
 
@@ -33,7 +33,7 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # CSRF_COOKIE_SECURE = False  # Don't require HTTPS for CSRF cookie
 # SESSION_COOKIE_SECURE = False  # Don't require HTTPS for session cookie
 
-### STAGING ###################################################################
+# STAGING #####################################################################
 
 # Settings you might want to enable for staging.
 
@@ -41,7 +41,7 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 #     'realm@%s' % host: ('username', 'password') for host in ALLOWED_HOSTS
 # }
 
-### PRODUCTION ################################################################
+# PRODUCTION ##################################################################
 
 # Settings you might want to enable for production.
 
@@ -85,7 +85,7 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 #     ('django.template.loaders.cached.Loader', TEMPLATE_LOADERS),
 # )
 
-### GENERIC ###################################################################
+# GENERIC #####################################################################
 
 # Enable view profiling. Add `prof` key to querystring to see profiling results
 # in your browser.
@@ -97,16 +97,16 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 #     'SITE_PORT': SITE_PORT,
 # })
 
-### HOSTS #####################################################################
+# HOSTS #######################################################################
 
 # PARENT_HOST = SITE_DOMAIN
 
-### SENTRY ####################################################################
+# SENTRY ######################################################################
 
 # See: https://sentry.ixcsandbox.com
 SENTRY_DSN = ''
 
-### SUPERVISOR ################################################################
+# SUPERVISOR ##################################################################
 
 SUPERVISOR.update({
     'ADDRESS': '127.0.0.1:%s' % SITE_PORT,  # Bind to loopback interface
