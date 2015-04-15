@@ -11,7 +11,6 @@ each deployed environment in ``local.py``.
 import multiprocessing
 import os
 import sys
-import tempfile
 
 SITE_NAME = '{{ project_name }}'
 
