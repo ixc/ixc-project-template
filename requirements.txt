@@ -47,6 +47,7 @@ django-reversion
 # django-suit
 django-supervisor
 django-webtest
+docutils
 easy_thumbnails
 gunicorn
 ipdb
