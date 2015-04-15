@@ -46,8 +46,7 @@ You will need `bower`, `django 1.4+`, `git`, `npm`, `python 2.7+`, `pip` and
     (venv)$ cp djangosite/settings/local.tmpl.py djangosite/settings/local.py
     (venv)$ vi djangosite/settings/local.py
 
-    # Sync the database.
-    (venv)$ ./manage.py syncdb --noinput
+    # Migrate the database.
     (venv)$ ./manage.py migrate
 
 Now start work on your project! You might want to start with:
