@@ -2,68 +2,68 @@
 
 /* TEAM */
 
-	Dr Greg Turner
-	http://gregturner.com/
-	greg at gregturner.com
-	@gsta
+    Dr Greg Turner
+    http://gregturner.com/
+    greg at gregturner.com
+    @gsta
 
-	Dr Alastair Weakley
-	alastair at weakley.org.uk
+    Dr Alastair Weakley
+    alastair at weakley.org.uk
 
-	Simon Johnson
-	simon at sjit.com.au
+    Simon Johnson
+    simon at sjit.com.au
 
-	Tai Lee
-	http://mrmachine.net
-	real.human at mrmachine.net
-	@mrmachine79
+    Tai Lee
+    http://mrmachine.net
+    real.human at mrmachine.net
+    @mrmachine79
 
-	Mike Cronin
-	http://www.torresiancrow.com.au/
-	mike at torresiancrow.com.au
-	@MickCronin
+    Mike Cronin
+    http://www.torresiancrow.com.au/
+    mike at torresiancrow.com.au
+    @MickCronin
 
-	Stuart Dines
-	stu.dines at gmail.com
-	@sjdines
+    Stuart Dines
+    stu.dines at gmail.com
+    @sjdines
 
-	Matt Stevenson
+    Matt Stevenson
 
-	Pat Armstrong
+    Pat Armstrong
 
-	Mark Finger
-	http://markfinger.org/
-	mark.finger at gmail.com
-	@_markfinger
+    Mark Finger
+    http://markfinger.org/
+    mark.finger at gmail.com
+    @_markfinger
 
-	Aram Dulyan
-	aram00 at gmail.com
-	@Aramgutang
+    Aram Dulyan
+    aram00 at gmail.com
+    @Aramgutang
 
-	Alice Athens
+    Alice Athens
 
-	Pili Foss
-	pilarfoss at gmail.com
+    Pili Foss
+    pilarfoss at gmail.com
 
-	Zoe Chua
+    Zoe Chua
 
-	Dr Tim Mansfield
+    Dr Tim Mansfield
 
 /* THANKS */
 
-	Kitties:
-		http://www.reddit.com/r/aww/search?q=kitty&restrict_sr=on
+    Kitties:
+        http://www.reddit.com/r/aww/search?q=kitty&restrict_sr=on
 
 /* SITE */
 
-	Backend:
-		Django, ICKit, GLAMKit
+    Backend:
+        Django, ICKit, GLAMKit
 
-	Frontend:
-		jQuery, Modernizr, Lodash, Font Awesome, Bootstrap
+    Frontend:
+        jQuery, Modernizr, Lodash, Font Awesome, Bootstrap
 
-	Standards:
-		CSS3, HTML5
+    Standards:
+        CSS3, HTML5
 
-	Developer Tools:
-		Photoshop, PyCharm, PyDev, Sublime Text, Vim
+    Developer Tools:
+        Photoshop, PyCharm, PyDev, Sublime Text, Vim
