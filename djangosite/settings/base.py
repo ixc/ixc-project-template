@@ -215,6 +215,16 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
+# Deprecated, but we still use in calculated settings.
+TEMPLATE_LOADERS = [
+    # Default.
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+]
+
+# Define template backends separately. Backends will be added to `TEMPLATES` in
+# `local.py`. This makes it easier to update for specific environments.
+
 # Django templates backend.
 TEMPLATES_DJANGO = {
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -239,11 +249,7 @@ TEMPLATES_DJANGO = {
             # Project.
             '{{ project_name }}.context_processors.environment',
         ],
-        'loaders': [
-            # Default.
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
-        ],
+        'loaders': TEMPLATE_LOADERS,
     },
 }
 
@@ -258,10 +264,6 @@ TEMPLATES_JINJA2 = {
         'environment': '{{ project_name }}.jinja2.environment',
     }
 }
-
-# Each backend is assigned to a variable so we can more easily update it in
-# local settings.
-TEMPLATES = [TEMPLATES_DJANGO, TEMPLATES_JINJA2]
 
 TIME_ZONE = 'Australia/Sydney'  # Default: America/Chicago
 
