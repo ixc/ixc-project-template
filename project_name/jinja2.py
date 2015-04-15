@@ -2,6 +2,8 @@
 Jinja2 template environment for ``{{ project_name }}`` app.
 """
 
+from __future__ import absolute_import
+
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.urlresolvers import reverse
 from jinja2 import Environment
