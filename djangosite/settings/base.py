@@ -330,19 +330,24 @@ THUMBNAIL_HIGH_RESOLUTION = True
 # DEFAULT_HOST = 'www'
 # ROOT_HOSTCONF = 'djangosite.hosts'
 
-# IXC ACCOUNTS ################################################################
-
-# Requires: generic
-
-# AUTH_USER_MODEL = 'ixc_accounts.User'
-# INSTALLED_APPS += ('ixc_accounts', )
-
 # MODEL SETTINGS ##############################################################
 
 INSTALLED_APPS += ('model_settings', 'polymorphic')
 
 TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
     'model_settings.context_processors.settings')
+
+# POLYMORPHIC AUTH ############################################################
+
+# AUTH_USER_MODEL = 'email.EmailUser'
+AUTH_USER_MODEL = 'username.UsernameUser'
+
+INSTALLED_APPS += (
+    'polymorphic',
+    'polymorphic_auth',
+    # 'polymorphic_auth.usertypes.email',
+    'polymorphic_auth.usertypes.username',
+)
 
 # SORL THUMBNAIL ##############################################################
 
