@@ -193,15 +193,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'djangosite.urls'
 
-# Django will think this settings module was created by Django 1.5 or earlier
-# if `MANAGERS`, `SITE_ID` and `TEMPLATE_LOADERS` settings are defined. Ignore
-# the resulting backward incompatibility warnings.
-# See: https://code.djangoproject.com/ticket/22454
-SILENCED_SYSTEM_CHECKS = (
-    '1_6.W001',
-    '1_6.W002',
-)
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'bower_components'),
     os.path.join(BASE_DIR, 'djangosite', 'static'),
