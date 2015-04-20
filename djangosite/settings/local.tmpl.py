@@ -123,4 +123,5 @@ INSTALLED_APPS = [
     app for app in INSTALLED_APPS if app not in _seen and not _seen.add(app)
 ]
 
+# Enable template backends.
 TEMPLATES = [TEMPLATES_DJANGO, TEMPLATES_JINJA2]
