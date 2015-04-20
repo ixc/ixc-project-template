@@ -191,7 +191,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.admindocs.middleware.XViewMiddleware',
 )
 
-
 ROOT_URLCONF = 'djangosite.urls'
 
 # Django will think this settings module was created by Django 1.5 or earlier
