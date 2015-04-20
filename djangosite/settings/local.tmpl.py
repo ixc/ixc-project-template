@@ -117,4 +117,10 @@ SUPERVISOR.update({
 
 # Settings that are calculated from the value of other settings.
 
+# De-dupe installed apps.
+_seen = set()
+INSTALLED_APPS = [
+    app for app in INSTALLED_APPS if app not in _seen and not _seen.add(app)
+]
+
 TEMPLATES = [TEMPLATES_DJANGO, TEMPLATES_JINJA2]
