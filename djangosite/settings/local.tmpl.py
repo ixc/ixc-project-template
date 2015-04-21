@@ -57,7 +57,7 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 #     'default': {
 #         'ATOMIC_REQUESTS': True,
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'nsw-health',
+#         'NAME': '{{ project_name }}',
 #         'HOST': '',
 #         'PORT': '',
 #         'USER': '',
