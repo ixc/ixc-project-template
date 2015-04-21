@@ -5,9 +5,11 @@
 
 *.egg-info/
 *.py[co]
+/.coverage
 /bower_components/
 /db.sqlite3
 /djangosite/settings/local.py
+/htmlcov/
 /public/media/
 /public/static/
 /secret.txt
