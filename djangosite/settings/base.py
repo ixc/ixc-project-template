@@ -193,6 +193,11 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'djangosite.urls'
 
+SILENCED_SYSTEM_CHECKS = (
+    '1_6.W001',
+    '1_6.W002',
+)
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'bower_components'),
     os.path.join(BASE_DIR, 'djangosite', 'static'),
