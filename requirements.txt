@@ -1,67 +1,28 @@
-# This file should include dependencies used directly by this project, and
-# private or forked dependencies that can't be referenced in `setup.py`.
-
-# Private and forked ##########################################################
+# Forked, pre-release, private, and vendored dependencies.
 
 -e .
 
 # -e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
 # -e git+ssh://git@github.com/django/django.git@master#egg=django
--e git+ssh://git@github.com/ixc/deployo.git@master#egg=deployo
--e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
--e git+ssh://git@github.com/ixc/django-frontend-compiler.git@master#egg=django-frontend-compiler
--e git+ssh://git@github.com/ixc/django-model-settings.git@master#egg=django-model-settings
--e git+ssh://git@github.com/ixc/django-polymorphic-auth.git@master#egg=django-polymorphic-auth
 # -e git+ssh://git@github.com/ixc/django-oembed.git@master#egg=django-oembed
 # -e git+ssh://git@github.com/ixc/django-orm-fixtures.git@ixc#egg=django-orm-fixtures
 # -e git+ssh://git@github.com/ixc/django-singletons.git@ixc#egg=django-singletons
 # -e git+ssh://git@github.com/ixc/glamkit-adminboost.git@master#egg=glamkit-adminboost
 # -e git+ssh://git@github.com/ixc/glamkit-smartlinks.git@master#egg=smartlinks
--e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
 # -e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
 # -e git+ssh://git@github.com/thirstydigital/django-generic-uid.git@master#egg=django-generic-uid
-
-# Dependencies ################################################################
-
-# See below for a list of immediate dependencies for each requirement. If this
-# project uses any of the following requirements, you will need to uncomment
-# their requirements above (and their requirements requirements, ...)
-
-# We need to do this manually because pip doesn't support recursive
-# requirements and setuptools doesn't support editable requirements installed
-# from VCS.
-
-# 3rd party and public ########################################################
-
-Django>=1.8,<1.9
-django-debug-toolbar
-django-dynamic-fixture
-django-extensions
-# django-hosts
-django-nose
-django-reversion
-# django-suit
-django-supervisor
-django-webtest
-docutils
-easy_thumbnails
-gunicorn
-ipdb
-ipython
-Jinja2
-mkdocs
-nose-cov
-nose-progressive
-pytz
-raven
-WebTest
-Werkzeug
+-e git+ssh://git@github.com/ixc/deployo.git@master#egg=deployo
+-e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
+-e git+ssh://git@github.com/ixc/django-frontend-compiler.git@master#egg=django-frontend-compiler
+-e git+ssh://git@github.com/ixc/django-model-settings.git@master#egg=django-model-settings
+-e git+ssh://git@github.com/ixc/django-polymorphic-auth.git@master#egg=django-polymorphic-auth
+-e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
 
 # Vendor ######################################################################
 
-# If you need to fork and hack on a depdendency so extensively that it will
-# only be usable by this project, pull it into the ``vendor`` folder in  this
-# project with ``git subtree``. For example::
+# If you need to fork and hack on a dependency so extensively that it will only
+# be usable by this project, pull it into the `vendor` folder in  this project
+# with `git subtree`:
 #
 #    $ mkdir -p vendor
 #    $ git subtree add -P vendor/ixc-blog git@github.com:ixc/ixc-blog.git master --squash
@@ -70,6 +31,5 @@ Werkzeug
 #
 #    -e ./vendor/ixc-blog
 #
-# However, this should be avoided if at all possible, so that we can more easily
-# contribute bug fixes and feature enhancements back upstream to these external
-# projects.
+# However, this should be avoided if at all possible, so that we can more
+# easily contribute bug fixes and feature enhancements back upstream.
