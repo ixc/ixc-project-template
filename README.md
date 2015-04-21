@@ -7,51 +7,55 @@ Docs can be found in the [docs](docs/index.md) folder.
 This is a bare-bones skeleton project template, for use with the
 `django-admin.py startproject` command.
 
-You will need `bower`, `django 1.4+`, `git`, `npm`, `python 2.7+`, `pip` and
-`virtualenv`  to create a new project with this template.
+You will need `django 1.4+`, `git`, `python 2.7+`, `pip`, and `virtualenv` to
+create a new project with this template.
 
-    # Create environment variable for the project name, so we can use it in the
-    # following commands.
+Create environment variables for the project and module name (e.g. `foo-bar`
+and `foo_bar`), so we can use them in subsequent commands:
+
     $ export PROJECT=<project_name>
+    $ export MODULE=<module_name>
 
-    # Create project from template.
-    $ mkdir -p ~/Projects
-    $ django-admin.py startproject -e json,md -n .gitignore,base.html \
+Create a project from the template:
+
+    $ mkdir $PROJECT
+    $ django-admin.py startproject -e json,md,yml -n base.html \
     --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
-    $PROJECT
+    $MODULE $PROJECT
 
-    # Make `manage.py` executable, for convenience.
+Make the `manage.py` file executable, for convenience:
+
     $ cd $PROJECT
     $ chmod 755 manage.py
 
-    # Create git repository and push initial commit.
+Create a remote repository on [GitHub], then initialise a local repository and
+push an initial commit:
+
     $ git init
     $ git add -A
     $ git commit -m 'Initial commit.'
     $ git remote add origin git@github.com:ixc/$PROJECT.git
     $ git push
 
-    # Create virtualenv and install Python requirements.
+Create a virtualenv and install the dependencies:
+
     $ virtualenv venv
     $ source venv/bin/activate
     (venv)$ pip install -r requirements.txt
 
-    # Install environment-specific Python requirements.
-    (venv)$ pip install psycopg2
+Run the tests:
 
-    # Install front-end requirements.
-    (venv)$ bower install
+    (venv)$ tox
 
-    # Configure the local settings module.
-    (venv)$ cp djangosite/settings/local.tmpl.py djangosite/settings/local.py
-    (venv)$ vi djangosite/settings/local.py
+Now, write your project! You might want to start with:
 
-    # Migrate the database.
-    (venv)$ ./manage.py migrate
+  * Remove the `Project Template` section (these instructions) from `README.md`
+    (this file).
+  * Add a `LICENSE` file (e.g. [MIT]).
+  * Update the `docs/index.md` file (e.g. the overview, installation and usage
+    sections).
+  * Read the [contributing] docs.
 
-Now start work on your project! You might want to start with:
-
-  * Remove the `Project Template` section (these instructions) from
-    `README.md` (this file).
-  * Update `djangosite/settings/*.py` (e.g. enable apps, middleware, etc.)
-  * Update `requirements.txt` (e.g. add dependencies for installed apps, etc.)
+[contributing]: docs/contributing.md
+[GitHub]: https://github.com
+[MIT]: http://choosealicense.com/licenses/mit/
