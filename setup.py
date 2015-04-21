@@ -1,5 +1,6 @@
-from {{ project_name }} import __version__
 import setuptools
+
+from {{ project_name }} import __version__
 
 setuptools.setup(
     name='{{ project_name }}',
