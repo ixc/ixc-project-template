@@ -259,6 +259,8 @@ TEMPLATES_JINJA2 = {
     }
 }
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'  # Default: django.test.runner.DiscoverRunner
+
 TIME_ZONE = 'Australia/Sydney'  # Default: America/Chicago
 
 USE_ETAGS = True  # Default: False
