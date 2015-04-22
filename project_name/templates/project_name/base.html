@@ -40,7 +40,9 @@
 			js                        individual pages
 {% endcomment %}
 
+{% load compile %}
 {% load compress %}
+{% load static %}
 
 {% block base_css %}
 	<link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
