@@ -26,8 +26,9 @@ urlpatterns = patterns(
     url(r'^404/$', TemplateView.as_view(template_name='404.html')),
     url(r'^500/$', TemplateView.as_view(template_name='500.html')),
 
-    # URLs for `admindocs` must come before `admin`.
+    # URLs for `admin/*` must come before `admin/`.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/util/tools/', include('admin_tools.urls')),
 
     # URLs for installed apps.
     url(r'^accounts/', include('django.contrib.auth.urls')),
