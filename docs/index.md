@@ -22,8 +22,7 @@ Create a virtualenv and install the dependencies:
     $ brew bundle  # Only if using OS X and Homebrew.
     $ virtualenv venv
     $ source venv/bin/activate
-    (venv)$ pip install -r requirements.txt
-    (venv)$ pip install psycopg2  # Only if using PostgreSQL.
+    (venv)$ pip install -r requirements.txt -e .[dev,postgres,test]  # Omit unwanted optional extras.
     (venv)$ bower install
 
 If you are not using OS X or do not have [Homebrew][Homebrew] and the

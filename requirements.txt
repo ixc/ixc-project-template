@@ -1,7 +1,5 @@
 # Forked, pre-release, private, and vendored dependencies.
 
--e .
-
 # -e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
 # -e git+ssh://git@github.com/django/django.git@master#egg=django
 # -e git+ssh://git@github.com/ixc/django-oembed.git@master#egg=django-oembed

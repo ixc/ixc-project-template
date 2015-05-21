@@ -41,7 +41,7 @@ Create a virtualenv and install the dependencies:
 
     $ virtualenv venv
     $ source venv/bin/activate
-    (venv)$ pip install -r requirements.txt
+    (venv)$ pip install -r requirements.txt -e .[dev,postgres,test]  # Omit unwanted optional extras.
 
 Run the tests:
 
