@@ -43,7 +43,7 @@ Create a virtualenv and install the dependencies:
     $ source venv/bin/activate
     (venv)$ pip install -r requirements.txt -e .[dev,postgres,test]  # Omit unwanted optional extras.
 
-Now, write your project! You might want to start with:
+Now, get to work on your project! You might want to start with:
 
   * Remove the `Project Template` section (these instructions) from `README.md`
     (this file).
