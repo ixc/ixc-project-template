@@ -13,6 +13,7 @@ setuptools.setup(
         'django-dynamic-fixture',
         'django-extensions',
         # 'django-hosts',
+        'django-master-password',
         'django-nose',
         'django-reversion',
         # 'django-suit',

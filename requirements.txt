@@ -12,6 +12,7 @@
 -e git+ssh://git@github.com/ixc/deployo.git@master#egg=deployo
 -e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
 -e git+ssh://git@github.com/ixc/django-frontend-compiler.git@master#egg=django-frontend-compiler
+-e git+ssh://git@github.com/ixc/django-master-password.git@master#egg=django-master-password
 -e git+ssh://git@github.com/ixc/django-model-settings.git@master#egg=django-model-settings
 -e git+ssh://git@github.com/ixc/django-polymorphic-auth.git@master#egg=django-polymorphic-auth
 

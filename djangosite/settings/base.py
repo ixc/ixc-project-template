@@ -326,6 +326,12 @@ THUMBNAIL_HIGH_RESOLUTION = True
 # DEFAULT_HOST = 'www'
 # ROOT_HOSTCONF = 'djangosite.hosts'
 
+# MASTER PASSWORD #############################################################
+
+AUTHENTICATION_BACKENDS = ('master_password.auth.ModelBackend', )
+INSTALLED_APPS += ('master_password', )
+MASTER_PASSWORDS = {}
+
 # MODEL SETTINGS ##############################################################
 
 INSTALLED_APPS += ('model_settings', 'polymorphic')
