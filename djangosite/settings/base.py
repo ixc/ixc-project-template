@@ -10,6 +10,7 @@ each deployed environment in ``local.py``.
 
 import multiprocessing
 import os
+import posixpath
 import sys
 
 SITE_NAME = '{{ project_name }}'
@@ -147,7 +148,7 @@ EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 # be enabled and configured in app-specific sections further below.
 INSTALLED_APPS = (
     # Default.
-    'django.contrib.admin',
+    # 'django.contrib.admin',  # Must come after `admin_tools` apps, below.
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -300,6 +301,104 @@ STATICFILES_FINDERS += ('compressor.finders.CompressorFinder', )
 INSTALLED_APPS += ('easy_thumbnails', )
 THUMBNAIL_BASEDIR = 'thumbs'
 THUMBNAIL_HIGH_RESOLUTION = True
+
+# FLUENT ######################################################################
+
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = \
+    'fluent_dashboard.dashboard.FluentAppIndexDashboard'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'fluent_dashboard.dashboard.FluentIndexDashboard'
+ADMIN_TOOLS_MENU = 'fluent_dashboard.menu.FluentMenu'
+
+DJANGO_WYSIWYG_FLAVOR = 'redactor'
+DJANGO_WYSIWYG_MEDIA_URL = posixpath.join(STATIC_URL, 'redactor/')
+
+FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
+    # 'home': {
+    #     'plugins': ('...', ),
+    # },
+    'main': {
+        'plugins': (
+            # 'CodePlugin',
+            # 'CommentsAreaPlugin',
+            # 'DisqusCommentsPlugin',
+            # 'FormDesignerLinkPlugin',
+            # 'GistPlugin',
+            # 'GoogleDocsViewerPlugin',
+            'IframePlugin',
+            'MarkupPluginBase',
+            'OEmbedPlugin',
+            'PicturePlugin',
+            'RawHtmlPlugin',
+            'SharedContentPlugin',
+            'TextPlugin',
+            # 'TwitterRecentEntriesPlugin',
+            # 'TwitterSearchPlugin',
+        ),
+    },
+    # 'sidebar': {
+    #     'plugins': ('...', ),
+    # },
+}
+
+FLUENT_DASHBOARD_DEFAULT_MODULE = 'ModelList'
+
+# FLUENT_MARKUP_LANGUAGES = ['restructuredtext', 'markdown', 'textile']
+# FLUENT_MARKUP_MARKDOWN_EXTRAS = []
+
+FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
+    BASE_DIR, '{{ project_name }}', 'layouts', 'templates')
+
+# FLUENT_TEXT_CLEAN_HTML = True  # Default: False
+# FLUENT_TEXT_SANITIZE_HTML = True  # Default: False
+
+INSTALLED_APPS += (
+    # Fluent.
+    'fluent_contents',
+    'fluent_dashboard',
+    'fluent_pages',
+
+    # Dependencies.
+    'admin_tools',
+    'admin_tools.dashboard',
+    'admin_tools.menu',
+    'admin_tools.theming',
+    'django.contrib.admin',  # Must come after `admin_tools` apps.
+    'mptt',
+    'parler',
+    'polymorphic',
+    'polymorphic_tree',
+
+    # Page types.
+    'fluent_pages.pagetypes.flatpage',
+    'fluent_pages.pagetypes.fluentpage',
+    'fluent_pages.pagetypes.redirectnode',
+
+    # Content plugins.
+    # 'fluent_contents.plugins.code',
+    # 'fluent_contents.plugins.commentsarea',
+    # 'fluent_contents.plugins.disquswidgets',
+    # 'fluent_contents.plugins.formdesignerlink',
+    # 'fluent_contents.plugins.gist',
+    # 'fluent_contents.plugins.googledocsviewer',
+    'fluent_contents.plugins.iframe',
+    'fluent_contents.plugins.markup',
+    'fluent_contents.plugins.oembeditem',
+    'fluent_contents.plugins.picture',
+    'fluent_contents.plugins.rawhtml',
+    'fluent_contents.plugins.sharedcontent',
+    'fluent_contents.plugins.text',
+    # 'fluent_contents.plugins.twitterfeed',
+
+    # Project.
+    '{{ project_name }}.layouts',
+    # '{{ project_name }}.pagetypes.samplepage',
+    # '{{ project_name }}.plugins.sample',
+
+    # Page type and content plugin dependencies.
+    'any_urlfield',
+    'django_wysiwyg',
+    'micawber',
+)
 
 # GENERIC #####################################################################
 

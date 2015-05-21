@@ -12,6 +12,9 @@ setuptools.setup(
         'django-debug-toolbar',
         'django-dynamic-fixture',
         'django-extensions',
+        'django-fluent-contents[markup,oembeditem,text]',  # code,disquscommentsarea,formdesignerlink,twitterfeed
+        'django-fluent-pages[flatpage,fluentpage,redirectnode]',
+        'django-fluent-dashboard',
         # 'django-hosts',
         'django-master-password',
         'django-nose',
