@@ -19,11 +19,16 @@ Clone the project:
 Create a virtualenv and install the dependencies:
 
     $ cd <project_name>
+    $ brew bundle  # Only if using OS X and Homebrew.
     $ virtualenv venv
     $ source venv/bin/activate
     (venv)$ pip install -r requirements.txt
-    (venv)$ pip install psycopg2  # if using PostgreSQL
+    (venv)$ pip install psycopg2  # Only if using PostgreSQL.
     (venv)$ bower install
+
+If you are not using OS X or do not have [Homebrew][Homebrew] and the
+[Bundle][Homebrew-Bundle] tap installed, you will need to install the packages
+listed in `Brewfile` manually.
 
 You MUST **review and uncomment** the appropriate environment specific
 configuration in the local settings module:
@@ -31,12 +36,12 @@ configuration in the local settings module:
     (venv)$ cp djangosite/settings/local.tmpl.py djangosite/settings/local.py
     (venv)$ $EDITOR djangosite/settings/local.py
 
-## Usage
-
 Migrate the database and collect static files:
 
     (venv)$ ./manage.py migrate
-    (venv)$ ./manage.py collectstatic  # if `DEBUG=False`
+    (venv)$ ./manage.py collectstatic  # If `DEBUG=False`.
+
+## Usage
 
 Use [django-supervisor] to run the project (e.g. gunicorn and other processes):
 
@@ -50,13 +55,8 @@ You can also execute other [supervisor] actions:
 
 ## HTML Docs
 
-Docs are written in [Markdown]. You can use [MkDocs] to build a static HTML
-version that you can host anywhere:
-
-    (venv)$ mkdocs build
-
-Or you can use the built-in dev server to preview your documentation as you're
-writing it:
+Docs are written in [Markdown]. You can use [MkDocs] to preview your
+documentation as you are writing it:
 
     (venv)$ mkdocs serve
 
