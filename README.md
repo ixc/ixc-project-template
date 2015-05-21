@@ -28,7 +28,7 @@ Make the `manage.py` file executable, for convenience:
     $ cd $PROJECT
     $ chmod 755 manage.py
 
-Create a remote repository on [GitHub], then initialise a local repository and
+Create a remote repository on [GitHub][GitHub], then initialise a local repository and
 push an initial commit:
 
     $ git init
@@ -37,21 +37,15 @@ push an initial commit:
     $ git remote add origin git@github.com:ixc/$PROJECT.git
     $ git push
 
-Create a virtualenv and install the dependencies:
-
-    $ virtualenv venv
-    $ source venv/bin/activate
-    (venv)$ pip install -r requirements.txt -e .[dev,postgres,test]  # Omit unwanted optional extras.
-
 Now, get to work on your project! You might want to start with:
 
+  * Add a `LICENSE` file (e.g. [MIT][MIT]).
+  * Update the [docs][docs] (e.g. overview, installation and usage).
+  * Read the [contributing][contributing] docs.
   * Remove the `Project Template` section (these instructions) from `README.md`
     (this file).
-  * Add a `LICENSE` file (e.g. [MIT]).
-  * Update the `docs/index.md` file (e.g. the overview, installation and usage
-    sections).
-  * Read the [contributing] docs.
 
 [contributing]: docs/contributing.md
+[docs]: docs/index.md
 [GitHub]: https://github.com
 [MIT]: http://choosealicense.com/licenses/mit/
