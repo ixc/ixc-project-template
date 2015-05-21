@@ -164,7 +164,6 @@ INSTALLED_APPS = (
 
     # IC.
     'django_frontend_compiler',
-    'ixc_core',
 
     # Project.
     '{{ project_name }}',
