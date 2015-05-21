@@ -33,4 +33,7 @@ setuptools.setup(
         'WebTest',
         'Werkzeug',
     ],
+    extras_require={
+        'postgres': ['psycopg2'],
+    },
 )
