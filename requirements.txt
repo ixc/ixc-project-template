@@ -18,15 +18,15 @@
 # Vendor ######################################################################
 
 # If you need to fork and hack on a dependency so extensively that it will only
-# be usable by this project, pull it into the `vendor` folder in  this project
+# be usable by this project, pull it into the `vendor` folder in this project
 # with `git subtree`:
 #
 #    $ mkdir -p vendor
-#    $ git subtree add -P vendor/ixc-blog git@github.com:ixc/ixc-blog.git master --squash
+#    $ git subtree add -P vendor/django git@github.com:django/django.git master --squash
 #
 # Then install them directly from the vendor directory::
 #
-#    -e ./vendor/ixc-blog
+#    -e ./vendor/django
 #
 # However, this should be avoided if at all possible, so that we can more
 # easily contribute bug fixes and feature enhancements back upstream.
