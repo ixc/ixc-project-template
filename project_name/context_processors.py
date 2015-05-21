@@ -7,10 +7,9 @@ from django.conf import settings
 
 def environment(request):
     """
-    Return `COMPRESS_ENABLED` setting as context.
+    Add ``COMPRESS_ENABLED`` to the context.
     """
-    # TODO: Make a generic context processor in `ixc-core` for this, which gets
-    # the list of settings to be included as context from a setting.
-    return {
+    context = {
         'COMPRESS_ENABLED': settings.COMPRESS_ENABLED,
     }
+    return context
