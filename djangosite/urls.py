@@ -10,9 +10,13 @@ from django.conf.urls import include, patterns, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
+from fluent_pages.sitemaps import PageSitemap
 
 admin.autodiscover()
-sitemaps = {}
+
+sitemaps = {
+    'pages': PageSitemap,
+}
 
 urlpatterns = patterns(
     '',
