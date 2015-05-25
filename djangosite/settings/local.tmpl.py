@@ -4,6 +4,8 @@ Settings that apply to a single deployment.
 Rename to ``local.py`` and uncomment or edit to suite the local environment.
 """
 
+import django
+
 from .base import *
 
 # GLOBAL ######################################################################
