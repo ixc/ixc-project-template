@@ -14,6 +14,7 @@ setuptools.setup(
         'django-fluent-dashboard',
         # 'django-hosts',
         'django-master-password',
+        # 'django-nose',
         'django-reversion',
         # 'django-suit',
         'django-supervisor',
