@@ -138,3 +138,25 @@ INSTALLED_APPS = [
 
 # Enable template backends.
 TEMPLATES = [TEMPLATES_DJANGO, TEMPLATES_JINJA2]
+
+# OLDER DJANGO ################################################################
+
+# Calculate settings that are required for older versions of Django.
+
+if django.VERSION[:2] == (1, 7):
+
+    MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
+    MIDDLEWARE_CLASSES.remove('django.middleware.security.SecurityMiddleware')
+
+    SILENCED_SYSTEM_CHECKS = (
+        '1_6.W002',
+    )
+
+    TEMPLATE_DIRS = TEMPLATES_DJANGO['DIRS']
+
+    TEMPLATE_CONTEXT_PROCESSORS = []
+    for cp in TEMPLATES_DJANGO['OPTIONS']['context_processors']:
+        TEMPLATE_CONTEXT_PROCESSORS.append(
+            cp.replace('django.template', 'django.core'))
+
+    TEMPLATE_LOADERS = TEMPLATES_DJANGO['OPTIONS']['loaders']
