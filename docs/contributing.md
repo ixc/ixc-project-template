@@ -2,12 +2,34 @@
 
 Please follow these guidelines when making contributions to this project.
 
+## Getting Started
+
+Get the code and setup a virtualenv:
+
+    $ git clone git@github.com:ixc/<project_name>.git
+    $ cd <project_name>
+    $ virtualenv venv
+    $ source venv/bin/activate
+    (venv)$ pip install -r requirements.txt
+
+Run the tests:
+
+    # All environments, just the given environments, or just the virtualenv.
+    (venv)$ tox
+    (venv)$ tox -e django17-py27,django18-py27
+    (venv)$ ./manage.py test
+
+Run the project interactively:
+
+    (venv)$ ./manage.py migrate
+    (venv)$ ./manage.py runserver
+
 ## Git
 
 We are using the [Gitflow branching model]. Basically:
 
-  * The `master` branch is never committed to directly. It always contains
-    production ready code, and each commit represents a release to production.
+  * The `master` branch always contains production ready code, and each commit
+    represents a release to production.
   * The `develop` branch serves as an integration branch for new features, and
     is merged into `master` when we are ready to tag a new release.
   * New features are developed in `feature/*` branches. Create a pull request

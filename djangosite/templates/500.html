@@ -1,1 +1,38 @@
-{% extends "ixc_core/500.html" %}
+{# This template is rendered with no context. #}
+{# Only use inline and static JavaScript and stylesheets. #}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head prefix="og: http://ogp.me/ns#">
+			<title>Internal Server Error (500)</title>
+
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="robots" content="noindex">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+
+			<link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
+			<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
+			<style>
+			</style>
+
+			<script src="{% static "modernizr/modernizr.js" %}"></script>
+			<script>
+			</script>
+	</head>
+	<body>
+		<h1>Sorry, something went wrong</h1>
+		<p><strong>What's happening?</strong> We have probably made a mistake that wasn't immediately obvious until now.</p>
+		<p>We've already been sent an automatic email about this, and will fix the problem as soon as possible.</p>
+		<h2>Some options in the meantime</h2>
+		<ol>
+			<li>What you did might have worked, but the problem came when we tried to tell you about it. If you're expecting an email, or a change to some information, check to see whether the email was sent, or the information was changed.</li>
+			<li>Try and do whatever you did again (you never know).</li>
+			<li>Go to the <a href="/">home page</a> or <a href="http://www.google.com">Google</a> and then look for links to the information you want. Sure, that's probably on this page, but you could get lucky.</li>
+		</ol>
+		<script src="{% static "jquery/dist/jquery.js" %}"></script>
+		<script src="{% static "bootstrap/dist/js/bootstrap.js" %}"></script>
+	</body>
+</html>

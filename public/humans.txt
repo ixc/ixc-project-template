@@ -1,82 +1,77 @@
 /* humanstxt.org */
 
 /* TEAM */
-	CEO: Greg Turner
-	Site: http://gregturner.com/
-	Contact: greg at interaction.net.au
-	Twitter: @gsta
-	From: ?
 
-	COO: Alastair Weakley
-	Site: ?
-	Contact: alastair at interaction.net.au
-	Twitter: ?
-	From: ?
+    Dr Greg Turner - CEO
+    http://gregturner.com/
+    greg at interaction.net.au
+    @gsta
 
-	Senior Software Engineer: Aram Dulyan
-	Site: ?
-	Contact: aram at interaction.net.au
-	Twitter: @Aramgutang
-	From: ?
+    Dr Alastair Weakley - COO
+    alastair at interaction.net.au
 
-	General Manager: Simon Johnson
-	Site: ?
-	Contact: simonj at interaction.net.au
-	Twitter: ?
-	From: ?
+    Simon Johnson - General Manager
+    simonj at interaction.net.au
 
-	Team Lead / Senior Software Engineer: Stuart Dines
-	Site: http://stuartdines.com
-	Contact: stuart at interaction.net.au
-	Twitter: @sjdines
-	From: ?
+    Tai Lee - Technical Lead
+    http://mrmachine.net/
+    tai at interaction.net.au
+    @mrmachine79
 
-	Design Lead: Mike Cronin
-	Site: http://www.torresiancrow.com.au/
-	Contact: mike at interaction.net.au
-	Twitter: @MickCronin
-	From: ?
+    Mike Cronin - Design Lead
+    http://www.torresiancrow.com.au/
+    mike at interaction.net.au
+    @MickCronin
 
-	?: Pili Foss
-	Site: ?
-	Contact: pilarfoss at interaction.net.au
-	Twitter: ?
-	From: ?
+    Stuart Dines - Development Team Lead
+    http://stuartdines.com/
+    stuart at interaction.net.au
+    @sjdines
 
-	Python Code Whisperer: Tai Lee
-	Site: http://mrmachine.net
-	Contact: tai at interaction.net.au
-	Twitter: @mrmachine79
-	From: Byron Bay
+    Matt Stevenson - Development Team Lead
+    matt at interaction.net.au
+    @mattoc
 
-	?: Mark Finger
-	Site: http://markfinger.org/
-	Contact: mark at interaction.net.au
-	Twitter: @_markfinger
-	From: ?
-	
-	Assistant Project Manager: Zoe Chua
-	Site: ?
-	Contact: zoe at interaction.net.au
-	Twitter: ?
-	From: ?
-	
-	Front End Developer: Alice Athens
-	Site: ?
-	Contact: alice at interaction.net.au
-	Twitter: @alice_athens
-	From: ?
-	
-	Team Lead / Senior Software Engineer: Matt Stevenson
-	Site: http://mattoc.com/
-	Contact: matt@interaction.net.au
-	Twitter: @mattoc
-	From: ?
+    Pat Armstrong - Designer
+    pat at interaction.net.au
+
+    Mark Finger - Code Whisperer
+    http://markfinger.org/
+    mark at interaction.net.au
+    @_markfinger
+
+    Aram Dulyan - Developer
+    aram at interaction.net.au
+    @Aramgutang
+
+    Alice Athens - Frontend Developer
+    alice at interaction.net.au
+    @alice_athens
+
+    Pili Foss - Writer & Strategist
+    pili at interaction.net.au
+
+    Zoe Chua - Project Assistant
+    zoe at interaction.net.au
+
+    Dr Tim Mansfield - Strategist & Futurist
+    tim at interaction.net.au
 
 /* THANKS */
-	Kitties: http://www.reddit.com/r/aww/search?q=kitty&restrict_sr=on
+
+    Kitties:
+        http://www.reddit.com/r/aww/search?q=kitty&restrict_sr=on
 
 /* SITE */
-	Components: Django, GLAMKit, jQuery, Modernizr, SCSS, Underscore.js
-	Software: Photoshop, PyCharm, PyDev, Sublime Text, Vim
-	Standards: CSS3, HTML5
+
+    Backend:
+        Django, ICEkit, GLAMkit
+
+    Frontend:
+        jQuery, Modernizr, Lodash, Font Awesome, Bootstrap
+
+    Standards:
+        CSS3, HTML5
+
+    Developer Tools:
+        Photoshop, PyCharm, PyDev, Sublime Text, Vim

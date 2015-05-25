@@ -1,137 +1,32 @@
-# This file should include dependencies used directly by this project, and
-# private or forked dependencies that can't be referenced in `setup.py`.
+# Forked, pre-release, private, and vendored dependencies.
 
-# For deployment, all dependencies should be flattened (including dependencies
-# not used directly by this project) to `requirements.txt`, but this file
-# should remain as the authoritative list.
-
-### Private and forked ########################################################
-
--e .
-
--e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
+# -e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
 # -e git+ssh://git@github.com/django/django.git@master#egg=django
+# -e git+ssh://git@github.com/ixc/django-oembed.git@master#egg=django-oembed
+# -e git+ssh://git@github.com/ixc/django-singletons.git@ixc#egg=django-singletons
+# -e git+ssh://git@github.com/ixc/glamkit-adminboost.git@master#egg=glamkit-adminboost
+# -e git+ssh://git@github.com/ixc/glamkit-smartlinks.git@master#egg=smartlinks
+# -e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
+-e git+ssh://git@github.com/django-nose/django-nose.git#egg=django-nose
 -e git+ssh://git@github.com/ixc/deployo.git@master#egg=deployo
 -e git+ssh://git@github.com/ixc/django-compressor.git@ixc#egg=django-compressor
 -e git+ssh://git@github.com/ixc/django-frontend-compiler.git@master#egg=django-frontend-compiler
+-e git+ssh://git@github.com/ixc/django-master-password.git@master#egg=django-master-password
 -e git+ssh://git@github.com/ixc/django-model-settings.git@master#egg=django-model-settings
-# -e git+ssh://git@github.com/ixc/django-oembed.git@master#egg=django-oembed
-# -e git+ssh://git@github.com/ixc/django-orm-fixtures.git@ixc#egg=django-orm-fixtures
-# -e git+ssh://git@github.com/ixc/django-singletons.git@ixc#egg=django-singletons
-# -e git+ssh://git@github.com/ixc/feincms-redactor.git@master#egg=redactor
-# -e git+ssh://git@github.com/ixc/feincms.git@ixc#egg=FeinCMS
-# -e git+ssh://git@github.com/ixc/glamkit-adminboost.git@master#egg=glamkit-adminboost
-# -e git+ssh://git@github.com/ixc/glamkit-feincmstools.git@master#egg=glamkit-feincmstools
-# -e git+ssh://git@github.com/ixc/glamkit-smartlinks.git@master#egg=smartlinks
-# -e git+ssh://git@github.com/ixc/ixc-accounts.git@decouple#egg=ixc-accounts
-# -e git+ssh://git@github.com/ixc/ixc-blog.git@master#egg=ixc-blog
-# -e git+ssh://git@github.com/ixc/ixc-cms.git@decouple#egg=ixc-cms
-# -e git+ssh://git@github.com/ixc/ixc-content-types.git@decouple#egg=ixc-content-types
--e git+ssh://git@github.com/ixc/ixc-core.git@master#egg=ixc-core
-# -e git+ssh://git@github.com/ixc/ixc-feincms-conf.git@decouple#egg=ixc-feincms-conf
-# -e git+ssh://git@github.com/ixc/ixc-home.git@decouple#egg=ixc-home
-# -e git+ssh://git@github.com/ixc/ixc-pages.git@decouple#egg=ixc-pages
-# -e git+ssh://git@github.com/ixc/ixc-settings.git@master#egg=ixc-settings
-# -e git+ssh://git@github.com/ixc/ixc-smartlinks-conf.git@decouple#egg=ixc-smartlinks-conf
-# -e git+ssh://git@github.com/thirstydigital/django-generic-uid.git@master#egg=django-generic-uid
+-e git+ssh://git@github.com/ixc/django-polymorphic-auth.git@master#egg=django-polymorphic-auth
 
-### Dependencies ##############################################################
+# Vendor ######################################################################
 
-# See below for a list of immediate dependencies for each requirement. If this
-# project uses any of the following requirements, you will need to uncomment
-# their requirements above (and their requirements requirements, ...)
-
-# We need to do this manually because pip doesn't support recursive
-# requirements and setuptools doesn't support editable requirements installed
-# from VCS.
-
-# feincms-redactor:
-#     glamkit-feincmstools
-
-# feincms-feincmstools:
-#     glamkit-adminboost (soft)
-
-# ixc-accounts:
-#     django-generic
-#     ixc-cms (soft)
-#     ixc-core
-
-# ixc-blog:
-#     feincms
-#     glamkit-feincmstools
-#     ixc-cms
-#     ixc-feincms-conf
-
-# ixc-cms:
-#     django-generic
-#     feincms
-#     ixc-content-types (soft)
-
-# ixc-content-types:
-#     django-oembed
-#     feincms-redactor
-#     glamkit-adminboost
-#     glamkit-smartlinks
-#     ixc-smartlinks-conf
-
-# ixc-feincms-conf:
-#     feincms
-#     feincms-redactor
-#     ixc-cms
-#     ixc-content-types
-#     ixc-pages
-#     ixc-smartlinks-conf
-
-# ixc-home:
-#     django-singletons
-#     glamkit-feincmstools
-#     ixc-cms
-
-# ixc-pages:
-#     feincms
-#     glamkit-feincmstools
-#     ixc-cms
-
-# ixc-smartlinks-conf:
-#     feincms
-#     feincms-redactor
-#     glamkit-smartlinks
-
-### 3rd party and public ######################################################
-
-Django
-django-debug-toolbar
-django-dynamic-fixture
-django-extensions
-# django-hosts
-django-nose
-django-reversion
-django-suit
-django-supervisor
-django-webtest
-easy_thumbnails
-gunicorn
-ipython
-nose-cov
-nose-progressive
-pytz
-raven
-WebTest
-Werkzeug
-
-### Vendor ####################################################################
-
-# If you need to fork and hack on a depdendency so extensively that it will
-# only be usable by this project, pull it into the ``vendor`` folder in  this
-# project with ``git subtree``. For example::
+# If you need to fork and hack on a dependency so extensively that it will only
+# be usable by this project, pull it into the `vendor` folder in this project
+# with `git subtree`:
 #
 #    $ mkdir -p vendor
-#    $ git subtree add -P vendor/ixc-blog git@github.com:ixc/ixc-blog.git master --squash
+#    $ git subtree add -P vendor/django git@github.com:django/django.git master --squash
 #
 # Then install them directly from the vendor directory::
 #
-#    -e ./vendor/ixc-blog
+#    -e ./vendor/django
 #
-# However, this should be avoided if at all possible, so that we can more easily
-# contribute bug fixes and feature enhancements back upstream to these external
-# projects.
+# However, this should be avoided if at all possible, so that we can more
+# easily contribute bug fixes and feature enhancements back upstream.

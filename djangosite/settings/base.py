@@ -1,5 +1,5 @@
 """
-Safe settings by default.
+Safe settings by default, based on Django 1.8 project template.
 
 Prevent accidentally leaking sensitive information, connecting to a production
 database, sending live emails, etc.
@@ -10,12 +10,12 @@ each deployed environment in ``local.py``.
 
 import multiprocessing
 import os
+import posixpath
 import sys
-import tempfile
 
 SITE_NAME = '{{ project_name }}'
 
-### FILE SYSTEM PATHS #########################################################
+# FILE SYSTEM PATHS ###########################################################
 
 # Working copy root. Contains `manage.py`.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # static directories.
 PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
 
-### DJANGO CHECKLIST ##########################################################
+# DJANGO CHECKLIST ############################################################
 
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 #
 # CRITICAL
@@ -73,8 +73,8 @@ CACHES = {
     }
 }
 
-# Use SQLite, because a real database will require credentials and should be
-# configured in `local.py`.
+# Use SQLite, because a real database will need to be provisioned and will
+# require credentials and should be configured in `local.py`.
 DATABASES = {
     'default': {
         'ATOMIC_REQUESTS': True,
@@ -138,7 +138,7 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-### DJANGO ####################################################################
+# DJANGO ######################################################################
 
 EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 
@@ -147,48 +147,26 @@ EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 # Optional contrib and 3rd party apps that require additional configuration can
 # be enabled and configured in app-specific sections further below.
 INSTALLED_APPS = (
-    # Defaults.
-    'django.contrib.admin',
+    # Default.
+    # 'django.contrib.admin',  # Must come after `admin_tools` apps, below.
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
 
     # Contrib.
     'django.contrib.admindocs',
-
-    # Check `requirements.txt` for a list of dependencies for the 3rd party and
-    # IxC apps below.
+    'django.contrib.sitemaps',
 
     # 3rd party.
     'django_extensions',
     'reversion',
-    # 'feincms',
-    # 'feincms.module.medialibrary',
-    # 'feincms.module.page',  # Only used for template tags
-    # 'mptt',
-    # 'oembed',
-    # 'orm_fixtures',
-    # 'redactor',
-    # 'singleton_models',
 
-    # IxC.
-    # 'adminboost',
+    # IC.
     'django_frontend_compiler',
-    # 'feincmstools',
-    # 'generic',
-    # 'ixc_blog',
-    # 'ixc_cms',
-    'ixc_core',
-    # 'ixc_feincms_conf',  # Must come after `feincms.*`
-    # 'ixc_home',
-    # 'ixc_pages',
-    # 'ixc_smartlinks_conf',
-    # 'smartlinks',
 
-    # Local.
+    # Project.
     '{{ project_name }}',
 )
 
@@ -199,7 +177,7 @@ LOGIN_REDIRECT_URL = '/'  # Default: '/accounts/profile/'
 # LOGOUT_URL = '/accounts/signout/'
 
 MIDDLEWARE_CLASSES = (
-    # Defaults.
+    # Default.
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -207,32 +185,22 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 
-    # Extras.
+    # Contrib.
     'django.contrib.admindocs.middleware.XViewMiddleware',
 )
 
-MIGRATION_MODULES = {
-    'ixc_blog': 'djangosite.migrations.ixc_blog',
-    'ixc_home': 'djangosite.migrations.ixc_home',
-    'ixc_pages': 'djangosite.migrations.ixc_pages',
-    'page': 'ixc_feincms_conf.feincms_page_migrations',
-}
-
 ROOT_URLCONF = 'djangosite.urls'
 
-# Django will think this settings module was created by Django 1.5 or earlier
-# if `MANAGERS`, `SITE_ID` and `TEMPLATE_LOADERS` settings are defined. Ignore
-# the resulting backward incompatibility warnings.
-# See: https://code.djangoproject.com/ticket/22454
 SILENCED_SYSTEM_CHECKS = (
     '1_6.W001',
     '1_6.W002',
 )
 
 STATICFILES_DIRS = (
-    os.path.abspath(os.path.join(BASE_DIR, 'bower_components')),
-    os.path.abspath(os.path.join(BASE_DIR, 'djangosite', 'static')),
+    os.path.join(BASE_DIR, 'bower_components'),
+    os.path.join(BASE_DIR, 'djangosite', 'static'),
 )
 
 STATICFILES_FINDERS = (
@@ -241,34 +209,57 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    # Defaults.
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-
-    # Extras.
-    'django.core.context_processors.request',
-
-    # TODO: Don't rely on URL fragments to apply styles. Use URL names or hard
-    # coded variables in section base templates.
-    '{{ project_name }}.context_processors.site_section',
-    '{{ project_name }}.context_processors.django_environment',
-)
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'djangosite', 'templates'),
-)
-
-TEMPLATE_LOADERS = (
-    # Defaults.
+# Deprecated, but we still use in calculated settings.
+TEMPLATE_LOADERS = [
+    # Default.
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-)
+]
+
+# Define template backends separately. Backends will be added to `TEMPLATES` in
+# `local.py`. This makes it easier to update for specific environments.
+
+# Django templates backend.
+TEMPLATES_DJANGO = {
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [  # Default: empty
+        os.path.join(BASE_DIR, 'djangosite', 'templates'),
+    ],
+    # 'APP_DIRS': True,  # Must not be set when `loaders` is defined
+    'OPTIONS': {
+        'context_processors': [
+            # Default.
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+
+            # Extra.
+            'django.core.context_processors.i18n',
+            'django.core.context_processors.media',
+            'django.core.context_processors.static',
+            'django.core.context_processors.tz',
+
+            # Project.
+            '{{ project_name }}.context_processors.environment',
+        ],
+        'loaders': TEMPLATE_LOADERS,
+    },
+}
+
+# Jinja2 template backend.
+TEMPLATES_JINJA2 = {
+    'BACKEND': 'django.template.backends.jinja2.Jinja2',
+    'DIRS': [
+        os.path.join(BASE_DIR, 'djangosite', 'jinja2'),
+    ],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'environment': '{{ project_name }}.jinja2.environment',
+    }
+}
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'  # Default: django.test.runner.DiscoverRunner
 
 TIME_ZONE = 'Australia/Sydney'  # Default: America/Chicago
 
@@ -279,9 +270,9 @@ USE_TZ = True  # Default: False
 
 WSGI_APPLICATION = 'djangosite.wsgi.application'
 
-### DJANGO REDIRECTS ##########################################################
+# DJANGO REDIRECTS ############################################################
 
-# Requires `django.contrib.sites`.
+# Requires: django.contrib.sites
 
 INSTALLED_APPS += ('django.contrib.redirects', )
 
@@ -289,12 +280,12 @@ MIDDLEWARE_CLASSES += (
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
 
-### DJANGO SITES ##############################################################
+# DJANGO SITES ################################################################
 
 INSTALLED_APPS += ('django.contrib.sites', )
 SITE_ID = 1
 
-### COMPRESSOR ################################################################
+# COMPRESSOR ##################################################################
 
 COMPRESS_CSS_FILTERS = [
     'django_frontend_compiler.filters.clean_css.CleanCSSFilter',
@@ -305,35 +296,128 @@ COMPRESS_URL = STATIC_URL
 INSTALLED_APPS += ('compressor', )
 STATICFILES_FINDERS += ('compressor.finders.CompressorFinder', )
 
-### EASY THUMBNAILS ###########################################################
+# EASY THUMBNAILS #############################################################
 
 INSTALLED_APPS += ('easy_thumbnails', )
 THUMBNAIL_BASEDIR = 'thumbs'
 THUMBNAIL_HIGH_RESOLUTION = True
 
-### FEINCMS ###################################################################
+# FLUENT ######################################################################
 
-FEINCMS_JQUERY_NO_CONFLICT = True
-FEINCMS_TREE_EDITOR_INCLUDE_ANCESTORS = True
-FEINCMS_USE_PAGE_ADMIN = False
-TEMP_FOLDER = os.path.join(tempfile.gettempdir(), '{{ project_name }}')
-TMP_UPLOAD_FOLDER = os.path.join(TEMP_FOLDER, 'uploads')
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = \
+    'fluent_dashboard.dashboard.FluentAppIndexDashboard'
+ADMIN_TOOLS_INDEX_DASHBOARD = 'fluent_dashboard.dashboard.FluentIndexDashboard'
+ADMIN_TOOLS_MENU = 'fluent_dashboard.menu.FluentMenu'
 
-### GENERIC ###################################################################
+DJANGO_WYSIWYG_FLAVOR = 'redactor'
+DJANGO_WYSIWYG_MEDIA_URL = posixpath.join(STATIC_URL, 'redactor/')
 
-TEMPLATE_CONTEXT_PROCESSORS += ('generic.context_processors.generic', )
-
-TEMPLATE_CONSTANTS = {
-    'SITE_NAME': SITE_NAME,
+FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
+    # 'home': {
+    #     'plugins': ('...', ),
+    # },
+    'main': {
+        'plugins': (
+            # 'CodePlugin',
+            # 'CommentsAreaPlugin',
+            # 'DisqusCommentsPlugin',
+            # 'FormDesignerLinkPlugin',
+            # 'GistPlugin',
+            # 'GoogleDocsViewerPlugin',
+            'IframePlugin',
+            'MarkupPluginBase',
+            'OEmbedPlugin',
+            'PicturePlugin',
+            'RawHtmlPlugin',
+            'SharedContentPlugin',
+            'TextPlugin',
+            # 'TwitterRecentEntriesPlugin',
+            # 'TwitterSearchPlugin',
+        ),
+    },
+    # 'sidebar': {
+    #     'plugins': ('...', ),
+    # },
 }
 
-### GUARDIAN ##################################################################
+FLUENT_DASHBOARD_DEFAULT_MODULE = 'ModelList'
 
-# ANONYMOUS_USER_ID = -1  # Syncdb to create the user
+# FLUENT_MARKUP_LANGUAGES = ['restructuredtext', 'markdown', 'textile']
+# FLUENT_MARKUP_MARKDOWN_EXTRAS = []
+
+FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
+    BASE_DIR, '{{ project_name }}', 'layouts', 'templates')
+
+# FLUENT_TEXT_CLEAN_HTML = True  # Default: False
+# FLUENT_TEXT_SANITIZE_HTML = True  # Default: False
+
+INSTALLED_APPS += (
+    # Fluent.
+    'fluent_contents',
+    'fluent_dashboard',
+    'fluent_pages',
+
+    # Dependencies.
+    'admin_tools',
+    'admin_tools.dashboard',
+    'admin_tools.menu',
+    'admin_tools.theming',
+    'django.contrib.admin',  # Must come after `admin_tools` apps.
+    'mptt',
+    'parler',
+    'polymorphic',
+    'polymorphic_tree',
+
+    # Page types.
+    'fluent_pages.pagetypes.flatpage',
+    'fluent_pages.pagetypes.fluentpage',
+    'fluent_pages.pagetypes.redirectnode',
+
+    # Content plugins.
+    # 'fluent_contents.plugins.code',
+    # 'fluent_contents.plugins.commentsarea',
+    # 'fluent_contents.plugins.disquswidgets',
+    # 'fluent_contents.plugins.formdesignerlink',
+    # 'fluent_contents.plugins.gist',
+    # 'fluent_contents.plugins.googledocsviewer',
+    'fluent_contents.plugins.iframe',
+    'fluent_contents.plugins.markup',
+    'fluent_contents.plugins.oembeditem',
+    'fluent_contents.plugins.picture',
+    'fluent_contents.plugins.rawhtml',
+    'fluent_contents.plugins.sharedcontent',
+    'fluent_contents.plugins.text',
+    # 'fluent_contents.plugins.twitterfeed',
+
+    # Project.
+    '{{ project_name }}.layouts',
+    # '{{ project_name }}.pagetypes.samplepage',
+    # '{{ project_name }}.plugins.sample',
+
+    # Page type and content plugin dependencies.
+    'any_urlfield',
+    'django_wysiwyg',
+    'micawber',
+)
+
+# GENERIC #####################################################################
+
+# INSTALLED_APPS += ('generic', )
+
+# TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
+#     'generic.context_processors.generic')
+
+# TEMPLATE_CONSTANTS = {
+#     'SITE_NAME': SITE_NAME,
+# }
+
+# GUARDIAN ####################################################################
+
+# ANONYMOUS_USER_ID = -1  # Migrate to create the user
 # INSTALLED_APPS += ('guardian', )
 # AUTHENTICATION_BACKENDS += ('guardian.backends.ObjectPermissionBackend', )
 
-### HOSTS #####################################################################
+# HOSTS #######################################################################
 
 # INSTALLED_APPS += ('django_hosts', )
 # MIDDLEWARE_CLASSES += ('django_hosts.middleware.HostsMiddleware', )
@@ -341,182 +425,42 @@ TEMPLATE_CONSTANTS = {
 # DEFAULT_HOST = 'www'
 # ROOT_HOSTCONF = 'djangosite.hosts'
 
-### IXC-ACCOUNTS ##############################################################
+# MASTER PASSWORD #############################################################
 
-# AUTH_USER_MODEL = 'ixc_accounts.User'
-# INSTALLED_APPS += ('ixc_accounts', )
+AUTHENTICATION_BACKENDS = ('master_password.auth.ModelBackend', )
+INSTALLED_APPS += ('master_password', )
+MASTER_PASSWORDS = {}
 
-### IXC-CONTENT-TYPES #########################################################
-
-# Below is a sample of content types that may often be used in projects. If
-# they are not used and ixc_content_types is installed it will fall back to
-# some default choices.
-
-# If you choose to use GalleryContent or GalleryContentWithDimensions, remember
-# to run `bower install -S colorbox`.
-
-# DEFAULT_CONTENT_TYPES = {
-#     (
-#         'Images',
-#         (
-#             'ixc_content_types.images.content_types.OneOffImageContent',
-#             'ixc_content_types.images.content_types.OneOffImageContentWithStyles',
-#             'ixc_content_types.images.content_types.ReusableImageContent',
-#             'ixc_content_types.images.content_types.ReusableImageContentWithStyles',
-#             'ixc_content_types.images.content_types.GalleryContent',
-#             'ixc_content_types.images.content_types.GalleryContentWithDimensions',
-#             'ixc_content_types.images.content_types.CarouselContent',
-#             'ixc_content_types.images.content_types.CarouselContentWithDimensions',
-#         ),
-#     ),
-#     (
-#         'Files',
-#         (
-#             'ixc_content_types.files.content_types.OneOffFileContent',
-#             'ixc_content_types.files.content_types.ReusableFileContent',
-#             'ixc_content_types.files.content_types.OEmbedContent',
-#         ),
-#     ),
-#     (
-#         None,
-#         (
-#             'redactor.content_types.RedactorContent',
-#             'ixc_content_types.textual.content_types.QuoteContent',
-#             'ixc_content_types.textual.content_types.RawHTMLContent',
-#         ),
-#     ),
-# }
-
-# INSTALLED_APPS += (
-#     'ixc_content_types',
-#     'ixc_content_types.files',
-#     'ixc_content_types.galleries',  # You must provide a front-end
-#     'ixc_content_types.images',
-# )
-
-### MODEL SETTINGS ############################################################
+# MODEL SETTINGS ##############################################################
 
 INSTALLED_APPS += ('model_settings', 'polymorphic')
-TEMPLATE_CONTEXT_PROCESSORS += ('model_settings.context_processors.settings', )
 
-### REDACTOR ##################################################################
+TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
+    'model_settings.context_processors.settings')
 
-REDACTOR_OPTIONS = {
-    'autoResize': True,
-    'buttons': (
-        'html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|',
-        'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
-        # Uncomment if you want to support uploads within the editor.
-        # 'image', 'video', 'file',
-        'table', 'link', '|', 'alignment', '|',
-        'horizontalrule'
-    ),
-    'lang': 'en',
-    'observeLinks': True,
-    'tabFocus': True,
-    'wym': True,
-}
+# POLYMORPHIC AUTH ############################################################
 
-REDACTOR_UPLOAD = 'uploads/redactor/'
+AUTH_USER_MODEL = 'email.EmailUser'
+# AUTH_USER_MODEL = 'username.UsernameUser'
 
-### SUIT ######################################################################
+INSTALLED_APPS += (
+    'polymorphic',
+    'polymorphic_auth',
+    'polymorphic_auth.usertypes.email',
+    # 'polymorphic_auth.usertypes.username',
+)
 
-# Must come before `django.contrib.admin`
-INSTALLED_APPS = ('suit', ) + INSTALLED_APPS
-
-SUIT_CONFIG = {
-    # Header.
-    'ADMIN_NAME': '%s Admin' % SITE_NAME,
-    'HEADER_DATE_FORMAT': 'l, j. F Y',  # Saturday, 16th March 2013
-    'HEADER_TIME_FORMAT': 'P',  # 6:42pm, 10am, midnight, etc.
-
-    # Forms.
-    # 'CONFIRM_UNSAVED_CHANGES': True,
-    # 'SHOW_REQUIRED_ASTERISK': True,
-
-    # Menu. Icons at http://getbootstrap.com/components/
-    # 'SEARCH_URL': '/admin/auth/user/',
-    # 'MENU_ICONS': {
-    #     'sites': 'icon-leaf',
-    #     'auth': 'icon-lock',
-    # },
-    # 'MENU_OPEN_FIRST_CHILD': True,
-    # 'MENU_ICONS': {
-    #     'sites': 'icon-leaf',
-    #     'auth': 'icon-lock',
-    # },
-    # 'MENU_EXCLUDE': ('auth.group', ),
-    'MENU': (
-        # 'sites',
-        # {
-        #     'app': 'auth',
-        #     'icon': 'icon-lock',
-        #     'models': (
-        #         'user',
-        #         'group',
-        #     ),
-        # },
-        '-',
-        {
-            'label': 'Content',
-            'icon': 'icon-pencil',
-            'models': (
-                'ixc_pages.page',
-                'ixc_home.homepage',
-                'redirects.redirect',
-                # 'smartlinks.customsmartlink',
-            ),
-        },
-        {
-            'label': 'Media',
-            'icon': 'icon-play',
-            'models': (
-                'ixc_content_types.assetcategory',
-                {
-                    'label': 'Media file category',
-                    'model': 'medialibrary.category',
-                },
-                'medialibrary.mediafile',
-                'images.image',
-                'files.file',
-            ),
-        },
-        '-',
-        {
-            'label': 'Configuration',
-            'icon': 'icon-cog',
-            'models': (
-                'model_settings.setting',
-                'ixc_accounts.user',
-                'auth.group',
-                'oembed.providerrule',
-                'oembed.storedoembed',
-                'sites.site',
-            ),
-        },
-        # {
-        #     'label': 'Support',
-        #     'icon': 'icon-question-sign',
-        #     'url': '/support/',
-        # },
-    ),
-
-    # Misc.
-    'LIST_PER_PAGE': 100,
-}
-
-### SORL THUMBNAIL ############################################################
+# SORL THUMBNAIL ##############################################################
 
 # INSTALLED_APPS += ('sorl.thumbnail', )
 # THUMBNAIL_DEBUG = False
 
-### SUPERVISOR ################################################################
+# SUPERVISOR ##################################################################
 
 INSTALLED_APPS += ('djsupervisor', )
 
 SUPERVISOR = {
-    'ADDRESS': '127.0.0.1:8000',  # Bind to loopback interface
-    'NAME': '{{ project_name }}',
-    'PREFIX': sys.prefix,
-    'WORKERS': multiprocessing.cpu_count() * 2 + 1,
+    'GUNICORN_ADDRESS': '127.0.0.1:8000',  # Bind to loopback interface
+    'GUNICORN_WORKERS': multiprocessing.cpu_count() * 2 + 1,
+    'SYS_PREFIX': sys.prefix,
 }
