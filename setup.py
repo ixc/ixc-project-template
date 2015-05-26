@@ -10,8 +10,8 @@ setuptools.setup(
         'Django',
         'django-extensions',
         'django-fluent-contents[markup,oembeditem,text]',  # code,disquscommentsarea,formdesignerlink,twitterfeed
-        'django-fluent-pages[flatpage,fluentpage,redirectnode]',
         'django-fluent-dashboard',
+        'django-fluent-pages[flatpage,fluentpage,redirectnode]',
         # 'django-hosts',
         'django-master-password',
         # 'django-nose',
