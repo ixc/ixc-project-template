@@ -19,7 +19,6 @@ setuptools.setup(
         # 'django-nose',
         # 'django-polymorphic-auth',
         'django-reversion',
-        # 'django-suit',
         'django-supervisor',
         'docutils',
         'easy_thumbnails',
