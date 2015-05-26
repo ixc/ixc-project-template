@@ -48,7 +48,7 @@ Migrate the database and collect static files:
 
 ## Usage
 
-Use [django-supervisor] to run the project (e.g. gunicorn and other processes):
+Use [django-supervisor] to run the project (e.g. `wsgi` and other processes):
 
     (venv)$ ./manage.py supervisor
 

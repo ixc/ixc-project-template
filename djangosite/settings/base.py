@@ -459,8 +459,26 @@ INSTALLED_APPS += (
 
 INSTALLED_APPS += ('djsupervisor', )
 
+GUNICORN_ADDRESS = '127.0.0.1'
+GUNICORN_WORKERS = multiprocessing.cpu_count() * 2 + 1
+
+def get_gunicorn_command():
+    from django.conf import settings
+    gunicorn = os.path.join(sys.prefix, 'bin', 'gunicorn')
+    command = (
+        '{gunicorn} -b {address}:{port} -w {workers} '
+        'djangosite.wsgi:application'.format(
+            gunicorn=gunicorn,
+            address=settings.GUNICORN_ADDRESS,
+            port=settings.SITE_PORT,
+            workers=settings.GUNICORN_WORKERS,
+        ))
+    return command
+
+# Lazily evaluate so we can override just the address, port, or number of
+# workers in the `local` settings module.
+get_gunicorn_command = lazy(get_gunicorn_command, six.text_type)
+
 SUPERVISOR = {
-    'GUNICORN_ADDRESS': '127.0.0.1:8000',  # Bind to loopback interface
-    'GUNICORN_WORKERS': multiprocessing.cpu_count() * 2 + 1,
-    'SYS_PREFIX': sys.prefix,
+    'wsgi': get_gunicorn_command(),
 }

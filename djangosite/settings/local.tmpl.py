@@ -39,6 +39,10 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 #     'abc123': lambda u: DEBUG,  # Only when `DEBUG=True`.
 # })
 
+# SUPERVISOR.update({
+#     'wsgi': '%s runserver_plus' % os.path.join(BASE_DIR, 'manage.py'),
+# })
+
 # STAGING #####################################################################
 
 # Settings you might want to enable for staging.
@@ -123,9 +127,11 @@ SENTRY_DSN = ''
 
 # SUPERVISOR ##################################################################
 
+# GUNICORN_ADDRESS = '0.0.0.0'  # Default: 127.0.0.1
+# GUNICORN_WORKERS = 2  # Default: 2x CPU cores + 1
+
 SUPERVISOR.update({
-    'GUNICORN_ADDRESS': '127.0.0.1:%s' % SITE_PORT,  # Default: 127.0.0.1:8000
-    # 'GUNICORN_WORKERS': N,  # Default: 2x CPU cores + 1
+    # 'wsgi': '%s runserver_plus' % os.path.join(BASE_DIR, 'manage.py'),
 })
 
 # CALCULATED ##################################################################
