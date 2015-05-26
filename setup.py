@@ -12,9 +12,12 @@ setuptools.setup(
         'django-fluent-contents[markup,oembeditem,text]',  # code,disquscommentsarea,formdesignerlink,twitterfeed
         'django-fluent-dashboard',
         'django-fluent-pages[flatpage,fluentpage,redirectnode]',
+        # 'django-frontend-compiler',
         # 'django-hosts',
-        'django-master-password',
+        # 'django-master-password',
+        # 'django-model-settings',
         # 'django-nose',
+        # 'django-polymorphic-auth',
         'django-reversion',
         # 'django-suit',
         'django-supervisor',
