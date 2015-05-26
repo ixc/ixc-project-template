@@ -7,14 +7,18 @@ Docs can be found in the [docs](docs/index.md) folder.
 This is a bare-bones skeleton project template, for use with the
 `django-admin.py startproject` command.
 
-You will need `django 1.4+`, `git`, `python 2.7+`, `pip`, and `virtualenv` to
-create a new project with this template.
+You will need `git`, `python 2.7+` and `pip` to create a new project with this
+template.
 
 Create environment variables for the project and module name (e.g. `foo-bar`
 and `foo_bar`), so we can use them in subsequent commands:
 
     $ export PROJECT=<project_name>
     $ export MODULE=<module_name>
+
+Install or upgrade Django:
+
+    $ pip install -U Django
 
 Create a project from the template:
 
@@ -28,8 +32,8 @@ Make the `manage.py` file executable, for convenience:
     $ cd $PROJECT
     $ chmod 755 manage.py
 
-Create a remote repository on [GitHub][GitHub], then initialise a local repository and
-push an initial commit:
+Create a remote repository on [GitHub](https://github.com), then initialise a
+local repository and push an initial commit:
 
     $ git init
     $ git add -A
@@ -39,13 +43,9 @@ push an initial commit:
 
 Now, get to work on your project! You might want to start with:
 
-  * Add a `LICENSE` file (e.g. [MIT][MIT]).
-  * Update the [docs][docs] (e.g. overview, installation and usage).
-  * Read the [contributing][contributing] docs.
+  * Add a `LICENSE.txt` file (e.g.
+    [MIT](http://choosealicense.com/licenses/mit/)).
+  * Read the [contributing](docs/contributing.md) docs.
+  * Update the [docs](docs/index.md) (e.g. overview, installation and usage).
   * Remove the `Project Template` section (these instructions) from `README.md`
     (this file).
-
-[contributing]: docs/contributing.md
-[docs]: docs/index.md
-[GitHub]: https://github.com
-[MIT]: http://choosealicense.com/licenses/mit/

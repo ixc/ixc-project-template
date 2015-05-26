@@ -9,25 +9,31 @@ TODO
 
 ## Installation
 
-You will need `bower`, `git`, `python 2.7+`, `pip`, and `virtualenv` to install
-this project and its dependencies.
+You will need `git`, `python 2.7+` and `pip` to install this project and its
+dependencies.
 
-Clone the project:
+Clone the repository and change directory:
 
     $ git clone git@github.com:ixc/<project_name>.git
-
-Create a virtualenv and install the dependencies:
-
     $ cd <project_name>
-    $ brew bundle  # Only if using OS X and Homebrew.
+
+Install binary and frontend dependencies:
+
+    $ brew tap homebrew/bundle
+    $ brew bundle
+    $ npm install -g bower
+    $ bower install
+
+If you are not using OS X with [Homebrew], you will need to install
+the packages listed in the `Brewfile` file manually.
+
+Create a virtualenv and install dependencies:
+
+    $ pip install -U virtualenv
     $ virtualenv venv
     $ source venv/bin/activate
-    (venv)$ pip install -r requirements.txt -e .[dev,postgres,test]  # Omit unwanted optional extras.
-    (venv)$ bower install
-
-If you are not using OS X or do not have [Homebrew][Homebrew] and the
-[Bundle][Homebrew-Bundle] tap installed, you will need to install the packages
-listed in `Brewfile` manually.
+    (venv)$ pip install -r requirements.txt  # Absolute dependencies.
+    (venv)$ pip install -e .[dev,postgres,test]  # Abstract dependencies. Remove `dev`, `postgres` or `test` if unwanted.
 
 You MUST **review and uncomment** the appropriate environment specific
 configuration in the local settings module:
@@ -48,7 +54,7 @@ Use [django-supervisor] to run the project (e.g. gunicorn and other processes):
 
 You can also execute other [supervisor] actions:
 
-    (venv)$ ./manage.py supervisor restart
+    (venv)$ ./manage.py supervisor restart all
     (venv)$ ./manage.py supervisor shell
     (venv)$ ./manage.py supervisor status
 
@@ -65,6 +71,7 @@ to see your latest edits is refresh your browser.
 [Changelog]: changelog.md
 [Contributing]: contributing.md
 [django-supervisor]: https://github.com/rfk/django-supervisor
+[Homebrew]: http://brew.sh/
 [Markdown]: http://daringfireball.net/projects/markdown/
 [MkDocs]: http://mkdocs.org
 [supervisor]: http://supervisord.org/

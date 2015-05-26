@@ -4,25 +4,13 @@ Please follow these guidelines when making contributions to this project.
 
 ## Getting Started
 
-Get the code and setup a virtualenv:
-
-    $ git clone git@github.com:ixc/<project_name>.git
-    $ cd <project_name>
-    $ virtualenv venv
-    $ source venv/bin/activate
-    (venv)$ pip install -r requirements.txt
+Install the project according to the [installation] docs.
 
 Run the tests:
 
-    # All environments, just the given environments, or just the virtualenv.
-    (venv)$ tox
-    (venv)$ tox -e django17-py27,django18-py27
-    (venv)$ ./manage.py test
-
-Run the project interactively:
-
-    (venv)$ ./manage.py migrate
-    (venv)$ ./manage.py runserver
+    (venv)$ tox  # All environments.
+    (venv)$ tox -e django17-py27,django18-py27  # Given environments.
+    (venv)$ ./manage.py test  # Virtualenv.
 
 ## Git
 
@@ -74,6 +62,7 @@ We don't need 100% test coverage, but we should at least have:
 [EditorConfig]: http://editorconfig.org/
 [git-extensions]: https://github.com/nvie/gitflow/
 [Gitflow branching model]: http://atlassian.com/git/workflows#!workflow-gitflow
+[installation]: index.md#installation
 [Markdown]: http://daringfireball.net/projects/markdown/
 [PEP8]: http://legacy.python.org/dev/peps/pep-0008/
 [SourceTree]: http://sourcetreeapp.com/
