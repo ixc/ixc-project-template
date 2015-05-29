@@ -38,7 +38,7 @@ Create a virtualenv and install dependencies:
 You MUST **review and uncomment** the appropriate environment specific
 configuration in the local settings module:
 
-    (venv)$ cp djangosite/settings/local.tmpl.py djangosite/settings/local.py
+    (venv)$ cp djangosite/settings/local_sample.py djangosite/settings/local.py
     (venv)$ $EDITOR djangosite/settings/local.py
 
 Migrate the database and collect static files:

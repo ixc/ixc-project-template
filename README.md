@@ -23,7 +23,7 @@ Install or upgrade Django:
 Create a project from the template:
 
     $ mkdir $PROJECT
-    $ django-admin.py startproject -e json,md,yml -n base.html \
+    $ django-admin.py startproject -e json,ini,md,yml -n base.html \
     --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
     $MODULE $PROJECT
 
