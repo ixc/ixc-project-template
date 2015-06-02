@@ -7,7 +7,9 @@ setuptools.setup(
     version=__version__,
     packages=setuptools.find_packages(),
     install_requires=[
+        'coverage',
         'Django',
+        'django-dynamic-fixture',
         'django-extensions',
         'django-fluent-contents[markup,oembeditem,text]',  # code,disquscommentsarea,formdesignerlink,twitterfeed
         'django-fluent-dashboard',
@@ -18,14 +20,18 @@ setuptools.setup(
         # 'django-model-settings',
         # 'django-nose',
         # 'django-polymorphic-auth',
+        'django-nose',
         'django-reversion',
         'django-supervisor',
+        'django-webtest',
         'docutils',
         'easy_thumbnails',
         'gunicorn',
         'Jinja2',
+        'nose-progressive',
         'pytz',
         'raven',
+        'WebTest',
     ],
     extras_require={
         'dev': [
@@ -36,13 +42,5 @@ setuptools.setup(
             'Werkzeug',
         ],
         'postgres': ['psycopg2'],
-        'test': [
-            'coverage',
-            'django-dynamic-fixture',
-            'django-nose',
-            'django-webtest',
-            'nose-progressive',
-            'WebTest',
-        ],
     },
 )
