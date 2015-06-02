@@ -32,8 +32,8 @@ Create a virtualenv and install dependencies:
     $ pip install -U virtualenv
     $ virtualenv venv
     $ source venv/bin/activate
-    (venv)$ pip install -r requirements.txt  # Absolute dependencies.
-    (venv)$ pip install -e .[dev,postgres,test]  # Abstract dependencies. Remove `dev`, `postgres` or `test` if unwanted.
+    (venv)$ pip install -r requirements.txt  # Private dependencies (not on PyPI).
+    (venv)$ pip install -e .[dev,postgres]  # Public dependencies. Remove `dev` or `postgres` if unwanted.
 
 You MUST **review and uncomment** the appropriate environment specific
 configuration in the local settings module:

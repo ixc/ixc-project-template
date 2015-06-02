@@ -4,13 +4,24 @@ Please follow these guidelines when making contributions to this project.
 
 ## Getting Started
 
-Install the project according to the [installation] docs.
+Clone the repository and change directory:
 
-Run the tests:
+    $ git clone git@github.com:ixc/<project_name>.git
+    $ cd <project_name>
 
-    (venv)$ tox  # All environments.
-    (venv)$ tox -e django17-py27,django18-py27  # Given environments.
-    (venv)$ ./manage.py test  # Virtualenv.
+You don't need to install the project to run tests. You just need `tox`:
+
+    $ pip install -U tox
+    $ tox  # All environments.
+    $ tox -e django{17,18}-py27  # Given environments.
+
+If the project dependencies have been updated, rebuild the test environment:
+
+    $ tox -r
+    $ tox -e django17-py27 -r
+
+If you want to run and test the project interactively, follow the
+[installation] docs.
 
 ## Git
 
