@@ -13,6 +13,10 @@ import os
 import posixpath
 import sys
 
+from django.utils import six
+from django.utils.functional import lazy
+
+
 SITE_NAME = '{{ project_name }}'
 
 # FILE SYSTEM PATHS ###########################################################
