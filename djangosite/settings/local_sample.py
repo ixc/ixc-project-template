@@ -35,6 +35,9 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # CSRF_COOKIE_SECURE = False  # Don't require HTTPS for CSRF cookie
 # SESSION_COOKIE_SECURE = False  # Don't require HTTPS for session cookie
 
+# Only use clear text passwords for local development. Use the `make_password
+# management command to generated hashed passwords for production and staging.
+
 # MASTER_PASSWORDS.update({
 #     'abc123': lambda u: DEBUG,  # Only when `DEBUG=True`.
 # })
@@ -110,15 +113,6 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # HOSTS #######################################################################
 
 # PARENT_HOST = SITE_DOMAIN
-
-# MASTER PASSWORD #############################################################
-
-# Only use clear text passwords for local development. Use the `make_password
-# management command to generated hashed passwords for production and staging.
-
-MASTER_PASSWORDS.update({
-    # 'abc123': lambda u: DEBUG,  # Only when `DEBUG=True`.
-})
 
 # SENTRY ######################################################################
 
