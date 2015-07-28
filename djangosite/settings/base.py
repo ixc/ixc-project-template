@@ -444,7 +444,7 @@ TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
 
 # POLYMORPHIC AUTH ############################################################
 
-AUTH_USER_MODEL = 'email.EmailUser'
+AUTH_USER_MODEL = 'polymorphic_auth_email.EmailUser'
 # AUTH_USER_MODEL = 'username.UsernameUser'
 
 INSTALLED_APPS += (
