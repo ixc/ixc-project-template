@@ -329,7 +329,7 @@ FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
             # 'GistPlugin',
             # 'GoogleDocsViewerPlugin',
             'IframePlugin',
-            'MarkupPluginBase',
+            # 'MarkupPluginBase',
             'OEmbedPlugin',
             'PicturePlugin',
             'RawHtmlPlugin',
