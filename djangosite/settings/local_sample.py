@@ -42,6 +42,9 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 #     'abc123': lambda u: DEBUG,  # Only when `DEBUG=True`.
 # })
 
+# # Avoid session conflicts when running multiple projects on `localhost`.
+# SESSION_COOKIE_NAME = '%s_sessionid' % os.path.basename(BASE_DIR)
+
 # SUPERVISOR.update({
 #     'wsgi': '%s runserver_plus' % os.path.join(BASE_DIR, 'manage.py'),
 # })
