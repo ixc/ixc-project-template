@@ -101,8 +101,8 @@ MEDIA_URL = '/media/'
 # HTTPS
 #
 
-CSRF_COOKIE_SECURE = True  # Require HTTPS for CSRF cookie
-SESSION_COOKIE_SECURE = True  # Require HTTPS for session cookie
+# CSRF_COOKIE_SECURE = True  # Require HTTPS for CSRF cookie
+# SESSION_COOKIE_SECURE = True  # Require HTTPS for session cookie
 
 #
 # PERFORMANCE
