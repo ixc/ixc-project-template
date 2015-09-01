@@ -44,8 +44,9 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # DEBUG = True  # Show detailed error pages when exceptions are raised
 # TEMPLATE_DEBUG = True  # Show details when exceptions are raised in templates
 
-# Only use clear text passwords for local development. Use the `make_password
-# management command to generated hashed passwords for production and staging.
+# # Only use clear text passwords for local development. Use the `make_password
+# # management command to generated hashed passwords for production and
+# # staging.
 
 # MASTER_PASSWORDS.update({
 #     'abc123': lambda u: DEBUG,  # Only when `DEBUG=True`.
