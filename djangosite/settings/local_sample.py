@@ -23,6 +23,18 @@ ALLOWED_HOSTS += (
     SITE_DOMAIN,
 )
 
+# DATABASES = {
+#     'default': {
+#         'ATOMIC_REQUESTS': True,
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': '{{ project_name }}',
+#         'HOST': '',
+#         'PORT': '',
+#         'USER': '',
+#         'PASSWORD': '',
+#     },
+# }
+
 DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
 # DEVELOPMENT #################################################################
@@ -68,18 +80,6 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # }
 
 # CONN_MAX_AGE = 60  # Enable persistent database connections
-
-# DATABASES = {
-#     'default': {
-#         'ATOMIC_REQUESTS': True,
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': '{{ project_name }}',
-#         'HOST': '',
-#         'PORT': '',
-#         'USER': '',
-#         'PASSWORD': '',
-#     }
-# }
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Send emails
 
