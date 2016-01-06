@@ -1,10 +1,8 @@
 import setuptools
 
-from {{ project_name }} import __version__
-
 setuptools.setup(
     name='{{ project_name }}',
-    version=__version__,
+    use_scm_version={'version_scheme': 'post-release'},
     packages=setuptools.find_packages(),
     install_requires=[
         'coverage',
@@ -43,4 +41,5 @@ setuptools.setup(
         ],
         'postgres': ['psycopg2'],
     },
+    setup_requires=['setuptools_scm'],
 )
