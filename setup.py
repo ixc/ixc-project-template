@@ -7,6 +7,7 @@ setuptools.setup(
     install_requires=[
         'coverage',
         'Django',
+        'django_compressor',
         'django-dynamic-fixture',
         'django-extensions',
         'django-fluent-contents[markup,oembeditem,text]',  # code,disquscommentsarea,formdesignerlink,twitterfeed
