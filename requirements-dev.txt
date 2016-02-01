@@ -1,0 +1,25 @@
+# Packages that aren't available on PyPI are listed here so we can easily
+# install them locally and build packages for our private PyPI mirror.
+
+# Forked
+-e git+ssh://git@bitbucket.org/the_ic/django-generic.git@master#egg=django-generic
+-e git+ssh://git@github.com/ixc/django-dynamic-fixture.git@ixc/master#egg=django-dynamic-fixture
+-e git+ssh://git@github.com/ixc/django-fluent-contents.git@ixc#egg=django-fluent-contents
+-e git+ssh://git@github.com/ixc/django-fluent-pages.git@reversion_support#egg=django-fluent-pages[flatpage,fluentpage,redirectnode,reversion]
+-e git+ssh://git@github.com/ixc/django-multiurl.git@ixc#egg=django-multiurl
+-e git+ssh://git@github.com/ixc/django-test-without-migrations.git@ixc/nose-and-other-test-commands#egg=django-test-without-migrations
+
+# Pre-release, 3rd party
+-e git+ssh://git@github.com/django-nose/django-nose.git#egg=django-nose
+-e git+ssh://git@github.com/ixc/django-master-password.git@develop#egg=django-master-password
+-e git+ssh://git@github.com/ixc/django-model-settings.git@develop#egg=django-model-settings
+-e git+ssh://git@github.com/ixc/django-polymorphic-auth.git@develop#egg=django-polymorphic-auth
+-e git+ssh://git@github.com/ixc/django-timezone.git@develop#egg=django-timezone
+-e git+ssh://git@github.com/ixc/glamkit-fallbackserve.git#egg=glamkit-fallbackserve
+
+# Private
+-e git+ssh://git@github.com/ixc/deployo.git@develop#egg=deployo
+# -e git+ssh://git@github.com/ixc/django-glamkit.git@develop#egg=django-glamkit[api]
+# -e git+ssh://git@github.com/ixc/django-icekit.git@develop#egg=django-icekit[brightcove,forms,search]
+-e git+ssh://git@github.com/ixc/django-post-office-trigger.git#egg=post_office_trigger
+# -e git+ssh://git@github.com/ixc/icekit-notifications.git@master#egg=icekit-notifications

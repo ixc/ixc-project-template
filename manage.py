@@ -5,7 +5,12 @@ import sys
 
 if __name__ == "__main__":
 
-    if 'test' in sys.argv:
+    try:
+        test = sys.argv[1] == 'test'
+    except IndexError:
+        test = False
+
+    if test:
         cov = coverage.coverage()
         cov.erase()
         cov.start()
@@ -17,7 +22,7 @@ if __name__ == "__main__":
 
     execute_from_command_line(sys.argv)
 
-    if 'test' in sys.argv:
+    if test:
         cov.stop()
         cov.save()
         cov.report()

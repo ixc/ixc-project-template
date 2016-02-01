@@ -23,6 +23,18 @@ ALLOWED_HOSTS += (
     SITE_DOMAIN,
 )
 
+# DATABASES = {
+#     'default': {
+#         'ATOMIC_REQUESTS': True,
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': '{{ project_name }}',
+#         'HOST': '',
+#         'PORT': '',
+#         'USER': '',
+#         'PASSWORD': '',
+#     },
+# }
+
 DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
 # DEVELOPMENT #################################################################
@@ -32,11 +44,9 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 # DEBUG = True  # Show detailed error pages when exceptions are raised
 # TEMPLATE_DEBUG = True  # Show details when exceptions are raised in templates
 
-# CSRF_COOKIE_SECURE = False  # Don't require HTTPS for CSRF cookie
-# SESSION_COOKIE_SECURE = False  # Don't require HTTPS for session cookie
-
-# Only use clear text passwords for local development. Use the `make_password
-# management command to generated hashed passwords for production and staging.
+# # Only use clear text passwords for local development. Use the `make_password
+# # management command to generated hashed passwords for production and
+# # staging.
 
 # MASTER_PASSWORDS.update({
 #     'abc123': lambda u: DEBUG,  # Only when `DEBUG=True`.
@@ -69,17 +79,7 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
 # CONN_MAX_AGE = 60  # Enable persistent database connections
 
-# DATABASES = {
-#     'default': {
-#         'ATOMIC_REQUESTS': True,
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': '{{ project_name }}',
-#         'HOST': '',
-#         'PORT': '',
-#         'USER': '',
-#         'PASSWORD': '',
-#     }
-# }
+# CSRF_COOKIE_SECURE = False  # Don't require HTTPS for CSRF cookie
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Send emails
 
@@ -95,6 +95,8 @@ DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 #     MIDDLEWARE_CLASSES +
 #     ('django.middleware.cache.FetchFromCacheMiddleware', )
 # )
+
+# SESSION_COOKIE_SECURE = False  # Don't require HTTPS for session cookie
 
 # Enable cached template loader.
 # TEMPLATE_DJANGO['OPTIONS']['loaders'] = [

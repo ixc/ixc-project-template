@@ -101,8 +101,8 @@ MEDIA_URL = '/media/'
 # HTTPS
 #
 
-CSRF_COOKIE_SECURE = True  # Require HTTPS for CSRF cookie
-SESSION_COOKIE_SECURE = True  # Require HTTPS for session cookie
+# CSRF_COOKIE_SECURE = True  # Require HTTPS for CSRF cookie
+# SESSION_COOKIE_SECURE = True  # Require HTTPS for session cookie
 
 #
 # PERFORMANCE
@@ -470,12 +470,12 @@ def get_gunicorn_command():
     from django.conf import settings
     gunicorn = os.path.join(sys.prefix, 'bin', 'gunicorn')
     command = (
-        '{gunicorn} -b {address}:{port} -w {workers} '
-        'djangosite.wsgi:application'.format(
+        '{gunicorn} -b {address}:{port} -w {workers} {wsgi}'.format(
             gunicorn=gunicorn,
             address=settings.GUNICORN_ADDRESS,
             port=settings.SITE_PORT,
             workers=settings.GUNICORN_WORKERS,
+            wsgi=WSGI_APPLICATION.replace('.application', ':application'),
         ))
     return command
 
