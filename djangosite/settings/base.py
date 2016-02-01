@@ -438,6 +438,13 @@ INSTALLED_APPS += (
 # DEFAULT_HOST = 'www'
 # ROOT_HOSTCONF = 'djangosite.hosts'
 
+# ICEKIT ######################################################################
+
+# INSTALLED_APPS += (
+#     'icekit',
+#     'icekit.response_pages',
+# )
+
 # MASTER PASSWORD #############################################################
 
 AUTHENTICATION_BACKENDS = ('master_password.auth.ModelBackend', )
