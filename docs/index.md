@@ -27,6 +27,12 @@ Install binary and frontend dependencies:
 If you are not using OS X with [Homebrew], you will need to install
 the packages listed in the `Brewfile` file manually.
 
+If you haven't already, configure Pip to use our private package index:
+
+    # ~/.pip/pip.conf
+    [global]
+    index-url = https://{username}:{password}@devpi.ixcsandbox.com/ic/dev/+simple/  # Credentials are in 1Password.
+
 Create a virtualenv and install dependencies:
 
     $ pip install -U virtualenv
