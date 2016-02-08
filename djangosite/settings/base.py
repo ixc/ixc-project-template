@@ -168,7 +168,6 @@ INSTALLED_APPS = (
     'reversion',
 
     # IC.
-    'django_frontend_compiler',
 
     # Project.
     '{{ project_name }}',
