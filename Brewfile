@@ -1,1 +1,1 @@
-node
+brew 'node'
