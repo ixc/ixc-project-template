@@ -8,16 +8,20 @@ Uncomment or edit settings that apply to all deployments. Override settings for
 each deployed environment in ``local.py``.
 """
 
+import hashlib
 import multiprocessing
 import os
 import posixpath
-import sys
 
-from django.utils import six
-from django.utils.functional import lazy
 
+# Uniquely identify this settings module on the file system, so we can avoid
+# conflicts with other projects running on the same system.
+SETTINGS_MODULE_HASH = hashlib.md5(__file__).hexdigest()
 
 SITE_NAME = '{{ project_name }}'
+
+SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'localhost')
+SITE_PORT = 8000
 
 # FILE SYSTEM PATHS ###########################################################
 
@@ -36,26 +40,7 @@ PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
 # CRITICAL
 #
 
-# Get the secret key from a file that should never be committed to version
-# control. If it doesn't exist, create it.
 SECRET_FILE = os.path.join(BASE_DIR, 'secret.txt')
-try:
-    SECRET_KEY = open(SECRET_FILE).read().strip()
-except IOError:
-    try:
-        import random
-        import string
-        SECRET_CHARSET = ''.join([
-            string.digits, string.ascii_letters, string.punctuation])
-        SECRET_KEY = ''.join(random.choice(SECRET_CHARSET) for i in range(50))
-        secret = open(SECRET_FILE, 'w')
-        secret.write(SECRET_KEY)
-        secret.close()
-        os.chmod(SECRET_FILE, 0400)
-    except IOError:
-        raise Exception(
-            'Please create a %s file with 50 random characters to set your '
-            'secret key.' % SECRET_FILE)
 
 DEBUG = False  # Don't show detailed error pages when exceptions are raised
 
@@ -63,10 +48,10 @@ DEBUG = False  # Don't show detailed error pages when exceptions are raised
 # ENVIRONMENT SPECIFIC
 #
 
-# Only allow requests to loopback interfaces.
+# Only allow `SITE_DOMAIN`, including subdomains and full qualified domains.
 ALLOWED_HOSTS = (
-    '127.0.0.1',
-    'localhost',
+    '.%s' % SITE_DOMAIN,
+    '.%s.' % SITE_DOMAIN,
 )
 
 # Use dummy caching, so we don't get confused because a change is not taking
@@ -74,22 +59,32 @@ ALLOWED_HOSTS = (
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'KEY_PREFIX': 'default-%s' % SETTINGS_MODULE_HASH,
     }
 }
 
-# Use SQLite, because a real database will need to be provisioned and will
-# require credentials and should be configured in `local.py`.
 DATABASES = {
     'default': {
         'ATOMIC_REQUESTS': True,
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '{{ project_name }}',
+        'HOST': '',
+        'PORT': '',
+        'USER': '',
+        'PASSWORD': os.environ.get('PGPASSWORD'),
+    },
 }
 
-# Don't send emails, just in case we're testing locally with a copy of the
-# production database.
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'post_office.EmailBackend'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+POST_OFFICE = {
+    'BACKENDS': {
+        'default': 'django.core.mail.backends.console.EmailBackend',
+    }
+}
 
 STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
 STATIC_URL = '/static/'
@@ -108,7 +103,8 @@ MEDIA_URL = '/media/'
 # PERFORMANCE
 #
 
-CONN_MAX_AGE = 0  # Disable persistent database connections
+# Enable persistent database connections.
+CONN_MAX_AGE = 60  # Default: 0
 
 #
 # ERROR REPORTING
@@ -118,6 +114,13 @@ CONN_MAX_AGE = 0  # Disable persistent database connections
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'logfile': {
+            'format': (
+                '%(asctime)s %(levelname)s (%(module)s.%(funcName)s) '
+                '%(message)s'),
+        },
+    },
     'filters': {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
@@ -129,10 +132,18 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         },
+        'logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'sfmoma.log'),
+            'backupCount': 30,
+            'when': 'midnight',
+            'formatter': 'logfile',
+        },
     },
     'loggers': {
         '': {
-            'handlers': ['console'],
+            'handlers': ['console', 'logfile'],
         },
     },
 }
@@ -143,6 +154,17 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # DJANGO ######################################################################
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default
+)
+
+# Enable cross-subdomain cookies, only if `SITE_DOMAIN` is not a TLD.
+if '.' in SITE_DOMAIN:
+    CSRF_COOKIE_DOMAIN = LANGUAGE_COOKIE_DOMAIN = SESSION_COOKIE_DOMAIN = \
+        '.%s' % SITE_DOMAIN
+
+DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
 EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 
@@ -165,10 +187,12 @@ INSTALLED_APPS = (
 
     # 3rd party.
     'django_extensions',
+    'post_office',
+    'post_office_trigger',
     'reversion',
 
     # IC.
-    'django_frontend_compiler',
+    'notifications',
 
     # Project.
     '{{ project_name }}',
@@ -197,14 +221,24 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'djangosite.urls'
 
+# Fix HTTPS redirect behind proxy.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+
+# Avoid session conflicts when running multiple projects on the same domain.
+SESSION_COOKIE_NAME = 'sessionid-%s' % SETTINGS_MODULE_HASH
+
+# Every write to the cache will also be written to the database. Session reads
+# only use the database if the data is not already in the cache.
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
 SILENCED_SYSTEM_CHECKS = (
     '1_6.W001',
     '1_6.W002',
 )
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'bower_components'),
     os.path.join(BASE_DIR, 'djangosite', 'static'),
+    os.path.join(BASE_DIR, 'bower_components'),
 )
 
 STATICFILES_FINDERS = (
@@ -212,13 +246,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-
-# Deprecated, but we still use in calculated settings.
-TEMPLATE_LOADERS = [
-    # Default.
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-]
 
 # Define template backends separately. Backends will be added to `TEMPLATES` in
 # `local.py`. This makes it easier to update for specific environments.
@@ -247,7 +274,11 @@ TEMPLATES_DJANGO = {
             # Project.
             '{{ project_name }}.context_processors.environment',
         ],
-        'loaders': TEMPLATE_LOADERS,
+        'loaders': [
+            # Default.
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        ],
     },
 }
 
@@ -262,8 +293,6 @@ TEMPLATES_JINJA2 = {
         'environment': '{{ project_name }}.jinja2.environment',
     }
 }
-
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'  # Default: django.test.runner.DiscoverRunner
 
 TIME_ZONE = 'Australia/Sydney'  # Default: America/Chicago
 
@@ -291,14 +320,17 @@ SITE_ID = 1
 
 # COMPRESSOR ##################################################################
 
-COMPRESS_CSS_FILTERS = [
-    'django_frontend_compiler.filters.clean_css.CleanCSSFilter',
-]
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',  # Default
+    # 'compressor.filters.cssmin.CSSMinFilter',
+)
 
-COMPRESS_ROOT = STATIC_ROOT
-COMPRESS_URL = STATIC_URL
 INSTALLED_APPS += ('compressor', )
 STATICFILES_FINDERS += ('compressor.finders.CompressorFinder', )
+
+# DYNAMIC FIXTURES ############################################################
+
+DDF_FILL_NULLABLE_FIELDS = False
 
 # EASY THUMBNAILS #############################################################
 
@@ -447,8 +479,11 @@ INSTALLED_APPS += (
 
 # MASTER PASSWORD #############################################################
 
-AUTHENTICATION_BACKENDS = ('master_password.auth.ModelBackend', )
+AUTHENTICATION_BACKENDS = \
+    ('master_password.auth.ModelBackend', ) + AUTHENTICATION_BACKENDS
+
 INSTALLED_APPS += ('master_password', )
+MASTER_PASSWORD = os.environ.get('MASTER_PASSWORD')
 MASTER_PASSWORDS = {}
 
 # MODEL SETTINGS ##############################################################
@@ -458,10 +493,28 @@ INSTALLED_APPS += ('model_settings', 'polymorphic')
 TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
     'model_settings.context_processors.settings')
 
+# NEW RELIC ###################################################################
+
+# This environment variable is read by the `newrelic-admin` subprocess started
+# by supervisor.
+os.environ['NEW_RELIC_CONFIG_FILE'] = 'newrelic.ini'
+
+# NOSE ########################################################################
+
+INSTALLED_APPS += ('django_nose', )
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'  # Default: django.test.runner.DiscoverRunner
+
+NOSE_ARGS = [
+    '--logging-clear-handlers',  # Clear all other logging handlers
+    '--nocapture',  # Don’t capture stdout
+    '--nologcapture',  # Disable logging capture plugin
+    # '--processes=-1',  # Automatically set to the number of cores
+    '--with-progressive',  # See https://github.com/erikrose/nose-progressive
+]
+
 # POLYMORPHIC AUTH ############################################################
 
-AUTH_USER_MODEL = 'polymorphic_auth_email.EmailUser'
-# AUTH_USER_MODEL = 'username.UsernameUser'
+AUTH_USER_MODEL = 'polymorphic_auth.User'
 
 INSTALLED_APPS += (
     'polymorphic',
@@ -469,6 +522,17 @@ INSTALLED_APPS += (
     'polymorphic_auth.usertypes.email',
     # 'polymorphic_auth.usertypes.username',
 )
+
+POLYMORPHIC_AUTH = {
+    'DEFAULT_CHILD_MODEL': 'polymorphic_auth_email.EmailUser',
+    # 'DEFAULT_CHILD_MODEL': 'polymorphic_auth_username.UsernameUser',
+}
+
+# SENTRY ######################################################################
+
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('SENTRY_DSN'),
+}
 
 # SORL THUMBNAIL ##############################################################
 
@@ -479,26 +543,35 @@ INSTALLED_APPS += (
 
 INSTALLED_APPS += ('djsupervisor', )
 
-GUNICORN_ADDRESS = '127.0.0.1'
-GUNICORN_WORKERS = multiprocessing.cpu_count() * 2 + 1
-
-def get_gunicorn_command():
-    from django.conf import settings
-    gunicorn = os.path.join(sys.prefix, 'bin', 'gunicorn')
-    command = (
-        '{gunicorn} -b {address}:{port} -w {workers} {wsgi}'.format(
-            gunicorn=gunicorn,
-            address=settings.GUNICORN_ADDRESS,
-            port=settings.SITE_PORT,
-            workers=settings.GUNICORN_WORKERS,
-            wsgi=WSGI_APPLICATION.replace('.application', ':application'),
-        ))
-    return command
-
-# Lazily evaluate so we can override just the address, port, or number of
-# workers in the `local` settings module.
-get_gunicorn_command = lazy(get_gunicorn_command, six.text_type)
+WSGI_ADDRESS = '127.0.0.1'
+WSGI_WORKERS = multiprocessing.cpu_count() * 2 + 1
+WSGI_TIMEOUT = 30
 
 SUPERVISOR = {
-    'wsgi': get_gunicorn_command(),
+    # Programs.
+    # 'celery': 'celery -A djangosite worker -l info',
+    # 'elasticsearch': 'elasticsearch',
+    # 'redis': 'redis-server /usr/local/etc/redis.conf',
+    'wsgi': (
+        'gunicorn '
+        '-b {WSGI_ADDRESS}:{SITE_PORT} '
+        '-w {WSGI_WORKERS} '
+        '-t {WSGI_TIMEOUT} '
+        'djangosite.wsgi:application'
+    ),
+
+    # Exclude programs.
+    'exclude_autoreload': True,
+    # 'exclude_celery': False,
+    # 'exclude_elasticsearch': True,
+    # 'exclude_redis': True,
+    'exclude_wsgi': False,
 }
+
+# TEST WITHOUT MIGRATIONS #####################################################
+
+INSTALLED_APPS = ('test_without_migrations', ) + INSTALLED_APPS
+
+# Default: django.core.management.commands.test.Command
+TEST_WITHOUT_MIGRATIONS_COMMAND = \
+    'django_nose.management.commands.test.Command'
