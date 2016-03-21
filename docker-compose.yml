@@ -3,7 +3,7 @@ services:
   django:
     build:
       args:
-        - PIP_INDEX_URL
+        PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
       context: .
     environment:
       BASE_SETTINGS_MODULE: docker
