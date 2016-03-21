@@ -35,7 +35,7 @@ setuptools.setup(
         'django-nose',
         'django-polymorphic-auth',
         'django-post-office-trigger',
-        'django-reversion',
+        'django-reversion>=1.9.3,<1.10',  # 1.9.3+ use DB transactions, 1.10 has breaking changes for Django 1.9
         'django-supervisor',
         'django-test-without-migrations',
         'django-timezone',
