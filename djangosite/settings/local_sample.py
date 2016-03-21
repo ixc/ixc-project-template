@@ -9,7 +9,7 @@ import os
 # These environment variables are injected into the base settings module and
 # used to derive other settings.
 
-os.environ['BASE_SETTINGS_MODULE'] = 'develop'
+os.environ.setdefault('BASE_SETTINGS_MODULE', 'develop')
 
 from .calculated import *
 
