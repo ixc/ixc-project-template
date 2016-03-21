@@ -10,43 +10,29 @@ This is a bare-bones skeleton project template, for use with the
 You will need `git`, `python 2.7+` and `pip` to create a new project with this
 template.
 
-Create environment variables for the project and module name (e.g. `foo-bar`
-and `foo_bar`), so we can use them in subsequent commands:
+Create a new project from the template with:
 
-    $ export PROJECT=<project_name>
-    $ export MODULE=<module_name>
+    $ curl -L https://raw.githubusercontent.com/ixc/ixc-project-template/master/startproject.sh | bash <project-name> [template path or URL]
 
-Install or upgrade Django:
+This will:
 
-    $ pip install -U Django
+  * Install Django, if necessary.
 
-Create a project from the template:
+  * Create a directory matching the given project name in the current working
+    directory.
 
-    $ django-admin.py startproject \
-    -e json,ini,md,yml \
-    -n .coveragerc,base.html,Dockerfile \
-    --template=https://github.com/ixc/ixc-project-template/archive/master.zip \
-    $MODULE $PROJECT
+  * Replaces non-word characters in the project name with an underscore, to get
+    a valid Python module name for the project.
 
-Make the `manage.py` file executable, for convenience:
+  * Call `django-admin.py startproject`, with the derived module name and given
+    template path or URL. If none is given, it defaults to
+    https://github.com/ixc/ixc-project-template/archive/master.zip
 
-    $ cd $PROJECT
-    $ chmod 755 manage.py
+  * Make `manage.py` executable, for convenience.
 
-Create a remote repository on [GitHub](https://github.com), then initialise a
-local repository and push an initial commit:
+  * Initialize a git repository and add all files in an initial commit.
 
-    $ git init
-    $ git add -A
-    $ git commit -m 'Initial commit.'
-    $ git remote add origin git@github.com:ixc/$PROJECT.git
-    $ git push
+  * Add an `origin` remote at `git@github.com:ixc/{project-name}.git`
 
-Now, get to work on your project! You might want to start with:
-
-  * Add a `LICENSE.txt` file (e.g.
-    [MIT](http://choosealicense.com/licenses/mit/)).
-  * Read the [contributing](docs/contributing.md) docs.
-  * Update the [docs](docs/index.md) (e.g. overview, installation and usage).
-  * Remove the `Project Template` section (these instructions) from `README.md`
-    (this file).
+Then, you will need to manually create the 'ixc/{project-name}' repository on
+GitHub and push your initial commit.
