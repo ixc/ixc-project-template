@@ -1,0 +1,24 @@
+django:
+  # autoredeploy: true
+  # deployment_strategy: high_availability
+  environment:
+    BASE_SETTINGS_MODULE: docker
+    PGDATABASE: {{ project_name }}
+    # PGHOST:
+    PGPASSWORD: database_password
+    # PGPORT:
+    # PGUSER:
+  image: interaction/{{ project_name }}:latest
+  links:
+    - postgres
+  ports:
+    - "8000:8000"
+  # restart: on-failure
+  # sequential_deployment: true
+  volumes:
+    - /opt/{{ project_name }}/var
+postgres:
+  environment:
+    POSTGRES_PASSWORD: database_password
+  image: postgres:latest
+  # restart: on-failure

@@ -1,0 +1,24 @@
+version: "2"
+services:
+  django:
+    build:
+      args:
+        - PIP_INDEX_URL
+      context: .
+    environment:
+      BASE_SETTINGS_MODULE: docker
+      PGPASSWORD: database_password
+      TRAVIS:
+    image: interaction/{{ project_name }}:latest
+    links:
+      - postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - django:/opt/{{ project_name }}/var
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: database_password
+    image: postgres:9.4
+volumes:
+  django: {}
