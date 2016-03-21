@@ -192,7 +192,7 @@ INSTALLED_APPS = (
     'reversion',
 
     # IC.
-    'notifications',
+    # 'notifications',
 
     # Project.
     '{{ project_name }}',
