@@ -17,4 +17,5 @@
 /secret.txt
 /supervisord.log
 /supervisord.pid
+/var/
 /venv/
