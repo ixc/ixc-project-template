@@ -1,9 +1,9 @@
 version: "2"
 services:
   django:
-    build:
-      args:
-        PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
+    # build:
+    #   args:
+    #     PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
     command: gulp.sh
     environment:
       SITE_DOMAIN: {{ project_name }}.docker  # for OS X with Dinghy or {{ project_name }}.lvh.me for Linux
