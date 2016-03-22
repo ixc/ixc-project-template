@@ -6,7 +6,6 @@ services:
         PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
       context: .
     environment:
-      BASE_SETTINGS_MODULE: docker
       PGPASSWORD: database_password
       TRAVIS:
     image: interaction/{{ project_name }}:latest

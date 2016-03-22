@@ -66,10 +66,10 @@ DATABASES = {
     'default': {
         'ATOMIC_REQUESTS': True,
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ project_name }}',
-        'HOST': '',
-        'PORT': '',
-        'USER': '',
+        'NAME': os.environ.get('PGDATABASE', '{{ project_name }}'),
+        'HOST': os.environ.get('PGHOST'),
+        'PORT': os.environ.get('PGPORT'),
+        'USER': os.environ.get('PGUSER'),
         'PASSWORD': os.environ.get('PGPASSWORD'),
     },
 }

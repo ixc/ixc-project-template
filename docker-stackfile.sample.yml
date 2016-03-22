@@ -2,7 +2,7 @@ django:
   # autoredeploy: true
   # deployment_strategy: high_availability
   environment:
-    BASE_SETTINGS_MODULE: docker
+    BASE_SETTINGS_MODULE: develop
     PGDATABASE: {{ project_name }}
     # PGHOST:
     PGPASSWORD: database_password

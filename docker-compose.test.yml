@@ -6,7 +6,6 @@ sut:
   build: .
   command: python manage.py test -n -v 2 --noinput --settings=sfmoma.tests.settings
   environment:
-    BASE_SETTINGS_MODULE: docker
     PGDATABASE: postgres
     PGHOST: postgres
     PGPASSWORD: database_password
