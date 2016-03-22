@@ -448,7 +448,6 @@ INSTALLED_APPS += (
 
 # GUARDIAN ####################################################################
 
-# ANONYMOUS_USER_ID = -1  # Migrate to create the user
 # INSTALLED_APPS += ('guardian', )
 # AUTHENTICATION_BACKENDS += ('guardian.backends.ObjectPermissionBackend', )
 

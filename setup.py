@@ -25,6 +25,7 @@ setuptools.setup(
         'django-fluent-contents[markup,oembeditem,text]<1.1',  # See: https://github.com/edoburu/django-fluent-contents/issues/67
         'django-fluent-dashboard',
         'django-fluent-pages[flatpage,fluentpage,redirectnode]',
+        # 'django-guardian',
         'django-generic',
         # 'django-glamkit',
         # 'django-hosts',
