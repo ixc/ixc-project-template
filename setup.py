@@ -50,6 +50,7 @@ setuptools.setup(
         'pytz',
         'raven',
         'WebTest',
+        'whitenoise',
 
         # Override incompatible versions for nested dependencies.
         'django-mptt<0.8',  # 0.8 Backwards incompatible. See: https://github.com/django-mptt/django-mptt/releases
