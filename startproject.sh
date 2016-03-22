@@ -41,8 +41,12 @@ cat <<EOF
 
 All done!
 
-Now, you need to manually create the 'ixc/${PROJECT}' repository on GitHub and
-push your initial commit.
+Well, except for a few manual steps:
+
+  * Create the 'ixc/${PROJECT}' repository on GitHub.
+  * Enable the repository on Travis CI and add the 'DOCKER_PASSWORD' and
+    'PIP_INDEX_URL' environment variables in the repository settings.
+  * Push your initial commit.
 
 Then, you can get to work on your project! You might want to start with:
 

@@ -34,5 +34,5 @@ This will:
 
   * Add an `origin` remote at `git@github.com:ixc/{project-name}.git`
 
-Then, you will need to manually create the 'ixc/{project-name}' repository on
-GitHub and push your initial commit.
+Then you will need to follow a few some manual steps that are printed by the
+`startproject.sh` script.
