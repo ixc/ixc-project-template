@@ -533,11 +533,6 @@ RAVEN_CONFIG = {
     'dsn': os.environ.get('SENTRY_DSN'),
 }
 
-# SORL THUMBNAIL ##############################################################
-
-# INSTALLED_APPS += ('sorl.thumbnail', )
-# THUMBNAIL_DEBUG = False
-
 # SUPERVISOR ##################################################################
 
 INSTALLED_APPS += ('djsupervisor', )
