@@ -1,4 +1,4 @@
-{% verbatim %}{% load compile %}
+{% verbatim %}
 {% load compress %}
 {% load static %}
 
@@ -39,14 +39,8 @@
 				{% compress css file %}
 					{% block base_css %}
 						<link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
-
-						{% if COMPRESS_ENABLED %}
-							<link rel="stylesheet" href="{% compile rewrite-urls "font-awesome/css/font-awesome.css" %}">
-						{% else %}
-							<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
-						{% endif %}
-
-						{% endverbatim %}<link rel="stylesheet" href="{% templatetag openblock %} compile less "{{ project_name }}/less/main.less" {% templatetag closeblock %}">{% verbatim %}
+						<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
+						{% endverbatim %}<link rel="stylesheet" href="{% templatetag openblock %} static "{{ project_name }}/less/main.less" {% templatetag closeblock %}">{% verbatim %}
 					{% endblock %}
 				{% endcompress %}
 
