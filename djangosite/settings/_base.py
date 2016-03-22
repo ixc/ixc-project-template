@@ -423,15 +423,6 @@ INSTALLED_APPS += (
     'fluent_contents.plugins.sharedcontent',
     'fluent_contents.plugins.text',
     # 'fluent_contents.plugins.twitterfeed',
-    # 'icekit.plugins.brightcove',
-    # 'icekit.plugins.child_pages',
-    # 'icekit.plugins.faq',
-    # 'icekit.plugins.horizontal_rule',
-    # 'icekit.plugins.image',
-    # 'icekit.plugins.instagram_embed',
-    # 'icekit.plugins.reusable_form',
-    # 'icekit.plugins.slideshow',
-    # 'icekit.plugins.twitter_embed',
 
     # Project.
     '{{ project_name }}.layouts',
@@ -473,6 +464,15 @@ INSTALLED_APPS += (
 
 # INSTALLED_APPS += (
 #     'icekit',
+#     'icekit.plugins.brightcove',
+#     'icekit.plugins.child_pages',
+#     'icekit.plugins.faq',
+#     'icekit.plugins.horizontal_rule',
+#     'icekit.plugins.image',
+#     'icekit.plugins.instagram_embed',
+#     'icekit.plugins.reusable_form',
+#     'icekit.plugins.slideshow',
+#     'icekit.plugins.twitter_embed',
 #     'icekit.response_pages',
 # )
 
