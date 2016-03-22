@@ -429,8 +429,6 @@ INSTALLED_APPS += (
 
     # Project.
     '{{ project_name }}.layouts',
-    # '{{ project_name }}.pagetypes.samplepage',
-    # '{{ project_name }}.plugins.sample',
 
     # Page type and content plugin dependencies.
     'any_urlfield',
