@@ -190,9 +190,6 @@ INSTALLED_APPS = (
     'post_office_trigger',
     'reversion',
 
-    # IC.
-    # 'notifications',
-
     # Project.
     '{{ project_name }}',
 )
@@ -473,6 +470,7 @@ INSTALLED_APPS += (
 #     'icekit.plugins.slideshow',
 #     'icekit.plugins.twitter_embed',
 #     'icekit.response_pages',
+#     'notifications',
 # )
 
 # MASTER PASSWORD #############################################################
