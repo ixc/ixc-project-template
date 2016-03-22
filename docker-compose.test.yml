@@ -2,7 +2,7 @@ postgres:
   image: postgres:9.4
 sut:
   build: .
-  command: python manage.py test -n -v 2 --noinput --settings=sfmoma.tests.settings
+  command: python manage.py test -n -v 2 --noinput --settings={{ project_name }}.tests.settings
   environment:
     BASE_SETTINGS_MODULE: develop
     COVERAGE_FILE: /opt/{{ project_name }}/var/.coverage
