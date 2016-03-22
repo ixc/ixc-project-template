@@ -4,6 +4,7 @@ services:
     build: .
     command: gulp.sh
     environment:
+      BASE_SETTINGS_MODULE: develop
       SITE_DOMAIN: {{ project_name }}.docker  # for OS X with Dinghy
     image: interaction/{{ project_name }}:latest
     links:

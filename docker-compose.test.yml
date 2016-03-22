@@ -3,5 +3,7 @@ postgres:
 sut:
   build: .
   command: python manage.py test -n -v 2 --noinput --settings=sfmoma.tests.settings
+  environment:
+    BASE_SETTINGS_MODULE: develop
   links:
     - postgres
