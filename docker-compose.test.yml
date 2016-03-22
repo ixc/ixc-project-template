@@ -11,5 +11,4 @@ sut:
     PGPASSWORD: database_password
     PGUSER: postgres
   links:
-    - elasticsearch
     - postgres
