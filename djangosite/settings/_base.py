@@ -28,9 +28,8 @@ SITE_PORT = 8000
 # Working copy root. Contains `manage.py`.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
-# Directory that will be served by front-end server. Should contain media and
-# static directories.
-PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
+# Variable files. Logs, media, etc.
+VAR_DIR = os.path.join(BASE_DIR, 'var')
 
 # DJANGO CHECKLIST ############################################################
 
@@ -40,7 +39,7 @@ PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
 # CRITICAL
 #
 
-SECRET_FILE = os.path.join(BASE_DIR, 'secret.txt')
+SECRET_FILE = os.path.join(VAR_DIR, 'secret.txt')
 
 DEBUG = False  # Don't show detailed error pages when exceptions are raised
 
@@ -86,10 +85,10 @@ POST_OFFICE = {
     }
 }
 
-STATIC_ROOT = os.path.join(PUBLIC_DIR, 'static')
+STATIC_ROOT = os.path.join(VAR_DIR, 'static')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(PUBLIC_DIR, 'media')
+MEDIA_ROOT = os.path.join(VAR_DIR, 'media')
 MEDIA_URL = '/media/'
 
 #
@@ -135,7 +134,7 @@ LOGGING = {
         'logfile': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'sfmoma.log'),
+            'filename': os.path.join(VAR_DIR, 'logs', '{{ project_name }}.log'),
             'backupCount': 30,
             'when': 'midnight',
             'formatter': 'logfile',

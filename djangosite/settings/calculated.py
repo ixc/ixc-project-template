@@ -16,6 +16,12 @@ locals().update(
     importlib.import_module('djangosite.settings._%s' % BASE_SETTINGS_MODULE)
     .__dict__)
 
+# Create logs directory, which is expected to exist at runtime.
+try:
+    os.makedirs(os.path.dirname(LOGGING['handlers']['logfile']['filename']))
+except OSError:
+    pass
+
 # DJANGO ######################################################################
 
 # De-dupe installed apps.
