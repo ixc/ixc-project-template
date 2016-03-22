@@ -173,7 +173,7 @@ EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
 # be enabled and configured in app-specific sections further below.
 INSTALLED_APPS = (
     # Default.
-    # 'django.contrib.admin',  # Must come after `admin_tools` apps, below.
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -383,6 +383,10 @@ FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
 # FLUENT_TEXT_CLEAN_HTML = True  # Default: False
 # FLUENT_TEXT_SANITIZE_HTML = True  # Default: False
 
+# Must come after `admin_tools` apps.
+INSTALLED_APPS = tuple(
+    app for app in INSTALLED_APPS if app != 'django.contrib.admin')
+
 INSTALLED_APPS += (
     # Fluent.
     'fluent_contents',
@@ -394,7 +398,7 @@ INSTALLED_APPS += (
     'admin_tools.dashboard',
     'admin_tools.menu',
     'admin_tools.theming',
-    'django.contrib.admin',  # Must come after `admin_tools` apps.
+    'django.contrib.admin',
     'mptt',
     'parler',
     'polymorphic',
