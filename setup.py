@@ -41,7 +41,7 @@ setuptools.setup(
         'django-test-without-migrations',
         'django-timezone',
         'django-webtest',
-        'Django>=1.7,<1.8',  # 1.8 is untested with ICEkit
+        'Django>=1.8,<1.9',  # LTS
         'docutils',
         'easy_thumbnails',
         'gunicorn',
