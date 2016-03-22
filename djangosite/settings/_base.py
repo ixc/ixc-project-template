@@ -549,8 +549,6 @@ WSGI_TIMEOUT = 30
 SUPERVISOR = {
     # Programs.
     # 'celery': 'celery -A djangosite worker -l info',
-    # 'elasticsearch': 'elasticsearch',
-    # 'redis': 'redis-server /usr/local/etc/redis.conf',
     'wsgi': (
         'gunicorn '
         '-b {WSGI_ADDRESS}:{SITE_PORT} '
@@ -562,8 +560,6 @@ SUPERVISOR = {
     # Exclude programs.
     'exclude_autoreload': True,
     # 'exclude_celery': False,
-    # 'exclude_elasticsearch': True,
-    # 'exclude_redis': True,
     'exclude_wsgi': False,
 }
 
