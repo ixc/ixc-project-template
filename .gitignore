@@ -12,6 +12,7 @@
 /db.sqlite3
 /djangosite/settings/local.py
 /htmlcov/
+/node_modules/
 /public/media/
 /public/static/
 /secret.txt
