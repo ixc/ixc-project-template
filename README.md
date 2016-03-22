@@ -12,7 +12,7 @@ template.
 
 Create a new project from the template with:
 
-    $ curl -L https://raw.githubusercontent.com/ixc/ixc-project-template/master/startproject.sh | bash <project-name> [template path or URL]
+    $ curl -L http://bit.ly/ixc-project-template | bash <project-name> [template path or URL]
 
 This will:
 
