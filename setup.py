@@ -48,6 +48,7 @@ setuptools.setup(
         # 'icekit-notifications',
         'Jinja2',
         'nose-progressive',
+        'psycopg2',
         'pytz',
         'raven',
         'WebTest',
@@ -66,7 +67,6 @@ setuptools.setup(
             'mkdocs',
             'Werkzeug',
         ],
-        'postgres': ['psycopg2'],
     },
     **kwargs
 )
