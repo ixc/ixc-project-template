@@ -134,7 +134,8 @@ LOGGING = {
         'logfile': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(VAR_DIR, 'logs', '{{ project_name }}.log'),
+            'filename': os.path.join(
+                VAR_DIR, 'logs', '{{ project_name }}.log'),
             'backupCount': 30,
             'when': 'midnight',
             'formatter': 'logfile',
