@@ -26,7 +26,7 @@ setuptools.setup(
         'django-fluent-dashboard',
         'django-fluent-pages[flatpage,fluentpage,redirectnode]',
         # 'django-guardian',
-        'django-generic',
+        # 'django-generic',
         # 'django-glamkit',
         # 'django-hosts',
         # 'django-icekit[brightcove,forms,search]',
