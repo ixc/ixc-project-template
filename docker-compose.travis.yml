@@ -1,0 +1,9 @@
+version: "2"
+services:
+  django:
+    build:
+      args:
+        - PIP_INDEX_URL
+    command: python manage.py test -n -v 2 --noinput --settings={{ project_name }}.tests.settings
+    environment:
+      TRAVIS:
