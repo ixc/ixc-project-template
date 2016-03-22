@@ -21,7 +21,7 @@ before_install:
 
   # Login and build project.
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker-compose config
+  - docker-compose -f docker-compose.test.yml config
   - docker build --build-arg PIP_INDEX_URL --pull .
 
 script:
