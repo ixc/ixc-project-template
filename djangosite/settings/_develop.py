@@ -7,8 +7,6 @@ ALLOWED_HOSTS = ('*', )  # Allow connections on any host name
 CSRF_COOKIE_SECURE = False  # Don't require HTTPS for CSRF cookie
 SESSION_COOKIE_SECURE = False  # Don't require HTTPS for session cookie
 
-DATABASES['default']['NAME'] += '_develop'
-
 DEBUG = True  # Show detailed error pages when exceptions are raised
 
 # MASTER PASSWORD #############################################################
