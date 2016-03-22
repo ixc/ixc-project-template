@@ -11,6 +11,7 @@ services:
     image: interaction/{{ project_name }}:latest
     links:
       - postgres
+      - redis
     ports:
       - "8000:8000"
     volumes:
@@ -19,5 +20,7 @@ services:
     environment:
       POSTGRES_PASSWORD: database_password
     image: postgres:9.4
+  redis:
+    image: redis:latest
 volumes:
   django: {}

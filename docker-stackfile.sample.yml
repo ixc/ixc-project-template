@@ -11,6 +11,7 @@ django:
   image: interaction/{{ project_name }}:latest
   links:
     - postgres
+    - redis
   ports:
     - "8000:8000"
   # restart: on-failure
@@ -21,4 +22,7 @@ postgres:
   environment:
     POSTGRES_PASSWORD: database_password
   image: postgres:latest
+  # restart: on-failure
+redis:
+  image: redis:latest
   # restart: on-failure

@@ -315,6 +315,10 @@ MIDDLEWARE_CLASSES += (
 INSTALLED_APPS += ('django.contrib.sites', )
 SITE_ID = 1
 
+# CELERY ######################################################################
+
+BROKER_URL = CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
 # COMPRESSOR ##################################################################
 
 COMPRESS_CSS_FILTERS = (
@@ -545,7 +549,7 @@ WSGI_TIMEOUT = 30
 
 SUPERVISOR = {
     # Programs.
-    # 'celery': 'celery -A djangosite worker -l info',
+    'celery': 'celery -A djangosite worker -l info',
     'wsgi': (
         'gunicorn '
         '-b {WSGI_ADDRESS}:{SITE_PORT} '
@@ -556,7 +560,7 @@ SUPERVISOR = {
 
     # Exclude programs.
     'exclude_autoreload': True,
-    # 'exclude_celery': False,
+    'exclude_celery': False,
     'exclude_wsgi': False,
 }
 
