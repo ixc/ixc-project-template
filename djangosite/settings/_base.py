@@ -558,6 +558,11 @@ WSGI_WORKERS = multiprocessing.cpu_count() * 2 + 1
 WSGI_TIMEOUT = 30
 
 SUPERVISOR = {
+    # Config.
+    'childlogdir': os.path.join(VAR_DIR, 'logs'),
+    'logfile': os.path.join(VAR_DIR, 'logs', 'supervisord.log'),
+    'pidfile': os.path.join(VAR_DIR, 'run', 'supervisord.pid'),
+
     # Programs.
     'celery': 'celery -A djangosite worker -l info',
     'wsgi': (

@@ -16,11 +16,18 @@ locals().update(
     importlib.import_module('djangosite.settings._%s' % BASE_SETTINGS_MODULE)
     .__dict__)
 
-# Create logs directory, which is expected to exist at runtime.
-try:
-    os.makedirs(os.path.dirname(LOGGING['handlers']['logfile']['filename']))
-except OSError:
-    pass
+# Create runtime variable directories.
+var_dirs = (
+    os.path.dirname(LOGGING['handlers']['logfile']['filename']),
+    os.path.dirname(SUPERVISOR['logfile']),
+    os.path.dirname(SUPERVISOR['pidfile']),
+    SUPERVISOR['childlogdir'],
+)
+for dirname in var_dirs:
+    try:
+        os.makedirs(dirname)
+    except OSError:
+        pass
 
 # DJANGO ######################################################################
 
