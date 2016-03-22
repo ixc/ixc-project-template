@@ -52,7 +52,7 @@ Create a `docker-compose.override.yml` for secrets and local settings:
 
 Use [Docker Compose] to build all the services defined in the compose file:
 
-    $ docker-compose build
+    $ docker-compose build --pull
 
 ## Local Development
 
