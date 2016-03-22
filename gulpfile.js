@@ -29,6 +29,6 @@ gulp.task('main', function() {
 	if (main) {
 		main.kill();
 	}
-	main = child.spawn('gunicorn.sh');
+	main = child.spawn('supervisor.sh');
 	pipe(main);
 });
