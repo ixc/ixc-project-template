@@ -1,27 +1,28 @@
-language: python
+sudo: required
+
+services:
+  - docker
 
 env:
-  - TOXENV=django18-py27
-  - TOXENV=django18-py33
-  - TOXENV=django18-py34
-  - TOXENV=django18-py35
-  - TOXENV=django19-py27
-  - TOXENV=django19-py34
-  - TOXENV=django19-py35
+  global:
+    - DOCKER_EMAIL=admins@interaction.net.au
+    - DOCKER_USERNAME=theic
 
-matrix:
-  allow_failures:
-    # - env: TOXENV=django18-py27
-    # - env: TOXENV=django18-py33
-    # - env: TOXENV=django18-py34
-    # - env: TOXENV=django18-py35
-    - env: TOXENV=django19-py27
-    - env: TOXENV=django19-py34
-    - env: TOXENV=django19-py35
-  fast_finish: true
+before_install:
+  # Upgrade Docker Engine.
+  - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  - echo 'deb https://apt.dockerproject.org/repo ubuntu-trusty main' | sudo tee /etc/apt/sources.list.d/docker.list
+  - sudo apt-get update
+  - sudo apt-get -o Dpkg::Options::="--force-confnew" -q -y install docker-engine
 
-install:
-  - pip install tox
+  # Upgrade Docker Compose.
+  - curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose > /dev/null
+  - sudo chmod +x /usr/local/bin/docker-compose
+
+  # Login and build project.
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker-compose config
+  - docker build --build-arg PIP_INDEX_URL --pull .
 
 script:
-  - tox
+  - docker-compose -f docker-compose.test.yml run django

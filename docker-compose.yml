@@ -1,13 +1,10 @@
 version: "2"
 services:
   django:
-    build:
-      args:
-        PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
-      context: .
+    build: .
+    command: gulp.sh
     environment:
-      PGPASSWORD: database_password
-      TRAVIS:
+      SITE_DOMAIN: {{ project_name }}.docker  # for OS X with Dinghy
     image: interaction/{{ project_name }}:latest
     links:
       - postgres
@@ -15,12 +12,9 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - django:/opt/{{ project_name }}/var
+      - ./:/opt/{{ project_name }}
+      - ./var:/opt/{{ project_name }}/var
   postgres:
-    environment:
-      POSTGRES_PASSWORD: database_password
     image: postgres:9.4
   redis:
     image: redis:latest
-volumes:
-  django: {}

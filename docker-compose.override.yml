@@ -1,0 +1,10 @@
+version: "2"
+services:
+  django:
+    build:
+      args:
+        PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
+    environment:
+      EMAIL_HOST_PASSWORD: email_host_password
+      MASTER_PASSWORD: abc123
+      # SITE_DOMAIN: {{ project_name }}.lvh.me  # for Linux

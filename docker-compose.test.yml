@@ -1,14 +1,7 @@
 postgres:
-  environment:
-    POSTGRES_PASSWORD: database_password
   image: postgres:9.4
 sut:
   build: .
   command: python manage.py test -n -v 2 --noinput --settings=sfmoma.tests.settings
-  environment:
-    PGDATABASE: postgres
-    PGHOST: postgres
-    PGPASSWORD: database_password
-    PGUSER: postgres
   links:
     - postgres

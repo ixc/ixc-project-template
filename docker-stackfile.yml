@@ -3,25 +3,46 @@ django:
   # deployment_strategy: high_availability
   environment:
     BASE_SETTINGS_MODULE: develop
-    PGDATABASE: {{ project_name }}
+    # PGDATABASE: {{ project_name }}
     # PGHOST:
     PGPASSWORD: database_password
     # PGPORT:
     # PGUSER:
+    # SRC_PGHOST:
+    # SRC_PGPASSWORD: source_database_password
+    # SRC_PGPORT:
+    # SRC_PGUSER:
   image: interaction/{{ project_name }}:latest
   links:
+    # - elasticsearch
+    # - memcached
     - postgres
     - redis
   ports:
-    - "8000:8000"
+    - "8000"
   # restart: on-failure
   # sequential_deployment: true
   volumes:
     - /opt/{{ project_name }}/var
+# elasticsearch:
+#   image: interaction/elasticsearch-icu:1
+#   # restart: on-failure
+haproxy:
+  image: dockercloud/haproxy:latest
+  links:
+    - django
+  ports:
+    - "80"
+  roles:
+    - global
+  # restart: on-failure
+# memcached:
+#   image: memcached:latest
+#   # restart: on-failure
 postgres:
   environment:
     POSTGRES_PASSWORD: database_password
-  image: postgres:latest
+  image: postgres:9.4
   # restart: on-failure
 redis:
   image: redis:latest
