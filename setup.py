@@ -19,6 +19,7 @@ setuptools.setup(
         'coverage',
         'deployo',
         # 'django-any-urlfield',  # Optional integration with `django-fluent-contents`
+        'django-celery-email',
         'django-compressor<1.6',  # See: https://github.com/django-compressor/django-compressor/issues/706
         'django-dynamic-fixture',
         'django-extensions',
@@ -36,7 +37,7 @@ setuptools.setup(
         'django-multiurl',
         'django-nose',
         'django-polymorphic-auth',
-        'django-post-office-trigger',
+        'django-post-office',
         'django-reversion>=1.9.3,<1.10',  # 1.9.3+ use DB transactions, 1.10 has breaking changes for Django 1.9
         'django-supervisor',
         'django-test-without-migrations',

@@ -21,5 +21,4 @@
 -e git+ssh://git@github.com/ixc/deployo.git@develop#egg=deployo
 # -e git+ssh://git@github.com/ixc/django-glamkit.git@develop#egg=django-glamkit[api]
 # -e git+ssh://git@github.com/ixc/django-icekit.git@develop#egg=django-icekit[brightcove,forms,search]
--e git+ssh://git@github.com/ixc/django-post-office-trigger.git#egg=post_office_trigger
 # -e git+ssh://git@github.com/ixc/icekit-notifications.git@master#egg=icekit-notifications

@@ -74,16 +74,10 @@ DATABASES = {
     },
 }
 
-EMAIL_BACKEND = 'post_office.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-POST_OFFICE = {
-    'BACKENDS': {
-        'default': 'django.core.mail.backends.console.EmailBackend',
-    }
-}
 
 STATIC_ROOT = os.path.join(VAR_DIR, 'static')
 STATIC_URL = '/static/'
@@ -187,8 +181,6 @@ INSTALLED_APPS = (
 
     # 3rd party.
     'django_extensions',
-    'post_office',
-    'post_office_trigger',
     'reversion',
 
     # Project.
@@ -318,6 +310,11 @@ SITE_ID = 1
 # CELERY ######################################################################
 
 BROKER_URL = CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
+# CELERY EMAIL ################################################################
+
+CELERY_EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+INSTALLED_APPS += ("djcelery_email",)
 
 # COMPRESSOR ##################################################################
 
@@ -531,6 +528,18 @@ INSTALLED_APPS += (
 POLYMORPHIC_AUTH = {
     'DEFAULT_CHILD_MODEL': 'polymorphic_auth_email.EmailUser',
     # 'DEFAULT_CHILD_MODEL': 'polymorphic_auth_username.UsernameUser',
+}
+
+# POST OFFICE #################################################################
+
+EMAIL_BACKEND = 'post_office.EmailBackend'
+INSTALLED_APPS += ('post_office', )
+
+POST_OFFICE = {
+    'BACKENDS': {
+        'default': 'djcelery_email.backends.CeleryEmailBackend',
+    },
+    'DEFAULT_PRIORITY': 'now',
 }
 
 # SENTRY ######################################################################
