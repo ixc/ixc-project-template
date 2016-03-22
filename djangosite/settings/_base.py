@@ -438,6 +438,9 @@ INSTALLED_APPS += (
     'micawber',
 )
 
+TEMPLATES_DJANGO['OPTIONS']['loaders'] += [
+    'admin_tools.template_loaders.Loader']
+
 # GENERIC #####################################################################
 
 # INSTALLED_APPS += ('generic', )
