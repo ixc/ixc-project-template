@@ -28,7 +28,7 @@ django:
 #   image: interaction/elasticsearch-icu:1
 #   # restart: on-failure
 haproxy:
-  image: dockercloud/haproxy:latest
+  image: dockercloud/haproxy:1.6
   links:
     - django
   ports:
@@ -37,7 +37,7 @@ haproxy:
     - global
   # restart: on-failure
 # memcached:
-#   image: memcached:latest
+#   image: memcached:1.4
 #   # restart: on-failure
 postgres:
   environment:
@@ -45,5 +45,5 @@ postgres:
   image: postgres:9.4
   # restart: on-failure
 redis:
-  image: redis:latest
+  image: redis:3
   # restart: on-failure

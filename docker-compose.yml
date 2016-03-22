@@ -18,4 +18,4 @@ services:
   postgres:
     image: postgres:9.4
   redis:
-    image: redis:latest
+    image: redis:3
