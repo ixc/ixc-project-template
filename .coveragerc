@@ -10,3 +10,6 @@ exclude_lines =
     raise AssertionError
     raise NotImplementedError
 show_missing = True
+
+[html]
+directory = var/htmlcov
