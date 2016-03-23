@@ -28,7 +28,7 @@ django:
 #   image: interaction/elasticsearch-icu:1
 #   # restart: on-failure
 haproxy:
-  image: dockercloud/haproxy:1.6
+  image: dockercloud/haproxy:1.2
   links:
     - django
   ports:
