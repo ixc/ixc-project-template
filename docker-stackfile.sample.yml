@@ -15,7 +15,6 @@ django:
   image: interaction/{{ project_name }}:latest
   links:
     # - elasticsearch
-    # - memcached
     - postgres
     - redis
   ports:
@@ -36,8 +35,6 @@ haproxy:
   roles:
     - global
   # restart: on-failure
-# memcached:
-#   image: memcached:1.4
 #   # restart: on-failure
 postgres:
   environment:

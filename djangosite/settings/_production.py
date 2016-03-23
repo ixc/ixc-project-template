@@ -12,8 +12,8 @@ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 for k in CACHES:
     CACHES[k].update({
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': 'memcached:11211',
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379/0',
     })
 
 LOGGING['handlers']['logfile']['backupCount'] = 100
