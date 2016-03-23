@@ -19,13 +19,13 @@ django:
     - redis
   ports:
     - "8000"
-  # restart: on-failure
+  restart: on-failure
   # sequential_deployment: true
   volumes:
     - /opt/{{ project_name }}/var
 # elasticsearch:
 #   image: interaction/elasticsearch-icu:1
-#   # restart: on-failure
+#   restart: on-failure
 haproxy:
   image: dockercloud/haproxy:1.2
   links:
@@ -34,13 +34,12 @@ haproxy:
     - "80"
   roles:
     - global
-  # restart: on-failure
-#   # restart: on-failure
+  restart: on-failure
 postgres:
   environment:
     POSTGRES_PASSWORD:
   image: postgres:9.4
-  # restart: on-failure
+  restart: on-failure
 redis:
   image: redis:3
-  # restart: on-failure
+  restart: on-failure
