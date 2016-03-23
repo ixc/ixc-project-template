@@ -20,7 +20,7 @@ setuptools.setup(
         'deployo',
         # 'django-any-urlfield',  # Optional integration with `django-fluent-contents`
         'django-celery-email',
-        'django-compressor<1.6',  # See: https://github.com/django-compressor/django-compressor/issues/706
+        'django-compressor',
         'django-dynamic-fixture',
         'django-extensions',
         'django-flat-theme<1.1.3',  # See: https://github.com/elky/django-flat-theme/issues/30
