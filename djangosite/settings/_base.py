@@ -327,8 +327,16 @@ COMPRESS_CSS_FILTERS = (
 )
 
 COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', os.path.join(
-        BASE_DIR, 'node_modules/.bin/node-sass {infile} {outfile}')),
+    (
+        'text/less',
+        '{} {{infile}} {{outfile}} --autoprefix'.format(
+            os.path.join(BASE_DIR, 'node_modules', '.bin', 'lessc')),
+    ),
+    (
+        'text/x-scss',
+        '{} {{infile}} {{outfile}} --autoprefix'.format(
+            os.path.join(BASE_DIR, 'node_modules', '.bin', 'node-sass')),
+    ),
 )
 
 INSTALLED_APPS += ('compressor', )
