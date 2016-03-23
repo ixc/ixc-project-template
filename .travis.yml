@@ -21,9 +21,9 @@ before_install:
 
   # Login and build project.
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker-compose -f docker-compose.yml -f docker-compose.travis.yml config
-  - docker-compose -f docker-compose.yml -f docker-compose.travis.yml build --pull
-  - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull
+  - docker-compose -f docker-compose.yml -f docker-compose.test.yml config
+  - docker build --build-arg PIP_INDEX_URL --pull .
+  - docker-compose -f docker-compose.yml -f docker-compose.test.yml pull
 
 script:
-  - docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm django
+  - docker-compose -f docker-compose.yml -f docker-compose.test.yml run --rm django

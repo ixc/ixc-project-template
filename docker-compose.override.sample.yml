@@ -3,7 +3,7 @@ services:
   django:
     build:
       args:
-        - PIP_INDEX_URL=https://devpi.ixcsandbox.com/ic/dev/+simple
+        PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
     environment:
       EMAIL_HOST_PASSWORD: email_host_password
       MASTER_PASSWORD: abc123
