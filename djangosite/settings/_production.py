@@ -19,9 +19,9 @@ for k in CACHES:
 LOGGING['handlers']['logfile']['backupCount'] = 100
 
 MIDDLEWARE_CLASSES = (
-    ('django.middleware.cache.UpdateCacheMiddleware', ) +
+    ['django.middleware.cache.UpdateCacheMiddleware', ] +
     MIDDLEWARE_CLASSES +
-    ('django.middleware.cache.FetchFromCacheMiddleware', )
+    ['django.middleware.cache.FetchFromCacheMiddleware', ]
 )
 
 TEMPLATES_DJANGO['OPTIONS']['loaders'] = [
