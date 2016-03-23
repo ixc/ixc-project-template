@@ -9,7 +9,7 @@ django:
     # PGPORT:
     # PGUSER:
     # SRC_PGHOST:
-    # SRC_PGPASSWORD: source_database_password
+    # SRC_PGPASSWORD:
     # SRC_PGPORT:
     # SRC_PGUSER:
   image: interaction/{{ project_name }}:latest
