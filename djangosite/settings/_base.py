@@ -606,7 +606,7 @@ MIDDLEWARE_CLASSES = (
     MIDDLEWARE_CLASSES[_index:]
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
