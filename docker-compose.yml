@@ -1,8 +1,7 @@
 version: "2"
 services:
   django:
-    build:
-      args: .
+    build: .
     command: gulp.sh
     environment:
       BASE_SETTINGS_MODULE: develop
