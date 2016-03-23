@@ -51,11 +51,7 @@
 			{% endblock %}
 
 			{# Render blocking JS. Other JS should go before the </body> tag. #}
-			{% block head_js %}
-				{% compress js file %}
-					<script src="{% static "modernizr/modernizr.js" %}"></script>
-				{% endcompress %}
-			{% endblock %}
+			{% block head_js %}{% endblock %}
 
 			{% block analytics %}
 				{% if SETTINGS.GOOGLE_ANALYTICS_CODE %}

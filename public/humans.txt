@@ -68,7 +68,7 @@
         Django, ICEkit, GLAMkit
 
     Frontend:
-        jQuery, Modernizr, Lodash, Font Awesome, Bootstrap
+        jQuery, Lodash, Font Awesome, Bootstrap
 
     Standards:
         CSS3, HTML5
