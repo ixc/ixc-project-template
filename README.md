@@ -1,8 +1,4 @@
-# Readme
-
-Docs can be found in the [docs](docs/index.md) folder.
-
-## Project Template
+# Project Template
 
 This is a bare-bones skeleton project template, for use with the
 `django-admin.py startproject` command.
@@ -36,3 +32,27 @@ This will:
 
 Then you will need to follow a few some manual steps that are printed by the
 `startproject.sh` script.
+
+# Readme
+
+Docs can be found in the [docs](docs/index.md) folder.
+
+# Quick Start
+
+Install Docker. For more detail, check our [Docker docs].
+
+Clone the repository:
+
+    $ git clone git@github.com:ixc/{{ project_name }}.git
+
+Run the project:
+
+    $ cd {{ project_name }}
+    $ docker-compose up
+
+Open the site in a browser:
+
+    $ open http://{{ project_name }}.docker:8000  # OS X
+    $ open http://{{ project_name }}.lvh.me:8000  # Linux
+
+[Docker docs]: docker.md
