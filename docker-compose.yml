@@ -1,7 +1,10 @@
 version: "2"
 services:
   django:
-    build: .
+    build:
+      args:
+        - PIP_INDEX_URL
+      context: .
     command: gulp.sh
     environment:
       BASE_SETTINGS_MODULE: develop
