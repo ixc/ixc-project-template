@@ -4,6 +4,9 @@ django:
   deployment_strategy: high_availability
   environment:
     BASE_SETTINGS_MODULE: develop
+    # EMAIL_HOST:
+    # EMAIL_HOST_USER:
+    # EMAIL_HOST_PASSWORD:
     # PGDATABASE: {{ project_name }}
     # PGHOST:
     PGPASSWORD:
