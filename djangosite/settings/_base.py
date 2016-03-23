@@ -79,7 +79,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-STATIC_ROOT = os.path.join(VAR_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(VAR_DIR, 'media')
@@ -597,6 +597,11 @@ TEST_WITHOUT_MIGRATIONS_COMMAND = \
 # See: http://whitenoise.evans.io/en/latest/#quickstart-for-django-apps
 MIDDLEWARE_CLASSES.insert(
     MIDDLEWARE_CLASSES.index('django.middleware.security.SecurityMiddleware'),
-    'whitenoise.middleware.WhiteNoiseMiddleware')
+    'djangosite.middleware.WhiteNoiseMediaMiddleware')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_USE_FINDERS = True
+
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticroot')
