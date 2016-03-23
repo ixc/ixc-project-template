@@ -10,10 +10,10 @@ SITE_PUBLIC_PORT = None  # Default: SITE_PORT
 
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
-for k in CACHES:
+for i, k in enumerate(CACHES, 1):
     CACHES[k].update({
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis:6379/0',
+        'LOCATION': 'redis://redis:6379/%s' % i,
     })
 
 LOGGING['handlers']['logfile']['backupCount'] = 100
