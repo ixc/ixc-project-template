@@ -40,7 +40,7 @@
 					{% block base_css %}
 						<link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
 						<link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
-						{% endverbatim %}<link rel="stylesheet" href="{% templatetag openblock %} static "{{ project_name }}/less/main.less" {% templatetag closeblock %}">{% verbatim %}
+						{% endverbatim %}<link rel="stylesheet" type="text/x-scss" href="{% templatetag openblock %} static "{{ project_name }}/scss/main.scss" {% templatetag closeblock %}">{% verbatim %}
 					{% endblock %}
 				{% endcompress %}
 
