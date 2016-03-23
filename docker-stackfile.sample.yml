@@ -1,3 +1,4 @@
+# Update and save as `docker-stackfile.{environment}.yml`. Do not commit secrets.
 django:
   # autoredeploy: true
   deployment_strategy: high_availability
