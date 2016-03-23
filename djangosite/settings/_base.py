@@ -196,7 +196,7 @@ LOGIN_REDIRECT_URL = '/'  # Default: '/accounts/profile/'
 # LOGIN_URL = '/accounts/signin/'
 # LOGOUT_URL = '/accounts/signout/'
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE_CLASSES = (
     # Default.
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -209,7 +209,7 @@ MIDDLEWARE_CLASSES = [
 
     # Contrib.
     'django.contrib.admindocs.middleware.XViewMiddleware',
-]
+)
 
 ROOT_URLCONF = 'djangosite.urls'
 
@@ -598,9 +598,13 @@ TEST_WITHOUT_MIGRATIONS_COMMAND = \
 # WHITENOISE ##################################################################
 
 # See: http://whitenoise.evans.io/en/latest/#quickstart-for-django-apps
-MIDDLEWARE_CLASSES.insert(
-    MIDDLEWARE_CLASSES.index('django.middleware.security.SecurityMiddleware'),
-    'djangosite.middleware.WhiteNoiseMediaMiddleware')
+_index = MIDDLEWARE_CLASSES.index(
+    'django.middleware.security.SecurityMiddleware') + 1
+MIDDLEWARE_CLASSES = (
+    MIDDLEWARE_CLASSES[:_index] +
+    ('djangosite.middleware.WhiteNoiseMediaMiddleware', ) +
+    MIDDLEWARE_CLASSES[_index:]
+)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
