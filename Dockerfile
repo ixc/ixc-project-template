@@ -16,21 +16,21 @@ ARG PIP_INDEX_URL=https://devpi.ixcsandbox.com/ic/dev/+simple
 
 # Environment.
 ENV PROJECT_NAME={{ project_name }}
-ENV PROJECT_DIR=/opt/$PROJECT_NAME
-ENV PATH=$PROJECT_DIR/bin:$PROJECT_DIR/node_modules/.bin:$PATH
-WORKDIR $PROJECT_DIR
+ENV PROJECT_DIR=/opt/{{ project_name }}
+ENV PATH=/opt/{{ project_name }}/bin:/opt/{{ project_name }}/node_modules/.bin:$PATH
+WORKDIR /opt/{{ project_name }}/
 
 # Node.js packages.
-COPY package.json $PROJECT_DIR
+COPY package.json /opt/{{ project_name }}/
 RUN npm install
 
 # Bower components.
-COPY bower.json $PROJECT_DIR
+COPY bower.json /opt/{{ project_name }}/
 RUN bower install --allow-root
 
 # Python packages.
-COPY setup.py $PROJECT_DIR
+COPY setup.py /opt/{{ project_name }}/
 RUN pip install -e . --no-cache-dir
 
 # Source.
-COPY . $PROJECT_DIR
+COPY . /opt/{{ project_name }}/
