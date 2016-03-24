@@ -49,6 +49,7 @@ setuptools.setup(
         'easy_thumbnails',
         'gunicorn',
         # 'icekit-notifications',
+        'ixc-redactor',
         'Jinja2',
         'nose-progressive',
         'psycopg2',
