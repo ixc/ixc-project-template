@@ -6,8 +6,8 @@ Please follow these guidelines when making contributions to this project.
 
 Clone the repository and change directory:
 
-    $ git clone git@github.com:ixc/<project_name>.git
-    $ cd <project_name>
+    $ git clone git@github.com:ixc/{{ project_name }}.git
+    $ cd {{ project_name }}
 
 You don't need to install the project to run tests. You just need `tox`:
 
