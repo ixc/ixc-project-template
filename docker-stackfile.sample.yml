@@ -1,4 +1,5 @@
-# Update and save as `docker-stackfile.{environment}.yml`. Do not commit secrets.
+# Save as `docker-stackfile.{environment}.yml`. Do not commit secrets.
+# Always pin image tags for production environments.
 django:
   # autoredeploy: true
   deployment_strategy: high_availability
@@ -32,14 +33,19 @@ django:
 #   image: interaction/elasticsearch-icu:1
 #   restart: on-failure
 haproxy:
-  image: dockercloud/haproxy:1.2
+  # environment:
+  #   HTTP_BASIC_AUTH: preview:PASSWORD
+  image: dockercloud/haproxy:1.2.1
   links:
     - django
   ports:
-    - "80"
+    - "80:80"
   roles:
     - global
   restart: on-failure
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock  # Linox
+    # - $DOCKER_CERT_PATH:$DOCKER_CERT_PATH  # OS X
 postgres:
   environment:
     POSTGRES_PASSWORD:
