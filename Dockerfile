@@ -1,4 +1,4 @@
-FROM interaction/django:latest
+FROM interaction/django:0.2
 
 # Python packages with build dependencies.
 RUN apt-get update \
