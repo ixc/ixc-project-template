@@ -1,7 +1,3 @@
-import os
-
-os.environ.setdefault('SITE_DOMAIN', '{{ project_name }}.lvh.me')
-
 from ._base import *
 
 # DJANGO ######################################################################

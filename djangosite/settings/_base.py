@@ -20,7 +20,7 @@ SETTINGS_MODULE_HASH = hashlib.md5(
 
 SITE_NAME = '{{ project_name }}'
 
-SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'localhost')
+SITE_DOMAIN = os.environ.get('SITE_DOMAIN', '{{ project_name }}.lvh.me')
 SITE_PORT = 8000
 
 # FILE SYSTEM PATHS ###########################################################
