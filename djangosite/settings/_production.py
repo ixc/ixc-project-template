@@ -13,11 +13,10 @@ ALLOWED_HOSTS = (
     '.%s.' % SITE_DOMAIN,
 )
 
-for i, k in enumerate(CACHES, 1):
-    CACHES[k].update({
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis:6379/%s' % i,
-    })
+CACHES['default'].update({
+    'BACKEND': 'django_redis.cache.RedisCache',
+    'LOCATION': 'redis://redis:6379/1',
+})
 
 LOGGING['handlers']['logfile']['backupCount'] = 100
 
