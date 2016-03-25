@@ -1,6 +1,6 @@
 import os
 
-os.environ['SITE_DOMAIN'] = '{{ project_name }}-prd.ixcsandbox.com'
+os.environ.setdefault('SITE_DOMAIN', '{{ project_name }}-prd.ixcsandbox.com')
 
 from ._base import *
 
