@@ -41,6 +41,7 @@ setuptools.setup(
         'django-post-office',
         'django-redis',
         'django-reversion>=1.9.3,<1.10',  # 1.9.3+ use DB transactions, 1.10 has breaking changes for Django 1.9
+        'django-storages<1.2',  # See: https://github.com/jschneier/django-storages/blob/cf3cb76ca060f0dd82766daa43ee92fccca3dec7/storages/backends/s3boto.py#L28-L30
         'django-supervisor',
         'django-test-without-migrations',
         'django-timezone',
@@ -60,6 +61,7 @@ setuptools.setup(
         'whitenoise>=3.0rc1',
 
         # Override incompatible versions for nested dependencies.
+        'boto<=2.27',  # See: https://github.com/danilop/yas3fs/issues/26
         'django-mptt<0.8',  # 0.8 Backwards incompatible. See: https://github.com/django-mptt/django-mptt/releases
         'django-polymorphic<0.8',  # Backwards incompatible. See: https://django-polymorphic.readthedocs.org/en/latest/changelog.html#version-0-8-2015-12-28
     ],

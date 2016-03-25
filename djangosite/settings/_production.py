@@ -40,3 +40,7 @@ CELERY_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # NEW RELIC ###################################################################
 
 SUPERVISOR['wsgi'] = 'newrelic-admin run-program %s' % SUPERVISOR['wsgi']
+
+# STORAGES ####################################################################
+
+ENABLE_S3_MEDIA = True

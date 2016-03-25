@@ -72,6 +72,15 @@ if VENV_BIN not in os.environ['PATH'].split(':'):
 if MASTER_PASSWORD:
     MASTER_PASSWORDS[MASTER_PASSWORD] = None
 
+# STORAGES ####################################################################
+
+if ENABLE_S3_MEDIA:
+    MEDIA_URL = 'https://s3-us-west-2.amazonaws.com/{}/'.format(
+        AWS_STORAGE_BUCKET_NAME)
+
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
+
 # SENTRY ######################################################################
 
 if RAVEN_CONFIG.get('dsn'):
