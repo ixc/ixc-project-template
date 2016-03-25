@@ -47,7 +47,7 @@ DEBUG = False  # Don't show detailed error pages when exceptions are raised
 # ENVIRONMENT SPECIFIC
 #
 
-ALLOWED_HOSTS = ('*', )
+ALLOWED_HOSTS = ('*', )  # Allow connections on any host name
 
 # Use dummy caching, so we don't get confused because a change is not taking
 # effect when we expect it to.
