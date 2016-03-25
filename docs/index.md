@@ -55,7 +55,7 @@ If you want to install in-development dependencies as editable VCS installs:
 Review and update the appropriate environment specific configuration in the
 local settings module:
 
-    (venv)$ cp djangosite/settings/local_sample.py djangosite/settings/local.py
+    (venv)$ cp djangosite/settings/local.sample.py djangosite/settings/local.py
     (venv)$ $EDITOR djangosite/settings/local.py
 
 Migrate the database:
