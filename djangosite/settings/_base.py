@@ -13,10 +13,10 @@ import multiprocessing
 import os
 import posixpath
 
-
-# Uniquely identify this settings module on the file system, so we can avoid
-# conflicts with other projects running on the same system.
-SETTINGS_MODULE_HASH = hashlib.md5(__file__).hexdigest()
+# Uniquely identify the base settings module on the file system, so we can
+# avoid conflicts with other projects running on the same system.
+SETTINGS_MODULE_HASH = hashlib.md5(
+    __file__ + os.environ.get('BASE_SETTINGS_MODULE', '')).hexdigest()
 
 SITE_NAME = '{{ project_name }}'
 
