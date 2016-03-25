@@ -7,7 +7,7 @@ import importlib
 import os
 import sys
 
-BASE_SETTINGS_MODULE = os.environ.get('BASE_SETTINGS_MODULE', 'base')
+BASE_SETTINGS_MODULE = os.environ.setdefault('BASE_SETTINGS_MODULE', 'base')
 
 print '# Importing BASE_SETTINGS_MODULE: %s' % BASE_SETTINGS_MODULE
 
