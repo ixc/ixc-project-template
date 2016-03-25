@@ -22,7 +22,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('setup', function() {
-	return child.spawnSync('setup-dev.sh');
+	return child.spawnSync('setup-local-dev.sh');
 });
 
 gulp.task('main', function() {
