@@ -590,7 +590,6 @@ SUPERVISOR = {
     ),
 
     # Exclude programs.
-    'exclude_autoreload': True,
     'exclude_celery': False,
     'exclude_wsgi': False,
 }
