@@ -13,8 +13,6 @@ ALLOWED_HOSTS = (
     '.%s.' % SITE_DOMAIN,
 )
 
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
-
 for i, k in enumerate(CACHES, 1):
     CACHES[k].update({
         'BACKEND': 'django_redis.cache.RedisCache',
