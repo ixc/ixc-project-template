@@ -15,7 +15,6 @@ MASTER_PASSWORD = 'abc123'
 
 # SUPERVISOR ##################################################################
 
-WSGI_ADDRESS = '0.0.0.0'  # Default: 127.0.0.1
 WSGI_WORKERS = 2  # Default: 2x CPU cores + 1
 SUPERVISOR.update({
     'exclude_autoreload': False,
