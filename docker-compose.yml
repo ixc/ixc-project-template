@@ -5,16 +5,19 @@ services:
     command: gulp.sh
     environment:
       BASE_SETTINGS_MODULE: develop
-      SITE_DOMAIN: {{ project_name }}.docker  # for OS X with Dinghy
+      SITE_DOMAIN: {{ project_name }}.docker  # Use {{ project_name }}.lvh.me for Linux
     image: interaction/{{ project_name }}:latest
     links:
+      # - elasticsearch
       - postgres
       - redis
     ports:
-      - "8000:8000"
+      - "8000"
     volumes:
       - ./:/opt/{{ project_name }}
       - ./var:/opt/{{ project_name }}/var
+  # elasticsearch:
+  #   image: interaction/elasticsearch:1
   postgres:
     image: postgres:9.4
   redis:

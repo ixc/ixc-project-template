@@ -5,19 +5,20 @@ django:
   deployment_strategy: high_availability
   environment:
     BASE_SETTINGS_MODULE: develop
-    # EMAIL_HOST:
-    # EMAIL_HOST_USER:
-    # EMAIL_HOST_PASSWORD:
+    EMAIL_HOST:
+    EMAIL_HOST_USER:
+    EMAIL_HOST_PASSWORD:
     # MASTER_PASSWORD:
-    # PGDATABASE: {{ project_name }}
-    # PGHOST:
+    # PGDATABASE:
+    PGHOST:
     PGPASSWORD:
     # PGPORT:
-    # PGUSER:
-    # SRC_PGHOST:
-    # SRC_PGPASSWORD:
+    PGUSER:
+    SRC_PGDATABASE:
+    SRC_PGHOST:
+    SRC_PGPASSWORD:
     # SRC_PGPORT:
-    # SRC_PGUSER:
+    SRC_PGUSER:
   image: interaction/{{ project_name }}:latest
   links:
     # - elasticsearch
@@ -26,7 +27,7 @@ django:
   ports:
     - "8000"
   restart: on-failure
-  # sequential_deployment: true
+  sequential_deployment: true  # Avoid parallel execution of `migrate` command
   volumes:
     - /opt/{{ project_name }}/var
 # elasticsearch:
@@ -34,12 +35,12 @@ django:
 #   restart: on-failure
 haproxy:
   # environment:
-  #   HTTP_BASIC_AUTH: preview:PASSWORD
+  #   HTTP_BASIC_AUTH: USERNAME:PASSWORD
   image: dockercloud/haproxy:1.2.1
   links:
     - django
   ports:
-    - "80:80"
+    - "80"
   roles:
     - global
   restart: on-failure
