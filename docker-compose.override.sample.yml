@@ -6,13 +6,22 @@ services:
       args:
         PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
     environment:
+      # AWS_ACCESS_KEY_ID:
       AWS_SECRET_ACCESS_KEY:
+      # AWS_STORAGE_BUCKET_NAME:
+      # BASE_SETTINGS_MODULE:
+      # EMAIL_HOST:
       EMAIL_HOST_PASSWORD:
-      MASTER_PASSWORD: abc123
-      # SRC_PGDATABASE:
-      # SRC_PGHOST:
-      # SRC_PGPASSWORD:
-      # SRC_PGPORT:
-      # SRC_PGUSER:
+      # EMAIL_HOST_USER:
+      MASTER_PASSWORD:
+      # NEW_RELIC_CONFIG_FILE:
+      # PGDATABASE:
+      # PGHOST:
+      PGPASSWORD:
+      # PGPORT:
+      # PGUSER:
+      SENTRY_DSN:
+      # SITE_DOMAIN: {{ project_name }}.lvh.me  # For Linux
+      # WSGI_ADDRESS:
     volumes:
       - ~/.ssh:/opt/sfmoma/var/.ssh

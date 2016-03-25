@@ -4,21 +4,28 @@ django:
   # autoredeploy: true
   deployment_strategy: high_availability
   environment:
+    # AWS_ACCESS_KEY_ID:
+    AWS_SECRET_ACCESS_KEY:
+    # AWS_STORAGE_BUCKET_NAME:
     BASE_SETTINGS_MODULE: develop
-    EMAIL_HOST:
-    EMAIL_HOST_USER:
+    # EMAIL_HOST:
     EMAIL_HOST_PASSWORD:
-    # MASTER_PASSWORD:
+    # EMAIL_HOST_USER:
+    MASTER_PASSWORD:
+    # NEW_RELIC_CONFIG_FILE:
     # PGDATABASE:
-    PGHOST:
+    # PGHOST:
     PGPASSWORD:
     # PGPORT:
-    PGUSER:
+    # PGUSER:
+    SENTRY_DSN:
+    # SITE_DOMAIN:
     SRC_PGDATABASE:
-    SRC_PGHOST:
-    SRC_PGPASSWORD:
+    # SRC_PGHOST:
+    # SRC_PGPASSWORD:
     # SRC_PGPORT:
-    SRC_PGUSER:
+    # SRC_PGUSER:
+    # WSGI_ADDRESS:
   image: interaction/{{ project_name }}:latest
   links:
     # - elasticsearch
