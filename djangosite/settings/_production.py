@@ -1,6 +1,6 @@
 import os
 
-os.environ['SITE_DOMAIN'] = '{{ project_name }}.lvh.me'
+os.environ['SITE_DOMAIN'] = '{{ project_name }}-prd.ixcsandbox.com'
 
 from ._base import *
 
