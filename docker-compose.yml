@@ -27,7 +27,7 @@ services:
       - postgres
       - redis
     ports:
-      - "8000"
+      - "8000:8000"
     volumes:
       - ./:/opt/{{ project_name }}
       - ./var:/opt/{{ project_name }}/var
