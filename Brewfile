@@ -1,1 +1,7 @@
+brew 'elasticsearch'
+brew 'libjpeg'
+brew 'libtiff'
+brew 'little-cms2'
 brew 'node'
+brew 'redis'
+brew 'webp'
