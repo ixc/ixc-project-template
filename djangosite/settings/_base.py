@@ -516,7 +516,7 @@ TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
 
 # This environment variable is read by the `newrelic-admin` subprocess started
 # by supervisor.
-os.environ['NEW_RELIC_CONFIG_FILE'] = 'newrelic.ini'
+os.environ.setdefault('NEW_RELIC_CONFIG_FILE', 'newrelic.ini')
 
 # NOSE ########################################################################
 
