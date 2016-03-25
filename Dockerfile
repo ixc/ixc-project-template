@@ -15,9 +15,9 @@ RUN apt-get update \
 ARG PIP_INDEX_URL=https://devpi.ixcsandbox.com/ic/dev/+simple
 
 # Environment.
-ENV PROJECT_NAME={{ project_name }}
-ENV PROJECT_DIR=/opt/{{ project_name }}
 ENV PATH=/opt/{{ project_name }}/bin:/opt/{{ project_name }}/node_modules/.bin:$PATH
+ENV PROJECT_DIR=/opt/{{ project_name }}
+ENV PROJECT_NAME={{ project_name }}
 WORKDIR /opt/{{ project_name }}/
 
 # Node.js packages.
