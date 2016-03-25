@@ -267,6 +267,9 @@ TEMPLATES_DJANGO = {
             # Default.
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
+
+            # 3rd party.
+            'app_namespace.Loader',
         ],
     },
 }

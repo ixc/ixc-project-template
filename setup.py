@@ -19,6 +19,7 @@ setuptools.setup(
         'coverage',
         'deployo',
         # 'django-any-urlfield',  # Optional integration with `django-fluent-contents`
+        'django-app-namespace-template-loader',
         'django-celery-email',
         'django-compressor',
         'django-dynamic-fixture',
