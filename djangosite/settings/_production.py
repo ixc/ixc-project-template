@@ -8,6 +8,11 @@ SITE_PUBLIC_PORT = None  # Default: SITE_PORT
 
 # DJANGO ######################################################################
 
+ALLOWED_HOSTS = (
+    '.%s' % SITE_DOMAIN,
+    '.%s.' % SITE_DOMAIN,
+)
+
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 for i, k in enumerate(CACHES, 1):

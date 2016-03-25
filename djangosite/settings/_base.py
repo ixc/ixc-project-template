@@ -47,11 +47,7 @@ DEBUG = False  # Don't show detailed error pages when exceptions are raised
 # ENVIRONMENT SPECIFIC
 #
 
-# Only allow `SITE_DOMAIN`, including subdomains and full qualified domains.
-ALLOWED_HOSTS = (
-    '.%s' % SITE_DOMAIN,
-    '.%s.' % SITE_DOMAIN,
-)
+ALLOWED_HOSTS = ('*', )
 
 # Use dummy caching, so we don't get confused because a change is not taking
 # effect when we expect it to.
