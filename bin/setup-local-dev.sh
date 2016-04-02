@@ -10,7 +10,6 @@ set -e
 
 cd "${PROJECT_DIR}/var"
 
-export COVERAGE_FILE="${PROJECT_DIR}/var/.coverage"
 export PATH="${PROJECT_DIR}/var/node_modules/.bin:${PROJECT_DIR}/var/venv/bin:$PATH"
 
 # Create empty initial MD5 signatures.

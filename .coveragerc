@@ -1,5 +1,6 @@
 [run]
 branch = True
+data_file = var/.coverage
 omit = */migrations/__init__.py
 source = {{ project_name }}
 
