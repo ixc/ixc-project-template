@@ -18,6 +18,7 @@ gulp.task('watch', function() {
 	gulp.watch('./**/*.py', ['main']);
 	gulp.watch('./bower.json', ['setup']);
 	gulp.watch('./package.json', ['setup']);
+	gulp.watch('./requirements*.txt', ['setup']);
 	gulp.watch('./setup.py', ['setup']);
 });
 
