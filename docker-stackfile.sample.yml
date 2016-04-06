@@ -43,7 +43,7 @@ elasticsearch:
 haproxy:
   # environment:
   #   HTTP_BASIC_AUTH: USERNAME:PASSWORD
-  image: dockercloud/haproxy:1.2.1
+  image: dockercloud/haproxy:latest
   links:
     - django
   ports:
