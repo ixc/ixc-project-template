@@ -1,0 +1,2 @@
+-e .
+-i https://devpi.ixcsandbox.com/ic/dev/+simple
