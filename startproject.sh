@@ -28,8 +28,8 @@ django-admin.py startproject \
 
 cd "${PROJECT}"
 
-echo "Making '${PWD}/manage.py' executable."
-chmod 755 manage.py
+echo "Making '${PWD}/bin/*.sh' and ${PWD}/manage.py' executable."
+chmod 755 bin/*.sh manage.py
 
 echo "Initializing git repository and creating an initial commit."
 git init
