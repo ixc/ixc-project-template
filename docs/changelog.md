@@ -4,6 +4,6 @@
 
 Features:
 
-  * Created project from [ixc-project-template]
+  * Created project from [django-icekit-template]
 
-[ixc-project-template]: https://github.com/ixc/ixc-project-template/
+[django-icekit-template]: https://github.com/ixc/ixc-project-template/blob/django-icekit

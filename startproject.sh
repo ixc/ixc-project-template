@@ -43,7 +43,8 @@ All done!
 
 Well, except for a few manual steps:
 
-  * Create the 'ixc/${PROJECT}' repository on GitHub.
+  * Add an `origin` remote at `git@github.com:{YOU}/${PROJECT}.git`
+  * Create the '{YOU}/${PROJECT}' repository on GitHub.
   * Enable the repository on Travis CI and add the 'DOCKER_PASSWORD' and
     'PIP_INDEX_URL' environment variables in the repository settings.
   * Push your initial commit.
