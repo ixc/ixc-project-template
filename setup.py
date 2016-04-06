@@ -17,7 +17,7 @@ setuptools.setup(
     install_requires=[
         'celery[redis]',
         'coverage',
-        'deployo',
+        # 'deployo',
         # 'django-any-urlfield',  # Optional integration with `django-fluent-contents`
         'django-app-namespace-template-loader',
         'django-celery-email',
