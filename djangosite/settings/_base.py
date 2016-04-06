@@ -561,6 +561,12 @@ POST_OFFICE = {
     'DEFAULT_PRIORITY': 'now',
 }
 
+# SENTRY ######################################################################
+
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('SENTRY_DSN'),
+}
+
 # STORAGES ####################################################################
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -578,12 +584,6 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get(
 
 ENABLE_S3_MEDIA = False
 INSTALLED_APPS += ('storages', )
-
-# SENTRY ######################################################################
-
-RAVEN_CONFIG = {
-    'dsn': os.environ.get('SENTRY_DSN'),
-}
 
 # SUPERVISOR ##################################################################
 
