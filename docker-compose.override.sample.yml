@@ -4,6 +4,7 @@ services:
   django:
     build:
       args:
+        AWS_SECRET_ACCESS_KEY:
         PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
     environment:
       # BASE_SETTINGS_MODULE:
