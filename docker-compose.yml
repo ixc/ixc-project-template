@@ -4,14 +4,14 @@ services:
     build: .
     command: gulp.sh
     environment:
-      # AWS_ACCESS_KEY_ID:
-      # AWS_SECRET_ACCESS_KEY:
-      # AWS_STORAGE_BUCKET_NAME:
       BASE_SETTINGS_MODULE: develop
       # EMAIL_HOST:
       # EMAIL_HOST_PASSWORD:
       # EMAIL_HOST_USER:
       # MASTER_PASSWORD:
+      # MEDIA_AWS_ACCESS_KEY_ID:
+      # MEDIA_AWS_SECRET_ACCESS_KEY:
+      # MEDIA_AWS_STORAGE_BUCKET_NAME:
       # NEW_RELIC_CONFIG_FILE:
       # PGDATABASE:
       # PGHOST:

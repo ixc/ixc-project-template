@@ -569,7 +569,7 @@ RAVEN_CONFIG = {
 
 # STORAGES ####################################################################
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_ACCESS_KEY_ID = os.environ.get('MEDIA_AWS_ACCESS_KEY_ID')
 
 # See: http://developer.yahoo.com/performance/rules.html#expires
 AWS_HEADERS = {
@@ -577,10 +577,10 @@ AWS_HEADERS = {
     'Cache-Control': 'max-age=86400',
 }
 
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('MEDIA_AWS_SECRET_ACCESS_KEY')
 
 AWS_STORAGE_BUCKET_NAME = os.environ.get(
-    'AWS_STORAGE_BUCKET_NAME', '{{ project_name }}')
+    'MEDIA_AWS_STORAGE_BUCKET_NAME', '{{ project_name }}')
 
 ENABLE_S3_MEDIA = False
 INSTALLED_APPS += ('storages', )
