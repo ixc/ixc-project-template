@@ -4,7 +4,7 @@ set -e
 
 PROJECT="$1"
 MODULE="${PROJECT//[^0-9A-Za-z]/_}"
-TEMPLATE="${2:-https://github.com/ixc/ixc-project-template/archive/master.zip}"
+TEMPLATE="${2:-https://github.com/ixc/ixc-project-template/archive/django-icekit.zip}"
 
 if [[ -d "${PROJECT}" ]]; then
 	echo "Project directory '${PWD}/${PROJECT}' already exists. Abort."
