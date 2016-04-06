@@ -14,7 +14,7 @@ ARG AWS_SECRET_ACCESS_KEY
 ARG PIP_INDEX_URL=https://devpi.ixcsandbox.com/ic/dev/+simple
 ENV PIP_ACCEL_CONFIG=/opt/{{ project_name }}/pip-accel.conf
 COPY pip-accel.conf requirements.txt setup.py /opt/{{ project_name }}/
-RUN pip-accel install -r requirements.txt -e . && rm -rf /var/cache/pip-accel
+RUN pip-accel install -r requirements*.txt -e . && rm -rf /var/cache/pip-accel
 
 ENV PATH=/opt/{{ project_name }}/bin:$PATH
 ENV PROJECT_DIR=/opt/{{ project_name }}
