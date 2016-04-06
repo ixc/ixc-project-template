@@ -35,7 +35,6 @@ echo "Initializing git repository and creating an initial commit."
 git init
 git add -A
 git commit -m 'Initial commit.'
-git remote add origin "git@github.com:ixc/${PROJECT}.git"
 
 cat <<EOF
 
