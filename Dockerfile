@@ -1,36 +1,26 @@
-FROM interaction/django:0.2
+FROM interaction/django:latest
 
-# Python packages with build dependencies.
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        python-coverage \
-        python-crypto \
-        python-lxml \
-        python-numpy \
-        python-pillow \
-        python-psycopg2 \
-    && rm -rf /var/lib/apt/lists/*
-
-# Build arguments.
-ARG PIP_INDEX_URL=https://devpi.ixcsandbox.com/ic/dev/+simple
-
-# Environment.
-ENV PATH=/opt/{{ project_name }}/bin:/opt/{{ project_name }}/node_modules/.bin:$PATH
-ENV PROJECT_DIR=/opt/{{ project_name }}
-ENV PROJECT_NAME={{ project_name }}
 WORKDIR /opt/{{ project_name }}/
 
-# Node.js packages.
+ENV PATH=/opt/{{ project_name }}/node_modules/.bin:$PATH
 COPY package.json /opt/{{ project_name }}/
 RUN npm install
 
-# Bower components.
 COPY bower.json /opt/{{ project_name }}/
 RUN bower install --allow-root
 
-# Python packages.
-COPY setup.py /opt/{{ project_name }}/
-RUN pip install -e . --no-cache-dir
+ARG AWS_ACCESS_KEY_ID=AKIAIGZZ2KQ4PBOI3RHA
+ARG AWS_SECRET_ACCESS_KEY
+ARG PIP_INDEX_URL=https://devpi.ixcsandbox.com/ic/dev/+simple
+COPY pip-accel.conf ~/.pip-accel/pip-accel.conf
+COPY requirements.txt setup.py /opt/{{ project_name }}/
+RUN pip-accel install -r requirements.txt -e . && rm -rf /var/cache/pip-accel
 
-# Source.
+ENV PATH=/opt/{{ project_name }}/bin:$PATH
+ENV PROJECT_DIR=/opt/{{ project_name }}
+ENV PROJECT_NAME={{ project_name }}
+
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["supervisor.sh"]
+
 COPY . /opt/{{ project_name }}/
