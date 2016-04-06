@@ -5,7 +5,7 @@ var main = null;
 
 function pipe(result) {
 	result.stderr.on('data', function(data) {
-		process.stdout.write(data.toString());
+		process.stderr.write(data.toString());
 	});
 	result.stdout.on('data', function(data) {
 		process.stdout.write(data.toString());
