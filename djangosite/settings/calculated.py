@@ -72,6 +72,11 @@ if VENV_BIN not in os.environ['PATH'].split(':'):
 if MASTER_PASSWORD:
     MASTER_PASSWORDS[MASTER_PASSWORD] = None
 
+# SENTRY ######################################################################
+
+if RAVEN_CONFIG.get('dsn'):
+    INSTALLED_APPS += ('raven.contrib.django.raven_compat', )
+
 # STORAGES ####################################################################
 
 if ENABLE_S3_MEDIA:
@@ -80,11 +85,6 @@ if ENABLE_S3_MEDIA:
 
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
-
-# SENTRY ######################################################################
-
-if RAVEN_CONFIG.get('dsn'):
-    INSTALLED_APPS += ('raven.contrib.django.raven_compat', )
 
 # SUPERVISOR ##################################################################
 
