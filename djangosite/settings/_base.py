@@ -485,7 +485,7 @@ TEMPLATES_DJANGO['OPTIONS']['loaders'] += [
 
 INSTALLED_APPS += (
     'icekit',
-    'icekit.plugins.brightcove',
+    # 'icekit.plugins.brightcove',
     'icekit.plugins.child_pages',
     'icekit.plugins.faq',
     'icekit.plugins.horizontal_rule',
