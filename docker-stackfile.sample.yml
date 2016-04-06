@@ -28,7 +28,7 @@ django:
     # WSGI_ADDRESS:
   image: interaction/{{ project_name }}:latest
   links:
-    # - elasticsearch
+    - elasticsearch
     - postgres
     - redis
   ports:
@@ -37,9 +37,9 @@ django:
   sequential_deployment: true  # Avoid parallel execution of `migrate` command
   volumes:
     - /opt/{{ project_name }}/var
-# elasticsearch:
-#   image: interaction/elasticsearch-icu:1
-#   restart: on-failure
+elasticsearch:
+  image: interaction/elasticsearch-icu:1
+  restart: on-failure
 haproxy:
   # environment:
   #   HTTP_BASIC_AUTH: USERNAME:PASSWORD

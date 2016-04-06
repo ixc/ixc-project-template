@@ -1,5 +1,5 @@
-# elasticsearch:
-#   image: interaction/elasticsearch:1
+elasticsearch:
+  image: interaction/elasticsearch-icu:1
 postgres:
   image: postgres:9.4
 redis:
@@ -13,7 +13,7 @@ sut:
     TRAVIS:
   image: interaction/{{ project_name }}:latest
   links:
-    # - elasticsearch
+    - elasticsearch
     - postgres
     - redis
   ports:
