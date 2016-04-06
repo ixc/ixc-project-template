@@ -17,11 +17,11 @@ This will:
   * Create a directory matching the given project name in the current working
     directory.
 
-  * Replaces non-word characters in the project name with an underscore, to get
-    a valid Python module name for the project.
+  * Replace non-word characters in the project name with an underscore, to get
+    a valid Python package name for the project.
 
-  * Call `django-admin.py startproject`, with the derived module name and given
-    template path or URL. If none is given, it defaults to
+  * Call `django-admin.py startproject`, with the derived package name and
+    given template path or URL. The default template URL is
     https://github.com/ixc/ixc-project-template/archive/master.zip
 
   * Make `manage.py` executable, for convenience.
