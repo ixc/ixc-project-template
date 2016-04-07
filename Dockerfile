@@ -1,4 +1,10 @@
-FROM interaction/django:latest
+FROM buildpack-deps:jessie
+
+ENV BASE_COMMIT=dbad6b692284c8ca082b0784ea125bd1569af8c6
+RUN wget -nv -O - "https://raw.githubusercontent.com/ixc/base-docker/${BASE_COMMIT}/bootstrap.sh" | sh -s $BASE_COMMIT
+
+ENV DJANGO_COMMIT=ef3d4b8e535641f2d334fd7f59f640a4a07e6cd6
+RUN wget -nv -O - "https://raw.githubusercontent.com/ixc/django-docker/${DJANGO_COMMIT}/bootstrap.sh" | sh -s $DJANGO_COMMIT
 
 WORKDIR /opt/{{ project_name }}/
 
