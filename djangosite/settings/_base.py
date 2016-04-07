@@ -230,6 +230,7 @@ SILENCED_SYSTEM_CHECKS = (
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'djangosite', 'static'),
+    os.path.join(VAR_DIR, 'bower_components'),
     os.path.join(BASE_DIR, 'bower_components'),
 )
 
