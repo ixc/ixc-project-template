@@ -9,21 +9,21 @@ services:
     environment:
       # BASE_SETTINGS_MODULE:
       # EMAIL_HOST:
-      EMAIL_HOST_PASSWORD:
+      # EMAIL_HOST_PASSWORD:
       # EMAIL_HOST_USER:
-      MASTER_PASSWORD:
+      # MASTER_PASSWORD:
       # MEDIA_AWS_ACCESS_KEY_ID:
       MEDIA_AWS_SECRET_ACCESS_KEY:
       # MEDIA_AWS_STORAGE_BUCKET_NAME:
       # NEW_RELIC_CONFIG_FILE:
       # PGDATABASE:
       # PGHOST:
-      PGPASSWORD:
+      # PGPASSWORD:
       # PGPORT:
       # PGUSER:
       PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
       # PYTHONWARNINGS: default
-      SENTRY_DSN:
+      # SENTRY_DSN:
       # SITE_DOMAIN: {{ project_name }}.lvh.me  # For Linux
       # WSGI_ADDRESS:
     volumes:
