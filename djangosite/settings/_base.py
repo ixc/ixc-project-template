@@ -182,6 +182,7 @@ INSTALLED_APPS = (
 
     # 3rd party.
     'django_extensions',
+    'forms_builder.forms',
     'ixc_redactor',
     'reversion',
 

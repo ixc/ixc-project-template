@@ -37,6 +37,7 @@ urlpatterns = patterns(
     # URLs for installed apps.
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^forms/', include('forms_builder.forms.urls')),
 )
 
 # Static and media files.
