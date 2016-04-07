@@ -4,8 +4,8 @@ services:
   django:
     build:
       args:
-        AWS_SECRET_ACCESS_KEY:
-        PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
+        AWS_SECRET_ACCESS_KEY: # 1Password, shared vault, Amazon, pip-accel
+        PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
     environment:
       # BASE_SETTINGS_MODULE:
       # EMAIL_HOST:
