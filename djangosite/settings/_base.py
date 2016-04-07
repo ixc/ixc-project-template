@@ -333,13 +333,11 @@ COMPRESS_CSS_FILTERS = (
 COMPRESS_PRECOMPILERS = (
     (
         'text/less',
-        '{} {{infile}} {{outfile}} --autoprefix'.format(
-            os.path.join(BASE_DIR, 'node_modules', '.bin', 'lessc')),
+        'lessc {infile} {outfile} --autoprefix',
     ),
     (
         'text/x-scss',
-        '{} {{infile}} {{outfile}} --autoprefix'.format(
-            os.path.join(BASE_DIR, 'node_modules', '.bin', 'node-sass')),
+        'node-sass {infile} {outfile} --autoprefix',
     ),
 )
 
