@@ -16,6 +16,7 @@
 /node_modules/
 /public/media/
 /public/static/
+/requirements-local.txt
 /secret.txt
 /supervisord.log
 /supervisord.pid
