@@ -330,14 +330,19 @@ COMPRESS_CSS_FILTERS = (
     # 'compressor.filters.cssmin.CSSMinFilter',
 )
 
+_NODE_MODULES_BIN = os.environ.get(
+    'NODE_MODULES_BIN', os.path.join(BASE_DIR, 'node_modules', '.bin'))
+
 COMPRESS_PRECOMPILERS = (
     (
         'text/less',
-        'lessc {infile} {outfile} --autoprefix',
+        '%s {infile} {outfile} --autoprefix' % os.path.join(
+            _NODE_MODULES_BIN, 'lessc'),
     ),
     (
         'text/x-scss',
-        'node-sass {infile} {outfile} --autoprefix',
+        '%s {infile} {outfile} --autoprefix' % os.path.join(
+            _NODE_MODULES_BIN, 'node-sass'),
     ),
 )
 
