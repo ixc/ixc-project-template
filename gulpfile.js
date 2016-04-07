@@ -3,15 +3,6 @@ var child = require('child_process');
 
 var main = null;
 
-function pipe(result) {
-	result.stderr.on('data', function(data) {
-		process.stderr.write(data.toString());
-	});
-	result.stdout.on('data', function(data) {
-		process.stdout.write(data.toString());
-	});
-}
-
 gulp.task('default', ['setup', 'main', 'watch']);
 
 gulp.task('watch', function() {
@@ -30,6 +21,5 @@ gulp.task('main', function() {
 	if (main) {
 		main.kill();
 	}
-	main = child.spawn('supervisor.sh');
-	pipe(main);
+	main = child.spawn('supervisor.sh', {stdio: 'inherit'});
 });
