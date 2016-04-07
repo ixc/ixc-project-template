@@ -13,7 +13,7 @@ cd "${PROJECT_DIR}/var"
 export PATH="${PROJECT_DIR}/var/node_modules/.bin:${PROJECT_DIR}/var/venv/bin:$PATH"
 
 # Create empty initial MD5 signatures.
-for FILE in bower.json package.json setup.py
+for FILE in bower.json package.json venv
 do
     if [[ ! -f "$FILE.md5" ]]; then
         touch "$FILE.md5"
@@ -45,15 +45,15 @@ fi
 if [[ ! -d venv ]]; then
     echo 'Python virtualenv does not exist. Create.'
     virtualenv --system-site-packages venv
-    truncate -s 0 setup.py.md5
+    truncate -s 0 venv.md5
 else
     echo 'Python virtualenv already exists. Skip.'
 fi
 
 # Python packages.
-if ! md5sum -c --status setup.py.md5; then
+if ! md5sum -c --status venv.md5; then
     echo 'Python packages are out of date. Install.'
-    md5sum ../setup.py > setup.py.md5
+    md5sum ../requirements*.txt ../setup.py > venv.md5
     pip install -e '..[dev,server]'
 else
     echo 'Python packages are already up to date. Skip.'
