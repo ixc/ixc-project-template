@@ -28,6 +28,7 @@ services:
       - redis
     ports:
       - "8000:8000"
+    tty: true
     volumes:
       - ./:/opt/{{ project_name }}
       - ./var:/opt/{{ project_name }}/var
