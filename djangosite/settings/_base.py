@@ -590,7 +590,7 @@ INSTALLED_APPS += ('storages', )
 
 INSTALLED_APPS += ('djsupervisor', )
 
-WSGI_ADDRESS = os.environ.get('WSGI_ADDRESS', '127.0.0.1')
+WSGI_ADDRESS = os.environ.get('WSGI_ADDRESS', '0.0.0.0')
 WSGI_WORKERS = multiprocessing.cpu_count() * 2 + 1
 WSGI_TIMEOUT = 30
 
