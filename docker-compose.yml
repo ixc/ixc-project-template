@@ -18,7 +18,7 @@ services:
       # PGPASSWORD:
       # PGPORT:
       # PGUSER:
-      # PIP_INDEX_URL:
+      PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
       PYTHONWARNINGS: ignore
       # SENTRY_DSN:
       SITE_DOMAIN: {{ project_name }}.docker  # Use {{ project_name }}.lvh.me for Linux
