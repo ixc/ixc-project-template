@@ -21,6 +21,7 @@ services:
       PGPASSWORD:
       # PGPORT:
       # PGUSER:
+      # PYTHONWARNINGS: default
       SENTRY_DSN:
       # SITE_DOMAIN: {{ project_name }}.lvh.me  # For Linux
       # WSGI_ADDRESS:

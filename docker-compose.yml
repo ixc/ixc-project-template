@@ -18,6 +18,7 @@ services:
       # PGPASSWORD:
       # PGPORT:
       # PGUSER:
+      PYTHONWARNINGS: ignore
       # SENTRY_DSN:
       SITE_DOMAIN: {{ project_name }}.docker  # Use {{ project_name }}.lvh.me for Linux
       # WSGI_ADDRESS:
