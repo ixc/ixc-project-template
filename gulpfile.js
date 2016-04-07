@@ -23,7 +23,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('setup', function() {
-	return child.spawnSync('setup-local-dev.sh');
+	child.spawnSync('setup-local-dev.sh', {stdio: 'inherit'});
 });
 
 gulp.task('main', function() {
