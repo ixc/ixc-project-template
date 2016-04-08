@@ -26,7 +26,7 @@ ENV PATH=/opt/{{ project_name }}/bin:$PATH
 ENV PROJECT_DIR=/opt/{{ project_name }}
 ENV PROJECT_NAME={{ project_name }}
 
-ENTRYPOINT ["entrypoint.sh"]
-CMD ["supervisor.sh"]
+ENTRYPOINT ["entrypoint.sh", "setup-django-env.sh", "setup-postgres.sh"]
+CMD ["migrate.sh", "supervisor.sh"]
 
 COPY . /opt/{{ project_name }}/
