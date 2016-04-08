@@ -2,7 +2,8 @@ version: "2"
 services:
   django:
     build: .
-    command: gulp.sh
+    # command: gulp.sh
+    command: setup-local-env.sh migrate.sh supervisor.sh
     environment:
       BASE_SETTINGS_MODULE: develop
       # EMAIL_HOST:
