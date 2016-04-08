@@ -26,13 +26,13 @@ django:
     # SRC_PGPORT:
     # SRC_PGUSER:
     # WSGI_ADDRESS:
+  expose:
+    - "8000"
   image: interaction/{{ project_name }}:latest
   links:
     # - elasticsearch
     - postgres
     - redis
-  ports:
-    - "8000"
   restart: on-failure
   sequential_deployment: true  # Avoid parallel execution of `migrate` command
   volumes:
@@ -52,7 +52,7 @@ haproxy:
     - global
   restart: on-failure
   volumes:
-    - /var/run/docker.sock:/var/run/docker.sock  # Linox
+    - /var/run/docker.sock:/var/run/docker.sock  # Linux
     # - $DOCKER_CERT_PATH:$DOCKER_CERT_PATH  # OS X
 postgres:
   environment:
