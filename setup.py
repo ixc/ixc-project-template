@@ -26,7 +26,6 @@ setuptools.setup(
         'django-extensions',
         'django-flat-theme<1.1.3',  # See: https://github.com/elky/django-flat-theme/issues/30
         'django-fluent-contents[markup,oembeditem,text]<1.1',  # See: https://github.com/edoburu/django-fluent-contents/issues/67
-        'django-fluent-dashboard',
         'django-fluent-pages[flatpage,fluentpage,redirectnode,reversion]',
         # 'django-guardian',
         # 'django-generic',
@@ -53,6 +52,7 @@ setuptools.setup(
         'icekit-notifications',
         'ixc-redactor',
         'Jinja2',
+        'newrelic',
         'nose-progressive',
         'psycopg2',
         'pytz',

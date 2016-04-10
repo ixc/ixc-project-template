@@ -11,7 +11,6 @@ sut:
     BASE_SETTINGS_MODULE: develop
     SITE_DOMAIN: {{ project_name }}.docker  # Use {{ project_name }}.lvh.me for Linux
     TRAVIS:
-  image: interaction/{{ project_name }}:latest
   links:
     - elasticsearch
     - postgres

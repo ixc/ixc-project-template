@@ -1,27 +1,26 @@
 # Save as `docker-stackfile.{environment}.yml`. Do not commit secrets.
 # Always pin images for linked services on production environments.
 django:
-  # autoredeploy: true
+  autoredeploy: true
   deployment_strategy: high_availability
   environment:
-    BASE_SETTINGS_MODULE: develop
+    BASE_SETTINGS_MODULE: staging
     EMAIL_HOST_PASSWORD:
     # MASTER_PASSWORD:
     MEDIA_AWS_SECRET_ACCESS_KEY:
     # PGDATABASE:
-    # PGHOST:
+    PGHOST: staging.cu6ofenwuorn.ap-southeast-2.rds.amazonaws.com
     PGPASSWORD:
     # PGPORT:
-    # PGUSER:
+    PGUSER: staging
     SENTRY_DSN:
-    # SITE_DOMAIN:
     SRC_PGDATABASE:
     # SRC_PGHOST:
     # SRC_PGPASSWORD:
     # SRC_PGPORT:
     # SRC_PGUSER:
-    VIRTUAL_HOST: {{ projec_name }}.{environment}.ixcsandbox.com
-  image: interaction/{{ project_name }}:latest
+    VIRTUAL_HOST: {{ project_name }}.stg.ixcsandbox.com
+  image: interaction/{{ project_name }}:staging
   links:
     - elasticsearch
     # - postgres
@@ -31,12 +30,14 @@ django:
   restart: on-failure
   sequential_deployment: true  # Avoid parallel execution of `migrate` command
   tags:
-    - {environment}
+    - staging
   volumes:
     - /opt/{{ project_name }}/var
 elasticsearch:
   image: interaction/elasticsearch-icu:1
   restart: on-failure
+  tags:
+    - staging
 # haproxy:
 #   environment:
 #     HTTP_BASIC_AUTH: USERNAME:PASSWORD
@@ -61,4 +62,4 @@ redis:
   image: redis:3
   restart: on-failure
   tags:
-    - {environment}
+    - staging

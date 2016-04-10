@@ -78,7 +78,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(VAR_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(VAR_DIR, 'media')
@@ -359,12 +359,12 @@ INSTALLED_APPS += ('easy_thumbnails', )
 THUMBNAIL_BASEDIR = 'thumbs'
 THUMBNAIL_HIGH_RESOLUTION = True
 
-# FLUENT ######################################################################
+# FLAT THEME ##################################################################
 
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = \
-    'fluent_dashboard.dashboard.FluentAppIndexDashboard'
-ADMIN_TOOLS_INDEX_DASHBOARD = 'fluent_dashboard.dashboard.FluentIndexDashboard'
-ADMIN_TOOLS_MENU = 'fluent_dashboard.menu.FluentMenu'
+# Must come before `django.contrib.admin`.
+INSTALLED_APPS = ('flat', ) + INSTALLED_APPS
+
+# FLUENT ######################################################################
 
 DJANGO_WYSIWYG_FLAVOR = 'redactor'
 DJANGO_WYSIWYG_MEDIA_URL = posixpath.join(STATIC_URL, 'redactor/')
@@ -408,22 +408,12 @@ FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
 # FLUENT_TEXT_CLEAN_HTML = True  # Default: False
 # FLUENT_TEXT_SANITIZE_HTML = True  # Default: False
 
-# Must come after `admin_tools` apps.
-INSTALLED_APPS = tuple(
-    app for app in INSTALLED_APPS if app != 'django.contrib.admin')
-
 INSTALLED_APPS += (
     # Fluent.
     'fluent_contents',
-    'fluent_dashboard',
     'fluent_pages',
 
     # Dependencies.
-    'admin_tools',
-    'admin_tools.dashboard',
-    'admin_tools.menu',
-    'admin_tools.theming',
-    'django.contrib.admin',
     'mptt',
     'parler',
     'polymorphic',
@@ -458,9 +448,6 @@ INSTALLED_APPS += (
     'django_wysiwyg',
     'micawber',
 )
-
-TEMPLATES_DJANGO['OPTIONS']['loaders'] += [
-    'admin_tools.template_loaders.Loader']
 
 # GENERIC #####################################################################
 
@@ -502,6 +489,24 @@ INSTALLED_APPS += (
     'icekit.response_pages',
     'notifications',
 )
+
+# ICEKIT DASHBOARD ############################################################
+
+FEATURED_APPS = (
+    {
+        'verbose_name': 'Pages',
+        'icon_html': '<i class="content-type-icon fa fa-files-o"></i>',
+        'models': {
+            'fluent_pages.Page': {
+                'verbose_name': 'Page',
+                # 'default_poly_child': 'layout_page.LayoutPage',
+            },
+        },
+    },
+)
+
+# Must come before `django.contrib.admin` and `flat`.
+INSTALLED_APPS = ('icekit.dashboard.apps.DashboardConfig', ) + INSTALLED_APPS
 
 # MASTER PASSWORD #############################################################
 
@@ -594,7 +599,7 @@ INSTALLED_APPS += ('storages', )
 
 INSTALLED_APPS += ('djsupervisor', )
 
-WSGI_ADDRESS = os.environ.get('WSGI_ADDRESS', '0.0.0.0')
+WSGI_ADDRESS = '0.0.0.0'
 WSGI_WORKERS = multiprocessing.cpu_count() * 2 + 1
 WSGI_TIMEOUT = 30
 
