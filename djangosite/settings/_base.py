@@ -475,23 +475,6 @@ INSTALLED_APPS += (
 
 # ICEKIT ######################################################################
 
-INSTALLED_APPS += (
-    'icekit',
-    # 'icekit.plugins.brightcove',
-    'icekit.plugins.child_pages',
-    'icekit.plugins.faq',
-    'icekit.plugins.horizontal_rule',
-    'icekit.plugins.image',
-    'icekit.plugins.instagram_embed',
-    'icekit.plugins.reusable_form',
-    'icekit.plugins.slideshow',
-    'icekit.plugins.twitter_embed',
-    'icekit.response_pages',
-    'notifications',
-)
-
-# ICEKIT DASHBOARD ############################################################
-
 FEATURED_APPS = (
     {
         'verbose_name': 'Pages',
@@ -506,7 +489,36 @@ FEATURED_APPS = (
 )
 
 # Must come before `django.contrib.admin` and `flat`.
-INSTALLED_APPS = ('icekit.dashboard.apps.DashboardConfig', ) + INSTALLED_APPS
+INSTALLED_APPS = ('icekit.dashboard', ) + INSTALLED_APPS
+
+INSTALLED_APPS += (
+    'icekit',
+    'icekit.blog_tools',
+    'icekit.response_pages',
+    'notifications',
+
+    'icekit.page_types.layout_page',
+    'icekit.page_types.search_page',
+
+    'icekit.plugins.blog_post',
+    # 'icekit.plugins.brightcove',
+    'icekit.plugins.child_pages',
+    'icekit.plugins.faq',
+    'icekit.plugins.file',
+    'icekit.plugins.horizontal_rule',
+    'icekit.plugins.image',
+    'icekit.plugins.instagram_embed',
+    'icekit.plugins.map',
+    'icekit.plugins.map_with_text',
+    'icekit.plugins.oembed_with_caption',
+    'icekit.plugins.page_anchor',
+    'icekit.plugins.page_anchor_list',
+    'icekit.plugins.quote',
+    'icekit.plugins.reusable_form',
+    'icekit.plugins.reusable_quote',
+    'icekit.plugins.slideshow',
+    'icekit.plugins.twitter_embed',
+)
 
 # MASTER PASSWORD #############################################################
 
