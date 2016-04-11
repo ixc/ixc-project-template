@@ -181,6 +181,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
 
     # 3rd party.
+    'bootstrap3',
     'django_extensions',
     'forms_builder.forms',
     'ixc_redactor',

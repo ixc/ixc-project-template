@@ -20,6 +20,7 @@ setuptools.setup(
         # 'deployo',
         # 'django-any-urlfield',  # Optional integration with `django-fluent-contents`
         'django-app-namespace-template-loader',
+        'django-bootstrap3<7.0.0',  # See: https://github.com/dyve/django-bootstrap3/blame/c72fb9f21ae5755918db3b478a3e5a10bcdde444/HISTORY.rst#L10
         'django-celery-email',
         'django-compressor',
         'django-dynamic-fixture',
