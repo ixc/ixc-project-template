@@ -383,8 +383,8 @@ FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
 
 FLUENT_DASHBOARD_DEFAULT_MODULE = 'ModelList'
 
-# FLUENT_MARKUP_LANGUAGES = ['restructuredtext', 'markdown', 'textile']
-# FLUENT_MARKUP_MARKDOWN_EXTRAS = []
+FLUENT_MARKUP_LANGUAGES = ['restructuredtext', 'markdown', 'textile']
+FLUENT_MARKUP_MARKDOWN_EXTRAS = []
 
 FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
     BASE_DIR, '{{ project_name }}', 'layouts', 'templates')
