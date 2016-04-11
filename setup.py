@@ -48,6 +48,8 @@ setuptools.setup(
         'Django>=1.8,<1.9',  # LTS
         'docutils',
         'easy_thumbnails',
+        'elasticsearch<1.8.0',  # See: https://github.com/django-haystack/django-haystack/issues/1253
+        'elasticstack>=0.2.0',
         'gunicorn',
         'icekit-notifications',
         'ixc-redactor',
