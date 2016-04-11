@@ -373,25 +373,9 @@ FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
     # 'home': {
     #     'plugins': ('...', ),
     # },
-    'main': {
-        'plugins': (
-            # 'CodePlugin',
-            # 'CommentsAreaPlugin',
-            # 'DisqusCommentsPlugin',
-            # 'FormDesignerLinkPlugin',
-            # 'GistPlugin',
-            # 'GoogleDocsViewerPlugin',
-            'IframePlugin',
-            'MarkupPluginBase',
-            'OEmbedPlugin',
-            'PicturePlugin',
-            'RawHtmlPlugin',
-            'SharedContentPlugin',
-            'TextPlugin',
-            # 'TwitterRecentEntriesPlugin',
-            # 'TwitterSearchPlugin',
-        ),
-    },
+    # 'main': {
+    #     'plugins': ('...', ),
+    # },
     # 'sidebar': {
     #     'plugins': ('...', ),
     # },
