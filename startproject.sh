@@ -131,4 +131,3 @@ guide to finish setting up your new ICEkit project.
 [1]: https://github.com/ixc/django-icekit/docs/manual-setup-guide.md
 
 EOF
-fi
