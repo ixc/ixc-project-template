@@ -25,6 +25,5 @@ services:
       # PYTHONWARNINGS: default
       # SENTRY_DSN:
       # SITE_DOMAIN: {{ project_name }}.lvh.me  # For Linux
-      # WSGI_ADDRESS:
     volumes:
       - ~/.ssh:/opt/{{ project_name }}/var/.ssh
