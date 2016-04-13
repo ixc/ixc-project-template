@@ -3,7 +3,7 @@ FROM buildpack-deps:jessie
 ENV BASE_COMMIT=3b8d9c213e145df32d37818ea7f0cfa2995499a9
 RUN wget -nv -O - "https://raw.githubusercontent.com/ixc/base-docker/${BASE_COMMIT}/bootstrap.sh" | sh -s $BASE_COMMIT
 
-ENV DJANGO_COMMIT=0a8444d96d4e022d1a1b6847d9f96eba2a1f6842
+ENV DJANGO_COMMIT=4fe0dba3c7100ea9a1ac6f975350d2195023a55b
 RUN wget -nv -O - "https://raw.githubusercontent.com/ixc/django-docker/${DJANGO_COMMIT}/bootstrap.sh" | sh -s $DJANGO_COMMIT
 
 WORKDIR /opt/{{ project_name }}/
