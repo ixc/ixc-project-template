@@ -5,14 +5,11 @@ production environments.
 
 ## Docker Setup (OS X)
 
+Install [Docker Toolbox] from https://www.docker.com/products/docker-toolbox
+
 Install [Homebrew]:
 
     $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-Install [Docker Toolbox]:
-
-    $ brew tap caskroom/cask
-    $ brew cask install dockertoolbox
 
 Install [Dinghy]:
 
@@ -122,6 +119,6 @@ for true local overrides, like which DDT panels are enabled.
 
 [Dinghy]: https://github.com/codekitchen/dinghy
 [Docker Compose]: https://docs.docker.com/compose/
-[Docker Toolbox]: https://www.docker.com/toolbox
+[Docker Toolbox]: https://www.docker.com/products/docker-toolbox
 [Gulp]: https://github.com/gulpjs/gulp
 [Homebrew]: http://brew.sh/
