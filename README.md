@@ -16,8 +16,9 @@ Install dependencies and run the project:
     $ cd {{ project_name }}
     $ docker-compose up
 
-You can run `docker-compose up` each time you work on the project - it will
-only install changed dependencies.
+Make a cup of tea, as Docker will take a while to download and install the dependencies.
+You can run `docker-compose up` each time you work on the project - it will check for
+changed dependencies and only install those.
 
 That's it! Open the site in a browser:
 
