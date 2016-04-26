@@ -7,11 +7,11 @@ template. To follow the Quick start instructions, you will also need [Docker] (s
 
 ## Quick start
 
-1. Download this template and create a new project with:
+Download this template and create a new project with:
 
     $ curl -L http://bit.ly/django-icekit-template | bash -s {project_name} [template path or URL]
 
-2. Install dependencies and run the project:
+Install dependencies and run the project:
 
     $ cd {{ project_name }}
     $ docker-compose up
@@ -19,7 +19,7 @@ template. To follow the Quick start instructions, you will also need [Docker] (s
 You can run `docker-compose up` each time you work on the project - it will
 only install changed dependencies.
 
-3. That's it! Open the site in a browser:
+That's it! Open the site in a browser:
 
     $ open http://{{ project_name }}.docker:8000  # OS X
     $ open http://{{ project_name }}.lvh.me:8000  # Linux
