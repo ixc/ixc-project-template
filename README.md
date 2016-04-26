@@ -3,7 +3,7 @@
 This is a project template for the ICEkit CMS.
 
 You will need `git`, `python 2.7+` and `pip` to create a new project with this
-template. To follow the Quick start instructions, you will also need [Docker] (see [Docker instructions]).
+template. To follow the Quick start instructions, you will also need [Docker] -- see [Docker instructions].
 
 ## Quick start
 
