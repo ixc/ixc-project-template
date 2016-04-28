@@ -93,12 +93,15 @@ django-admin.py startproject \
 
 # Remove temporary virtualenv, if it exists.
 if [[ -d "/tmp/${PROJECT_NAME}-venv" ]]; then
-	echo 'Remove temporary virtualenv.'
+	echo 'Removing temporary virtualenv.'
 	deactivate
 	rm -rf "/tmp/${PROJECT_NAME}-venv"
 fi
 
 cd "${DEST_DIR}"
+
+echo "Removing vestigial 'startproject.sh' script."
+rm -f startproject.sh
 
 echo "Making 'bin/*.sh' and 'manage.py' scripts executable."
 chmod 755 bin/*.sh manage.py
