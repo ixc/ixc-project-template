@@ -5,20 +5,12 @@
 
 *.egg-info/
 *.py[co]
-/.coverage
 /.eggs/
 /.tox/
 /bower_components/
-/db.sqlite3
 /djangosite/settings/local.py
 /docker-compose.override.yml
-/htmlcov/
 /node_modules/
-/public/media/
-/public/static/
 /requirements-local.txt
-/secret.txt
-/supervisord.log
-/supervisord.pid
 /var/
 /venv/
