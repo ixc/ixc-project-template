@@ -5,24 +5,7 @@ services:
     # command: gulp.sh
     command: setup-local-env.sh migrate.sh supervisor.sh
     environment:
-      BASE_SETTINGS_MODULE: develop
-      # EMAIL_HOST:
-      # EMAIL_HOST_PASSWORD:
-      # EMAIL_HOST_USER:
-      # MASTER_PASSWORD:
-      # MEDIA_AWS_ACCESS_KEY_ID:
-      # MEDIA_AWS_SECRET_ACCESS_KEY:
-      # MEDIA_AWS_STORAGE_BUCKET_NAME:
-      # NEW_RELIC_CONFIG_FILE:
-      # PGDATABASE:
-      # PGHOST:
-      # PGPASSWORD:
-      # PGPORT:
-      # PGUSER:
-      PIP_INDEX_URL: https://devpi.ixcsandbox.com/ic/dev/+simple
       PYTHONWARNINGS: ignore
-      # SENTRY_DSN:
-      SITE_DOMAIN: {{ project_name }}.docker  # Use {{ project_name }}.lvh.me for Linux
     image: interaction/{{ project_name }}:latest
     links:
       - elasticsearch

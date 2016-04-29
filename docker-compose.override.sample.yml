@@ -7,13 +7,14 @@ services:
         AWS_SECRET_ACCESS_KEY: # 1Password, shared vault, Amazon, pip-accel
         PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
     environment:
+      AWS_SECRET_ACCESS_KEY: # 1Password, shared vault, Amazon, pip-accel
       # BASE_SETTINGS_MODULE:
       # EMAIL_HOST:
-      EMAIL_HOST_PASSWORD:
+      # EMAIL_HOST_PASSWORD:
       # EMAIL_HOST_USER:
       MASTER_PASSWORD:
       # MEDIA_AWS_ACCESS_KEY_ID:
-      MEDIA_AWS_SECRET_ACCESS_KEY:
+      # MEDIA_AWS_SECRET_ACCESS_KEY:
       # MEDIA_AWS_STORAGE_BUCKET_NAME:
       # NEW_RELIC_CONFIG_FILE:
       # PGDATABASE:
@@ -24,6 +25,6 @@ services:
       # PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
       # PYTHONWARNINGS: default
       # SENTRY_DSN:
-      # SITE_DOMAIN: {{ project_name }}.lvh.me  # For Linux
+      SITE_DOMAIN: {{ project_name }}.docker  # For OS X with Dinghy
     volumes:
       - ~/.ssh:/opt/{{ project_name }}/var/.ssh
