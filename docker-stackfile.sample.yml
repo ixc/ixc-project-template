@@ -59,6 +59,7 @@ elasticsearch:
 #   tags:
 #     - {environment}
 redis:
+  command: redis-server --appendonly yes
   image: redis:3
   restart: on-failure
   tags:
