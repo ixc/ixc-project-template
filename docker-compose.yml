@@ -2,8 +2,7 @@ version: "2"
 services:
   django:
     build: .
-    # command: gulp.sh
-    command: setup-local-env.sh migrate.sh supervisor.sh
+    command: gulp.sh
     environment:
       PYTHONWARNINGS: ignore
     image: interaction/{{ project_name }}:latest
