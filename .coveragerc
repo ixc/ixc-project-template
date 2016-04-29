@@ -4,6 +4,9 @@ data_file = var/.coverage
 omit = */migrations/__init__.py
 source = {{ project_name }}
 
+[html]
+directory = var/htmlcov
+
 [report]
 exclude_lines =
     def __repr__
@@ -11,6 +14,3 @@ exclude_lines =
     raise AssertionError
     raise NotImplementedError
 show_missing = True
-
-[html]
-directory = var/htmlcov
