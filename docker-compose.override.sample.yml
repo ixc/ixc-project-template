@@ -5,7 +5,7 @@ services:
     build:
       args:
         AWS_SECRET_ACCESS_KEY: # 1Password, shared vault, Amazon, pip-accel
-        PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
+        # PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
     environment:
       AWS_SECRET_ACCESS_KEY: # 1Password, shared vault, Amazon, pip-accel
       # BASE_SETTINGS_MODULE:
