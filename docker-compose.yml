@@ -12,7 +12,7 @@ services:
       - redis
     ports:
       - "8000:8000"
-    # tty: true
+    # tty: true  # Enable colour output in logs. Disconnects after 60 second timeout. See: https://github.com/docker/compose/issues/3106
     volumes:
       - ./:/opt/{{ project_name }}
       - ./var:/opt/{{ project_name }}/var
