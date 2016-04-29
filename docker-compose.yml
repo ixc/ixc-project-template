@@ -4,6 +4,7 @@ services:
     build: .
     command: gulp.sh
     environment:
+      MASTER_PASSWORD: abc123
       PYTHONWARNINGS: ignore
     image: interaction/{{ project_name }}:latest
     links:
