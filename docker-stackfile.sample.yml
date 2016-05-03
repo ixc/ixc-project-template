@@ -21,6 +21,7 @@ django:
     # PGUSER:
     # PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
     PYTHONWARNINGS: ignore
+    SECRET_KEY:
     SENTRY_DSN:
     # SITE_DOMAIN:
     VIRTUAL_HOST: {{ project_name }}.{environment}.ixcsandbox.com
