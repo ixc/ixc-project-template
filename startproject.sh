@@ -85,7 +85,7 @@ fi
 # Create project from template.
 echo "Creating project from template '${TEMPLATE}'."
 django-admin.py startproject \
-	-e json,ini,md,yml \
+	-e json,ini,md,sh,yml \
 	-n .coveragerc,base.html,Dockerfile \
 	--template="${TEMPLATE}" \
 	"${PACKAGE_NAME}" \
