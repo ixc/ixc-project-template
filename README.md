@@ -7,7 +7,7 @@ template, and Docker to follow the quick start instructions.
 
 ## Quick start
 
-Follow our [Docker Quick Start][docker-quick-start] guide to get Docker
+First, follow our [Docker Quick Start][docker-quick-start] guide to get Docker
 installed and familiarise yourself with some of its basic commands.
 
 Create a new project from this template with:
