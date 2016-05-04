@@ -5,7 +5,7 @@ This is a project template for the ICEkit CMS.
 You will need `bash`, `curl`, and Python 2.7+ to create a new project with this
 template, and Docker to follow the quick start instructions.
 
-## Quick start
+## Quick Start
 
 First, follow our [Docker Quick Start][docker-quick-start] guide to get Docker
 installed and familiarise yourself with some of its basic commands.
