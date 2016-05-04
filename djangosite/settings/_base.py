@@ -486,6 +486,16 @@ FEATURED_APPS = (
     },
 )
 
+ICEKIT = {
+    'LAYOUT_TEMPLATES': (
+        (
+            SITE_NAME,
+            os.path.join(BASE_DIR, '{{ project_name }}/layouts/templates'),
+            'layouts',
+        ),
+    ),
+}
+
 # Must come before `django.contrib.admin` and `flat`.
 INSTALLED_APPS = ('icekit.dashboard', ) + INSTALLED_APPS
 
