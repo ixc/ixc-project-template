@@ -35,22 +35,34 @@ That's it! Open the site in a browser:
 The default entrypoint scripts take care of a few things for us:
 
   * Create and switch to an unprivileged user.
+
   * Ensure the unprivileged user and variable files directory have the same UID
-    and GID.
+    and GID, to avoid permissions problems when bind mounting the source into
+    the container.
+
   * Derive the database name from the current git branch, when bind mounting
     the source into the container.
+
   * Wait up to 10 seconds for PostgreSQL to become available.
+
   * Create a database, and optionally restore from a file or source database.
-  * Apply Django migrations, if they have changed.
+
+  * Perform some local setup to ensure the environment inside the container
+    matches the source.
+
+  * Apply Django migrations, if required.
+
+  * Run `manage.py supervisor`.
 
 In particular, the automated database creation, restore, and migrations make it
-much easier to switch between and test feature branches during development,
-without losing your current data.
+easy to switch between and test feature branches during development, without
+losing your current data.
 
 ## Gulp
 
-The `docker-compose.yml` file uses [Gulp][gulp] as the default command, which
-watches the file system and automates a few tasks when changes are detected:
+The `docker-compose.yml` file uses [Gulp][gulp] as the default command during
+local development, which watches the file system and automates a few tasks when
+changes are detected:
 
   * Restart the main command when `*.py` files are changed.
   * Reinstall Node.js packages when `package.json` is changed.
@@ -67,6 +79,9 @@ container:
 
   * `./var` at `/opt/{{ project_name }}/var` - For variable data like logs,
     media, etc.
+
+The `docker-compose.override.sample.yml` file also bind mounts your `~/.ssh`
+directory, so you can access private git repositories inside the container.
 
 ## Local Settings
 
