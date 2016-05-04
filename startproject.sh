@@ -103,6 +103,9 @@ cd "${DEST_DIR}"
 echo "Removing vestigial 'startproject.sh' script."
 rm -f startproject.sh
 
+echo "Removing project template docs from 'README.md' file."
+echo 'Docs can be found in the [docs](docs/index.md) folder.' > README.md
+
 echo "Making 'bin/*.sh' and 'manage.py' scripts executable."
 chmod 755 bin/*.sh manage.py
 
