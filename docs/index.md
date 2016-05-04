@@ -114,7 +114,7 @@ Create a database and apply migrations:
     (venv)$ createdb {{ project_name }}
     (venv)$ ./manage.py migrate
 
-# Usage
+# Supervisor
 
 Use [django-supervisor][django-supervisor] to run the project (e.g. `wsgi` and
 other processes):
