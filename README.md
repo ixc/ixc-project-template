@@ -2,32 +2,34 @@
 
 This is a project template for the ICEkit CMS.
 
-You will need `git`, `python 2.7+` and `pip` to create a new project with this
-template. To follow the Quick start instructions, you will also need [Docker] -- see [Docker instructions].
+You will need `bash`, `curl`, and Python 2.7+ to create a new project with this
+template, and Docker to follow the quick start instructions.
 
 ## Quick start
 
-Download this template and create a new project with:
+Follow our [Docker Quick Start][docker-quick-start] guide to get Docker
+installed and familiarise yourself with some of its basic commands.
 
-    $ curl -L http://bit.ly/django-icekit-template | bash -s {project_name} [template path or URL]
+Create a new project from this template with:
 
-Install dependencies and run the project:
+    $ bash <(curl -L http://bit.ly/django-icekit-template) <project_name> [destination_dir]
 
-    $ cd {{ project_name }}
+Run the project:
+
+    $ cd <project_name>
     $ docker-compose up
 
-Make a cup of tea, as Docker will take a while to download and install the dependencies.
-You can run `docker-compose up` each time you work on the project - it will check for
-changed dependencies and only install those.
+Some local setup will be performed on first run, which might take a while, so
+make yourself a cup of tea. Subsequent runs will skip the local setup unless
+the project dependencies have been updated.
 
 That's it! Open the site in a browser:
 
-    $ open http://{{ project_name }}.docker:8000  # OS X
-    $ open http://{{ project_name }}.lvh.me:8000  # Linux
+    http://<project_name>.docker:8000  # OS X with Dinghy
+    http://<project_name>.lvh.me:8000  # Linux
 
-## Documenation
+## Documentation
 
 Docs can be found in the [docs](docs/index.md) folder.
 
-[Docker]: https://www.docker.com
-[Docker instructions]: docker.md
+[docker-quick-start]: https://github.com/ixc/django-icekit/blob/feature/demo/docs/docker-quick-start.md
