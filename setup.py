@@ -27,7 +27,7 @@ setuptools.setup(
         'django-extensions',
         'django-flat-theme<1.1.3',  # See: https://github.com/elky/django-flat-theme/issues/30
         'django-fluent-contents[markup,oembeditem,text]<1.1',  # See: https://github.com/edoburu/django-fluent-contents/issues/67
-        'django-fluent-pages[flatpage,fluentpage,redirectnode,reversion]',
+        'django-fluent-pages[redirectnode,reversion]',  # flatpage,fluentpage
         # 'django-guardian',
         # 'django-generic',
         # 'django-glamkit',

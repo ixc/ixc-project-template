@@ -405,8 +405,8 @@ INSTALLED_APPS += (
     'polymorphic_tree',
 
     # Page types.
-    'fluent_pages.pagetypes.flatpage',
-    'fluent_pages.pagetypes.fluentpage',
+    # 'fluent_pages.pagetypes.flatpage',
+    # 'fluent_pages.pagetypes.fluentpage',
     'fluent_pages.pagetypes.redirectnode',
 
     # Content plugins.
