@@ -26,6 +26,6 @@ the project dependencies have been updated.
 That's it! Open the site in a browser:
 
     http://<project_name>.docker:8000  # OS X with Dinghy
-    http://<project_name>.lvh.me:8000  # Linux
+    http://<project_name>.lvh.me:8000  # Linux or Docker for Mac/Win
 
 [docker-quick-start]: https://github.com/ixc/django-icekit/blob/feature/demo/docs/docker-quick-start.md
