@@ -107,7 +107,32 @@ echo "Removing vestigial 'startproject.sh' script."
 rm -f startproject.sh
 
 echo "Removing project template docs from 'README.md' file."
-echo 'Docs can be found in the [docs](docs/index.md) folder.' > README.md
+cat <<EOF > README.md
+# Readme
+
+Docs can be found in the [docs][0] folder.
+
+# Quick Start
+
+Install Docker. For more detail, check our [Docker Quick Start][1] guide.
+
+Clone the repository:
+
+    $ git clone git@github.com:ixc/${PROJECT_NAME}.git
+
+Run the project:
+
+    $ cd ${PROJECT_NAME}
+    $ docker-compose up
+
+Open the site in a browser:
+
+    http://${PROJECT_NAME}.docker:8000  # OS X with Dinghy
+    http://${PROJECT_NAME}.lvh.me:8000  # Linux or Docker for Mac/Win
+
+[0]: docs/index.md
+[1]: https://github.com/ixc/django-icekit/docs/docker-quick-start.md
+EOF
 
 echo "Making 'bin/*.sh' and 'manage.py' scripts executable."
 chmod 755 bin/*.sh manage.py
