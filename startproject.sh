@@ -33,6 +33,9 @@ with Python package name '${PACKAGE_NAME}'.
 It might need to install 'pip' and 'virtualenv' into your global environment,
 and will prompt for confirmation if it does.
 
+Other requirements (Django) will be installed into a temporary virtualenv to
+avoid conflicts with your global environment, and will be removed when done.
+
 EOF
 
 read -p 'Press CTRL-C to abort or any other key to continue...'
