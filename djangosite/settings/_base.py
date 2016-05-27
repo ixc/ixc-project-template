@@ -78,7 +78,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-STATIC_ROOT = os.path.join(VAR_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(VAR_DIR, 'media')
@@ -158,6 +158,9 @@ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 # if '.' in SITE_DOMAIN:
 #     CSRF_COOKIE_DOMAIN = LANGUAGE_COOKIE_DOMAIN = SESSION_COOKIE_DOMAIN = \
 #         '.%s' % SITE_DOMAIN
+
+# Save media with hashed filenames, so they can be cached forever by a CDN.
+DEFAULT_FILE_STORAGE = 'djangosite.whitenoise.HashedMediaStorage'
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
@@ -328,8 +331,11 @@ INSTALLED_APPS += ("djcelery_email",)
 
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',  # Default
-    # 'compressor.filters.cssmin.CSSMinFilter',
+    'compressor.filters.cssmin.rCSSMinFilter',
 )
+
+COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE_CONTEXT = 'djangosite.compressor.get_compress_offline_context'
 
 _NODE_MODULES_BIN = os.environ.get(
     'NODE_MODULES_BIN', os.path.join(BASE_DIR, 'node_modules', '.bin'))
@@ -659,11 +665,12 @@ _index = MIDDLEWARE_CLASSES.index(
     'django.middleware.security.SecurityMiddleware') + 1
 MIDDLEWARE_CLASSES = (
     MIDDLEWARE_CLASSES[:_index] +
-    ('djangosite.middleware.WhiteNoiseMediaMiddleware', ) +
+    ('djangosite.whitenoise.WhiteNoiseMediaMiddleware', ) +
     MIDDLEWARE_CLASSES[_index:]
 )
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = \
+    'djangosite.whitenoise.CustomCompressedManifestStaticFilesStorage'
 
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True

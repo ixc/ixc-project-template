@@ -11,5 +11,6 @@ djangosite/settings/local.py
 docker-compose.override.yml
 node_modules/
 requirements-local.txt
+static/
 var/
 venv/

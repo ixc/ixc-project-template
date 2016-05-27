@@ -17,17 +17,18 @@ locals().update(
     .__dict__)
 
 # Create runtime variable directories.
-var_dirs = (
+var_dirs = STATICFILES_DIRS + (
     os.path.dirname(LOGGING['handlers']['logfile']['filename']),
     os.path.dirname(SUPERVISOR['logfile']),
     os.path.dirname(SUPERVISOR['pidfile']),
     SUPERVISOR['childlogdir'],
 )
 for dirname in var_dirs:
-    try:
-        os.makedirs(dirname)
-    except OSError:
-        pass
+    if dirname.startswith(VAR_DIR):
+        try:
+            os.makedirs(dirname)
+        except OSError:
+            pass
 
 # DJANGO ######################################################################
 
@@ -67,6 +68,16 @@ TEMPLATES = [TEMPLATES_DJANGO, TEMPLATES_JINJA2]
 VENV_BIN = os.path.join(sys.prefix, 'bin')
 if VENV_BIN not in os.environ['PATH'].split(':'):
     os.environ['PATH'] = '%s:%s' % (VENV_BIN, os.environ['PATH'])
+
+# COMPRESSOR ##################################################################
+
+# Trick `compress` management command into combining files, regardless of
+# `DEBUG` and `COMPRESS_ENABLED` settings.
+#
+# See: https://github.com/django-compressor/django-compressor/issues/258
+
+if 'compress' in sys.argv:
+    COMPRESS_ENABLED = True
 
 # MASTER PASSWORDS ############################################################
 

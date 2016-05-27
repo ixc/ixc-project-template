@@ -12,5 +12,6 @@
 /docker-compose.override.yml
 /node_modules/
 /requirements-local.txt
+/static/
 /var/
 /venv/

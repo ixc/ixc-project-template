@@ -34,3 +34,6 @@ ENTRYPOINT ["tini", "--", "entrypoint.sh"]
 CMD ["migrate.sh", "supervisor.sh"]
 
 COPY . /opt/{{ project_name }}/
+
+RUN ./manage.py collectstatic --noinput
+RUN ./manage.py compress
