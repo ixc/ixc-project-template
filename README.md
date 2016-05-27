@@ -1,58 +1,31 @@
-# Project Template
+# ICEkit Project Template
 
-This is a bare-bones skeleton project template, for use with the
-`django-admin.py startproject` command.
+This is a project template for the ICEkit CMS.
 
-You will need `git`, `python 2.7+` and `pip` to create a new project with this
-template.
+You will need `bash`, `curl`, and Python 2.7+ to create a new project with this
+template, and Docker to follow the quick start instructions.
 
-Create a new project from the template with:
+## Quick Start
 
-    $ curl -L http://bit.ly/ixc-project-template | bash -s <project-name> [template path or URL]
+First, follow our [Docker Quick Start][docker-quick-start] guide to get Docker
+installed and familiarise yourself with some of its basic commands.
 
-This will:
+Create a new project from this template with:
 
-  * Install Django, if necessary.
-
-  * Create a directory matching the given project name in the current working
-    directory.
-
-  * Replaces non-word characters in the project name with an underscore, to get
-    a valid Python module name for the project.
-
-  * Call `django-admin.py startproject`, with the derived module name and given
-    template path or URL. If none is given, it defaults to
-    https://github.com/ixc/ixc-project-template/archive/master.zip
-
-  * Make `manage.py` executable, for convenience.
-
-  * Initialize a git repository and add all files in an initial commit.
-
-  * Add an `origin` remote at `git@github.com:ixc/{project-name}.git`
-
-Then you will need to follow a few some manual steps that are printed by the
-`startproject.sh` script.
-
-# Readme
-
-Docs can be found in the [docs](docs/index.md) folder.
-
-# Quick Start
-
-Install Docker. For more detail, check our [Docker docs].
-
-Clone the repository:
-
-    $ git clone git@github.com:ixc/{{ project_name }}.git
+    $ bash <(curl -L http://bit.ly/django-icekit-template) <project_name> [destination_dir]
 
 Run the project:
 
-    $ cd {{ project_name }}
+    $ cd <project_name>
     $ docker-compose up
 
-Open the site in a browser:
+Some local setup will be performed on first run, which might take a while, so
+make yourself a cup of tea. Subsequent runs will skip the local setup unless
+the project dependencies have been updated.
 
-    $ open http://{{ project_name }}.docker:8000  # OS X
-    $ open http://{{ project_name }}.lvh.me:8000  # Linux
+That's it! Open the site in a browser:
 
-[Docker docs]: docker.md
+    http://<project_name>.docker:8000  # OS X with Dinghy
+    http://<project_name>.lvh.me:8000  # Linux
+
+[docker-quick-start]: https://github.com/ixc/django-icekit/blob/feature/demo/docs/docker-quick-start.md

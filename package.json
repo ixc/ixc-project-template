@@ -2,6 +2,9 @@
   "private": true,
   "dependencies": {
     "bower": "^1.5.2",
+    "gulp": "3.9.1",
+    "less": "^2.5.1",
+    "less-plugin-autoprefix": "^1.4.2",
     "node-sass": "^3.4.2"
   }
 }

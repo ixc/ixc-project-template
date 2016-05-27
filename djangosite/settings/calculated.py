@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 # Get the secret key from a file that should never be committed to version
 # control. If it doesn't exist, create it.
 try:
-    SECRET_KEY = open(SECRET_FILE).read().strip()
+    SECRET_KEY = os.environ.get('SECRET_KEY') or \
+        open(SECRET_FILE).read().strip()
 except IOError:
     try:
         import random

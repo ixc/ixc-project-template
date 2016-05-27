@@ -4,11 +4,12 @@ django:
   # autoredeploy: true
   deployment_strategy: high_availability
   environment:
-    BASE_SETTINGS_MODULE: develop
+    # AWS_SECRET_ACCESS_KEY: # 1Password, shared vault, Amazon, pip-accel
+    BASE_SETTINGS_MODULE: {environment}
     # EMAIL_HOST:
     EMAIL_HOST_PASSWORD:
     # EMAIL_HOST_USER:
-    MASTER_PASSWORD:
+    # MASTER_PASSWORD:
     # MEDIA_AWS_ACCESS_KEY_ID:
     MEDIA_AWS_SECRET_ACCESS_KEY:
     # MEDIA_AWS_STORAGE_BUCKET_NAME:
@@ -18,47 +19,58 @@ django:
     PGPASSWORD:
     # PGPORT:
     # PGUSER:
+    # PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
+    PYTHONWARNINGS: ignore
+    SECRET_KEY:
     SENTRY_DSN:
     # SITE_DOMAIN:
-    SRC_PGDATABASE:
+    # SRC_PGDATABASE:
     # SRC_PGHOST:
     # SRC_PGPASSWORD:
     # SRC_PGPORT:
     # SRC_PGUSER:
-    # WSGI_ADDRESS:
+    # VIRTUAL_HOST: {{ project_name }}.{environment}.ixcsandbox.com
   expose:
     - "8000"
-  image: interaction/{{ project_name }}:latest
+  image: interaction/{{ project_name }}:{environment}
   links:
-    # - elasticsearch
-    - postgres
+    - elasticsearch
+    # - postgres
     - redis
   restart: on-failure
   sequential_deployment: true  # Avoid parallel execution of `migrate` command
+  tags:
+    - {environment}
   volumes:
     - /opt/{{ project_name }}/var
-# elasticsearch:
-#   image: interaction/elasticsearch-icu:1
+elasticsearch:
+  image: interaction/elasticsearch-icu:1
+  restart: on-failure
+  tags:
+    - {environment}
+# haproxy:
+#   environment:
+#     HTTP_BASIC_AUTH: {USERNAME}:{PASSWORD}
+#   image: dockercloud/haproxy:1.2.1
+#   links:
+#     - django
+#   ports:
+#     - "80:80"
 #   restart: on-failure
-haproxy:
-  # environment:
-  #   HTTP_BASIC_AUTH: USERNAME:PASSWORD
-  image: dockercloud/haproxy:1.2.1
-  links:
-    - django
-  ports:
-    - "80"
-  roles:
-    - global
-  restart: on-failure
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock  # Linux
-    # - $DOCKER_CERT_PATH:$DOCKER_CERT_PATH  # OS X
-postgres:
-  environment:
-    POSTGRES_PASSWORD:
-  image: postgres:9.4
-  restart: on-failure
+#   roles:
+#     - global
+#   tags:
+#     - {environment}
+# postgres:
+#   environment:
+#     POSTGRES_PASSWORD:
+#   image: postgres:9.4
+#   restart: on-failure
+#   tags:
+#     - {environment}
 redis:
-  image: redis:3
+  command: redis-server --appendonly yes
+  image: redis:3-alpine
   restart: on-failure
+  tags:
+    - {environment}

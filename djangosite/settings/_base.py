@@ -78,7 +78,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(VAR_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(VAR_DIR, 'media')
@@ -155,9 +155,9 @@ AUTHENTICATION_BACKENDS = (
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 # Enable cross-subdomain cookies, only if `SITE_DOMAIN` is not a TLD.
-if '.' in SITE_DOMAIN:
-    CSRF_COOKIE_DOMAIN = LANGUAGE_COOKIE_DOMAIN = SESSION_COOKIE_DOMAIN = \
-        '.%s' % SITE_DOMAIN
+# if '.' in SITE_DOMAIN:
+#     CSRF_COOKIE_DOMAIN = LANGUAGE_COOKIE_DOMAIN = SESSION_COOKIE_DOMAIN = \
+#         '.%s' % SITE_DOMAIN
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
@@ -181,7 +181,9 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
 
     # 3rd party.
+    'bootstrap3',
     'django_extensions',
+    'forms_builder.forms',
     'ixc_redactor',
     'reversion',
 
@@ -229,6 +231,7 @@ SILENCED_SYSTEM_CHECKS = (
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'djangosite', 'static'),
+    os.path.join(VAR_DIR, 'bower_components'),
     os.path.join(BASE_DIR, 'bower_components'),
 )
 
@@ -328,16 +331,19 @@ COMPRESS_CSS_FILTERS = (
     # 'compressor.filters.cssmin.CSSMinFilter',
 )
 
+_NODE_MODULES_BIN = os.environ.get(
+    'NODE_MODULES_BIN', os.path.join(BASE_DIR, 'node_modules', '.bin'))
+
 COMPRESS_PRECOMPILERS = (
     (
         'text/less',
-        '{} {{infile}} {{outfile}} --autoprefix'.format(
-            os.path.join(BASE_DIR, 'node_modules', '.bin', 'lessc')),
+        '%s {infile} {outfile} --autoprefix' % os.path.join(
+            _NODE_MODULES_BIN, 'lessc'),
     ),
     (
         'text/x-scss',
-        '{} {{infile}} {{outfile}} --autoprefix'.format(
-            os.path.join(BASE_DIR, 'node_modules', '.bin', 'node-sass')),
+        '%s {infile} {outfile} --autoprefix' % os.path.join(
+            _NODE_MODULES_BIN, 'node-sass'),
     ),
 )
 
@@ -354,12 +360,12 @@ INSTALLED_APPS += ('easy_thumbnails', )
 THUMBNAIL_BASEDIR = 'thumbs'
 THUMBNAIL_HIGH_RESOLUTION = True
 
-# FLUENT ######################################################################
+# FLAT THEME ##################################################################
 
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = \
-    'fluent_dashboard.dashboard.FluentAppIndexDashboard'
-ADMIN_TOOLS_INDEX_DASHBOARD = 'fluent_dashboard.dashboard.FluentIndexDashboard'
-ADMIN_TOOLS_MENU = 'fluent_dashboard.menu.FluentMenu'
+# Must come before `django.contrib.admin`.
+INSTALLED_APPS = ('flat', ) + INSTALLED_APPS
+
+# FLUENT ######################################################################
 
 DJANGO_WYSIWYG_FLAVOR = 'redactor'
 DJANGO_WYSIWYG_MEDIA_URL = posixpath.join(STATIC_URL, 'redactor/')
@@ -368,25 +374,9 @@ FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
     # 'home': {
     #     'plugins': ('...', ),
     # },
-    'main': {
-        'plugins': (
-            # 'CodePlugin',
-            # 'CommentsAreaPlugin',
-            # 'DisqusCommentsPlugin',
-            # 'FormDesignerLinkPlugin',
-            # 'GistPlugin',
-            # 'GoogleDocsViewerPlugin',
-            'IframePlugin',
-            'MarkupPluginBase',
-            'OEmbedPlugin',
-            'PicturePlugin',
-            'RawHtmlPlugin',
-            'SharedContentPlugin',
-            'TextPlugin',
-            # 'TwitterRecentEntriesPlugin',
-            # 'TwitterSearchPlugin',
-        ),
-    },
+    # 'main': {
+    #     'plugins': ('...', ),
+    # },
     # 'sidebar': {
     #     'plugins': ('...', ),
     # },
@@ -394,8 +384,8 @@ FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
 
 FLUENT_DASHBOARD_DEFAULT_MODULE = 'ModelList'
 
-# FLUENT_MARKUP_LANGUAGES = ['restructuredtext', 'markdown', 'textile']
-# FLUENT_MARKUP_MARKDOWN_EXTRAS = []
+FLUENT_MARKUP_LANGUAGES = ['restructuredtext', 'markdown', 'textile']
+FLUENT_MARKUP_MARKDOWN_EXTRAS = []
 
 FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
     BASE_DIR, '{{ project_name }}', 'layouts', 'templates')
@@ -403,30 +393,20 @@ FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
 # FLUENT_TEXT_CLEAN_HTML = True  # Default: False
 # FLUENT_TEXT_SANITIZE_HTML = True  # Default: False
 
-# Must come after `admin_tools` apps.
-INSTALLED_APPS = tuple(
-    app for app in INSTALLED_APPS if app != 'django.contrib.admin')
-
 INSTALLED_APPS += (
     # Fluent.
     'fluent_contents',
-    'fluent_dashboard',
     'fluent_pages',
 
     # Dependencies.
-    'admin_tools',
-    'admin_tools.dashboard',
-    'admin_tools.menu',
-    'admin_tools.theming',
-    'django.contrib.admin',
     'mptt',
     'parler',
     'polymorphic',
     'polymorphic_tree',
 
     # Page types.
-    'fluent_pages.pagetypes.flatpage',
-    'fluent_pages.pagetypes.fluentpage',
+    # 'fluent_pages.pagetypes.flatpage',
+    # 'fluent_pages.pagetypes.fluentpage',
     'fluent_pages.pagetypes.redirectnode',
 
     # Content plugins.
@@ -454,9 +434,6 @@ INSTALLED_APPS += (
     'micawber',
 )
 
-TEMPLATES_DJANGO['OPTIONS']['loaders'] += [
-    'admin_tools.template_loaders.Loader']
-
 # GENERIC #####################################################################
 
 # INSTALLED_APPS += ('generic', )
@@ -473,6 +450,19 @@ TEMPLATES_DJANGO['OPTIONS']['loaders'] += [
 # INSTALLED_APPS += ('guardian', )
 # AUTHENTICATION_BACKENDS += ('guardian.backends.ObjectPermissionBackend', )
 
+# HAYSTACK ####################################################################
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'elasticstack.backends.ConfigurableElasticSearchEngine',
+        'INDEX_NAME': 'haystack-%s' % SETTINGS_MODULE_HASH,
+        'URL': "http://elasticsearch:9200/",
+    },
+}
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.BaseSignalProcessor'
+# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
 # HOSTS #######################################################################
 
 # INSTALLED_APPS += ('django_hosts', )
@@ -483,20 +473,60 @@ TEMPLATES_DJANGO['OPTIONS']['loaders'] += [
 
 # ICEKIT ######################################################################
 
-# INSTALLED_APPS += (
-#     'icekit',
-#     'icekit.plugins.brightcove',
-#     'icekit.plugins.child_pages',
-#     'icekit.plugins.faq',
-#     'icekit.plugins.horizontal_rule',
-#     'icekit.plugins.image',
-#     'icekit.plugins.instagram_embed',
-#     'icekit.plugins.reusable_form',
-#     'icekit.plugins.slideshow',
-#     'icekit.plugins.twitter_embed',
-#     'icekit.response_pages',
-#     'notifications',
-# )
+FEATURED_APPS = (
+    {
+        'verbose_name': 'Pages',
+        'icon_html': '<i class="content-type-icon fa fa-files-o"></i>',
+        'models': {
+            'fluent_pages.Page': {
+                'verbose_name': 'Page',
+                # 'default_poly_child': 'layout_page.LayoutPage',
+            },
+        },
+    },
+)
+
+ICEKIT = {
+    'LAYOUT_TEMPLATES': (
+        (
+            SITE_NAME,
+            os.path.join(BASE_DIR, '{{ project_name }}/layouts/templates'),
+            'layouts',
+        ),
+    ),
+}
+
+# Must come before `django.contrib.admin` and `flat`.
+INSTALLED_APPS = ('icekit.dashboard', ) + INSTALLED_APPS
+
+INSTALLED_APPS += (
+    'icekit',
+    'icekit.blog_tools',
+    'icekit.response_pages',
+    'notifications',
+
+    'icekit.page_types.layout_page',
+    'icekit.page_types.search_page',
+
+    'icekit.plugins.blog_post',
+    # 'icekit.plugins.brightcove',
+    'icekit.plugins.child_pages',
+    'icekit.plugins.faq',
+    'icekit.plugins.file',
+    'icekit.plugins.horizontal_rule',
+    'icekit.plugins.image',
+    'icekit.plugins.instagram_embed',
+    'icekit.plugins.map',
+    'icekit.plugins.map_with_text',
+    'icekit.plugins.oembed_with_caption',
+    'icekit.plugins.page_anchor',
+    'icekit.plugins.page_anchor_list',
+    'icekit.plugins.quote',
+    'icekit.plugins.reusable_form',
+    'icekit.plugins.reusable_quote',
+    'icekit.plugins.slideshow',
+    'icekit.plugins.twitter_embed',
+)
 
 # MASTER PASSWORD #############################################################
 
@@ -589,7 +619,7 @@ INSTALLED_APPS += ('storages', )
 
 INSTALLED_APPS += ('djsupervisor', )
 
-WSGI_ADDRESS = os.environ.get('WSGI_ADDRESS', '127.0.0.1')
+WSGI_ADDRESS = '0.0.0.0'
 WSGI_WORKERS = multiprocessing.cpu_count() * 2 + 1
 WSGI_TIMEOUT = 30
 

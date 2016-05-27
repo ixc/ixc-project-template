@@ -1,6 +1,6 @@
 import os
 
-os.environ.setdefault('SITE_DOMAIN', '{{ project_name }}.prd.ixcsandbox.com')
+os.environ.setdefault('SITE_DOMAIN', '{{ project_name }}.stg.ixcsandbox.com')
 
 from ._base import *
 
@@ -8,10 +8,10 @@ SITE_PUBLIC_PORT = None  # Default: SITE_PORT
 
 # DJANGO ######################################################################
 
-ALLOWED_HOSTS = (
-    '.%s' % SITE_DOMAIN,
-    '.%s.' % SITE_DOMAIN,
-)
+# ALLOWED_HOSTS = (
+#     '.%s' % SITE_DOMAIN,
+#     '.%s.' % SITE_DOMAIN,
+# )
 
 CACHES['default'].update({
     'BACKEND': 'django_redis.cache.RedisCache',
@@ -47,5 +47,5 @@ SUPERVISOR['wsgi'] = 'newrelic-admin run-program %s' % SUPERVISOR['wsgi']
 # STORAGES ####################################################################
 
 AWS_ACCESS_KEY_ID = ''
-AWS_STORAGE_BUCKET_NAME = '{{ project_name }}'
+AWS_STORAGE_BUCKET_NAME = '{{ project_name }}-stg'
 ENABLE_S3_MEDIA = True

@@ -32,16 +32,12 @@ urlpatterns = patterns(
 
     # URLs for `admin/*` must come before `admin/`.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/util/tools/', include('admin_tools.urls')),
 
     # URLs for installed apps.
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^forms/', include('forms_builder.forms.urls')),
 )
-
-# Static and media files.
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Catch all, project URLs.
 urlpatterns += patterns(

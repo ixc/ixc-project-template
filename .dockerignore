@@ -1,12 +1,7 @@
 *.egg-info/
 *.orig
-*.pid
 *.pyc
 *.pyo
-*.sql
-*.sqlite3
-*.sqlite3-journal
-.coverage
 .DS_Store
 .eggs/
 .git/
@@ -14,7 +9,7 @@
 bower_components/
 djangosite/settings/local.py
 docker-compose.override.yml
-htmlcov/
 node_modules/
+requirements-local.txt
 var/
 venv/
