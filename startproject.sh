@@ -130,8 +130,8 @@ All done!
 If you have Docker installed, you can run your new ICEkit project immediately
 with:
 
-	$ cd ${DEST_DIR}
-	$ docker-compose up
+    $ cd ${DEST_DIR}
+    $ docker-compose up
 
 Otherwise, check out our [Docker Quick Start][0] guide or [Manual Setup][1]
 guide to finish setting up your new ICEkit project.
