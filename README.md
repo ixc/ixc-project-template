@@ -12,7 +12,7 @@ installed and familiarise yourself with some of its basic commands.
 
 Create a new project from this template with:
 
-    $ bash <(curl -L http://bit.ly/ixc-project-template) <project_name> [destination_dir]
+    $ bash <(curl -L https://raw.githubusercontent.com/ixc/ixc-project-template/master/startproject.sh) <project_name> [destination_dir]
 
 Run the project:
 
