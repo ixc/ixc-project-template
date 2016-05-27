@@ -10,8 +10,8 @@ PACKAGE_NAME="${1//[^0-9A-Za-z]/_}"
 # Use project name as default destination directory.
 DEST_DIR="${2:-${PROJECT_NAME}}"
 
-# Hard code template URL.
-TEMPLATE="https://github.com/ixc/ixc-project-template/archive/django-icekit.zip"
+# Allow template URL to be overridden for local testing.
+TEMPLATE="${TEMPLATE:-https://github.com/ixc/ixc-project-template/archive/master.zip}"
 
 # Abort if Python is not available.
 if [[ -z $(which python) ]]; then
