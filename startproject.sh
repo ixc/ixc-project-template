@@ -28,7 +28,7 @@ fi
 cat <<EOF
 
 This script will create a new ICEkit project in directory '${DEST_DIR}' and
-with Python package name '${PACKAGE_NAME}'."
+with Python package name '${PACKAGE_NAME}'.
 
 It might need to install 'pip' and 'virtualenv' into your global environment,
 and will prompt for confirmation if it does.
