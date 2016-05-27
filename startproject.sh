@@ -158,6 +158,15 @@ with:
     $ cd ${DEST_DIR}
     $ docker-compose up
 
+Some local setup will be performed on first run, which might take a while, so
+make yourself a cup of tea. Subsequent runs will skip the local setup unless
+the project dependencies have been updated.
+
+That's it! Open the site in a browser:
+
+    http://${PROJECT_NAME}.docker:8000  # OS X with Dinghy
+    http://${PROJECT_NAME}.lvh.me:8000  # Linux or Docker for Mac/Win
+
 Otherwise, check out our [Docker Quick Start][0] guide or [Manual Setup][1]
 guide to finish setting up your new ICEkit project.
 
