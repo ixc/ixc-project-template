@@ -53,6 +53,8 @@ setuptools.setup(
         'elasticstack>=0.2.0',
         'gunicorn',
         'icekit-notifications',
+        'ixc-django-compressor',
+        'ixc-whitenoise',
         'ixc-redactor',
         'Jinja2',
         'newrelic',

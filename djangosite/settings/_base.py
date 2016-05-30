@@ -159,9 +159,6 @@ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 #     CSRF_COOKIE_DOMAIN = LANGUAGE_COOKIE_DOMAIN = SESSION_COOKIE_DOMAIN = \
 #         '.%s' % SITE_DOMAIN
 
-# Save media with hashed filenames, so they can be cached forever by a CDN.
-DEFAULT_FILE_STORAGE = 'djangosite.whitenoise.HashedMediaStorage'
-
 DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'noreply@%s' % SITE_DOMAIN
 
 EMAIL_SUBJECT_PREFIX = '[%s] ' % SITE_NAME
@@ -335,7 +332,7 @@ COMPRESS_CSS_FILTERS = (
 )
 
 COMPRESS_OFFLINE = True
-COMPRESS_OFFLINE_CONTEXT = 'djangosite.compressor.get_compress_offline_context'
+COMPRESS_OFFLINE_CONTEXT = 'ixc_compressor.get_compress_offline_context'
 
 _NODE_MODULES_BIN = os.environ.get(
     'NODE_MODULES_BIN', os.path.join(BASE_DIR, 'node_modules', '.bin'))
@@ -355,6 +352,16 @@ COMPRESS_PRECOMPILERS = (
 
 INSTALLED_APPS += ('compressor', )
 STATICFILES_FINDERS += ('compressor.finders.CompressorFinder', )
+
+# Whether or not to include a fake `Request` in the global context.
+# IXC_COMPRESSOR_REQUEST = False  # Default: True
+
+# A sequence of key/value tuples to be included in every generated context.
+IXC_COMPRESSOR_GLOBAL_CONTEXT = ()
+
+# A sequence of key/value tuples, every combination of which will be combined
+# with the global context when generating contexts.
+IXC_COMPRESSOR_OPTIONAL_CONTEXT = ()
 
 # DYNAMIC FIXTURES ############################################################
 
@@ -660,17 +667,18 @@ TEST_WITHOUT_MIGRATIONS_COMMAND = \
 
 # WHITENOISE ##################################################################
 
+DEFAULT_FILE_STORAGE = 'ixc_whitenoise.HashedMediaStorage'
+
 # See: http://whitenoise.evans.io/en/latest/#quickstart-for-django-apps
 _index = MIDDLEWARE_CLASSES.index(
     'django.middleware.security.SecurityMiddleware') + 1
 MIDDLEWARE_CLASSES = (
     MIDDLEWARE_CLASSES[:_index] +
-    ('djangosite.whitenoise.WhiteNoiseMediaMiddleware', ) +
+    ('ixc_whitenoise.WhiteNoiseMiddleware', ) +
     MIDDLEWARE_CLASSES[_index:]
 )
 
-STATICFILES_STORAGE = \
-    'djangosite.whitenoise.CustomCompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'ixc_whitenoise.CompressedManifestStaticFilesStorage'
 
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
