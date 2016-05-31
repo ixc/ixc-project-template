@@ -63,7 +63,6 @@ setuptools.setup(
         'pytz',
         'raven',
         'WebTest',
-        'whitenoise>=3.1',
 
         # Override incompatible versions for nested dependencies.
         'boto<=2.27',  # See: https://github.com/danilop/yas3fs/issues/26
