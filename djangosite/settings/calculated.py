@@ -16,14 +16,14 @@ locals().update(
     importlib.import_module('djangosite.settings._%s' % BASE_SETTINGS_MODULE)
     .__dict__)
 
-# Create runtime directories, if missing.
-var_dirs = STATICFILES_DIRS + (
+# Create missing runtime directories.
+runtime_dirs = STATICFILES_DIRS + (
     os.path.dirname(LOGGING['handlers']['logfile']['filename']),
     os.path.dirname(SUPERVISOR['logfile']),
     os.path.dirname(SUPERVISOR['pidfile']),
     SUPERVISOR['childlogdir'],
 )
-for dirname in var_dirs:
+for dirname in runtime_dirs:
     try:
         os.makedirs(dirname)
     except OSError:
