@@ -6,6 +6,7 @@ services:
     environment:
       MASTER_PASSWORD: abc123
       PYTHONWARNINGS: ignore
+      VIRTUALENV_SYSTEM_SITE_PACKAGES: 1
     image: interaction/{{ project_name }}:latest
     links:
       - elasticsearch

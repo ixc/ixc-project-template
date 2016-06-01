@@ -26,5 +26,6 @@ services:
       # PYTHONWARNINGS: default
       # SENTRY_DSN:
       SITE_DOMAIN: {{ project_name }}.docker  # For OS X with Dinghy
+      # VIRTUALENV_SYSTEM_SITE_PACKAGES: 0
     volumes:
       - ~/.ssh:/opt/{{ project_name }}/var/.ssh
