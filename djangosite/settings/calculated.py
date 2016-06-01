@@ -91,8 +91,9 @@ if RAVEN_CONFIG.get('dsn'):
 # STORAGES ####################################################################
 
 if ENABLE_S3_MEDIA:
-    MEDIA_URL = 'https://s3-us-west-2.amazonaws.com/{}/'.format(
-        AWS_STORAGE_BUCKET_NAME)
+    AWS_S3_CUSTOM_DOMAIN = 's3-us-west-2.amazonaws.com/%s' % \
+        AWS_STORAGE_BUCKET_NAME
+    MEDIA_URL = 'https://%s/media/' % AWS_S3_CUSTOM_DOMAIN
 
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
