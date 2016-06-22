@@ -1,6 +1,13 @@
 #!/bin/bash
 
-echo "# ${0}"
+cat <<'EOF'
+
+#
+# runtests.sh [options]
+#
+# Setup environment for test project and run the `test` management command.
+
+EOF
 
 set -e
 
@@ -11,5 +18,8 @@ export SETUP_POSTGRES_FORCE=1
 export SRC_PGDATABASE=/opt/{{ project_name }}/test_{{ project_name }}.sql
 
 setup-postgres.sh
+
 python manage.py migrate --noinput
-python manage.py test -v 2 --noinput "$@"
+
+coverage run manage.py test -v 2 --noinput {{ project_name }}} "$@"
+coverage report
