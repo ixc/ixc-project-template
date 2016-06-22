@@ -7,7 +7,6 @@ URLs should go in ``{{ project_name }}.urls`` instead (included below).
 
 from django.conf import settings
 from django.conf.urls import include, patterns, url
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from fluent_pages.sitemaps import PageSitemap
