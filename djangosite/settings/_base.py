@@ -386,7 +386,7 @@ INSTALLED_APPS = ('flat', ) + INSTALLED_APPS
 # FLUENT ######################################################################
 
 DJANGO_WYSIWYG_FLAVOR = 'redactor'
-DJANGO_WYSIWYG_MEDIA_URL = posixpath.join(STATIC_URL, 'redactor/')
+DJANGO_WYSIWYG_MEDIA_URL = '/'  # See redirects in `djangosite.urls`
 
 FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
     # 'home': {
