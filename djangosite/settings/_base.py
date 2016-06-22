@@ -527,15 +527,12 @@ INSTALLED_APPS = ('icekit.dashboard', ) + INSTALLED_APPS
 
 INSTALLED_APPS += (
     'icekit',
-    'icekit.blog_tools',
     'icekit.response_pages',
     'notifications',
 
     'icekit.page_types.layout_page',
     'icekit.page_types.search_page',
 
-    'icekit.plugins.blog_post',
-    # 'icekit.plugins.brightcove',
     'icekit.plugins.child_pages',
     'icekit.plugins.faq',
     'icekit.plugins.file',
