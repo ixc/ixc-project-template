@@ -493,13 +493,21 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.BaseSignalProcessor'
 
 FEATURED_APPS = (
     {
-        'verbose_name': 'Pages',
+        'verbose_name': 'Content',
         'icon_html': '<i class="content-type-icon fa fa-files-o"></i>',
         'models': {
             'fluent_pages.Page': {
-                'verbose_name': 'Page',
-                # 'default_poly_child': 'layout_page.LayoutPage',
+                'verbose_name_plural': 'Pages',
             },
+        },
+    },
+    {
+        'verbose_name': 'Media',
+        'icon_html': '<i class="content-type-icon fa fa-file-image-o"></i>',
+        'models': {
+            'image.Image': {},
+            'slideshow.Slideshow': {},
+            'sharedcontent.SharedContent': {},
         },
     },
 )
