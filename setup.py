@@ -29,7 +29,7 @@ setuptools.setup(
         'django-fluent-contents[markup,oembeditem,text]<1.1',  # See: https://github.com/edoburu/django-fluent-contents/issues/67
         'django-fluent-pages[redirectnode,reversion]',  # flatpage,fluentpage
         # 'django-guardian',
-        # 'django-generic',
+        'django-generic',
         # 'django-glamkit',
         # 'django-hosts',
         'django-icekit[forms,search]',  # brightcove
