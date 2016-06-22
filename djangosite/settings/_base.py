@@ -450,10 +450,11 @@ INSTALLED_APPS += (
     'any_urlfield',
     'django_wysiwyg',
     'micawber',
-    'generic',
 )
 
 # GENERIC #####################################################################
+
+INSTALLED_APPS += ('generic', )
 
 TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
     'generic.context_processors.generic')
