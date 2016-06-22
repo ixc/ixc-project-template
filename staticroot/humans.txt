@@ -2,6 +2,11 @@
 
 /* TEAM */
 
+    Tai Lee - Technical Lead
+    http://mrmachine.net/
+    tai at interaction.net.au
+    @mrmachine79
+
     Dr Greg Turner - CEO
     http://gregturner.com/
     greg at interaction.net.au
@@ -10,30 +15,8 @@
     Dr Alastair Weakley - COO
     alastair at interaction.net.au
 
-    Simon Johnson - General Manager
-    simonj at interaction.net.au
-
-    Tai Lee - Technical Lead
-    http://mrmachine.net/
-    tai at interaction.net.au
-    @mrmachine79
-
-    Mike Cronin - Design Lead
-    http://www.torresiancrow.com.au/
-    mike at interaction.net.au
-    @MickCronin
-
-    Stuart Dines - Development Team Lead
-    http://stuartdines.com/
-    stuart at interaction.net.au
-    @sjdines
-
-    Matt Stevenson - Development Team Lead
-    matt at interaction.net.au
-    @mattoc
-
-    Pat Armstrong - Designer
-    pat at interaction.net.au
+    James Murty - Code Whisperer
+    james at interaction.net.au
 
     Mark Finger - Code Whisperer
     http://markfinger.org/
@@ -44,20 +27,20 @@
     aram at interaction.net.au
     @Aramgutang
 
-    Alice Athens - Frontend Developer
-    alice at interaction.net.au
-    @alice_athens
-
-    Pili Foss - Writer & Strategist
-    pili at interaction.net.au
-
-    Zoe Chua - Project Assistant
-    zoe at interaction.net.au
+    Sam Minton - Code Whisperer
+    sam at interaction.net.au
 
     Dr Tim Mansfield - Strategist & Futurist
     tim at interaction.net.au
 
 /* THANKS */
+
+    The Interaction Consortium:
+        http://interaction.net.au
+
+    Visionary clients:
+        http://www.sfmoma.org
+        http://mca.com.au
 
     Kitties:
         http://www.reddit.com/r/aww/search?q=kitty&restrict_sr=on
@@ -65,7 +48,7 @@
 /* SITE */
 
     Backend:
-        Django, ICEkit, GLAMkit
+        Python/Django, ICEkit, GLAMkit, Postgres, Elastic Search, Redis.
 
     Frontend:
         jQuery, Lodash, Font Awesome, Bootstrap
