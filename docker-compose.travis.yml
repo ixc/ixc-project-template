@@ -1,7 +1,6 @@
 django:
   command: runtests.sh
   environment:
-    PYTHONWARNINGS: ignore
     TRAVIS:
   image: interaction/{{ project_name }}:${TAG}
   links:

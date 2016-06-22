@@ -5,15 +5,13 @@ services:
     command: gulp.sh
     environment:
       MASTER_PASSWORD: abc123
-      PYTHONWARNINGS: ignore
-      VIRTUALENV_SYSTEM_SITE_PACKAGES: 1
     image: interaction/{{ project_name }}:latest
     links:
       - elasticsearch
       - postgres
       - redis
     ports:
-      - "8000:8000"
+      - 8000:8000
     # tty: true  # Enable colour output in logs. Disconnects after 60 second timeout. See: https://github.com/docker/compose/issues/3106
     volumes:
       - ./:/opt/{{ project_name }}

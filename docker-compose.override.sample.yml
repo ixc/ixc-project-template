@@ -24,8 +24,13 @@ services:
       # PGUSER:
       # PIP_INDEX_URL: # 1Password, shared vault, devpi.ixcsandbox.com - ic
       # PYTHONWARNINGS: default
+      # SECRET_KEY:
       # SENTRY_DSN:
-      SITE_DOMAIN: {{ project_name }}.docker  # For OS X with Dinghy
-      # VIRTUALENV_SYSTEM_SITE_PACKAGES: 0
-    volumes:
-      - ~/.ssh:/opt/{{ project_name }}/var/.ssh
+      # SITE_DOMAIN: {{ project_name }}.docker  # For OS X with Dinghy
+      # SRC_PGDATABASE:
+      # SRC_PGHOST:
+      # SRC_PGPASSWORD:
+      # SRC_PGPORT:
+      # SRC_PGUSER:
+    # volumes:
+    #   - ~/.ssh/id_rsa:/etc/ssh/id_rsa

@@ -15,10 +15,15 @@ gulp.task('watch', function() {
 
 gulp.task('main', function() {
 	if (main) {
-		main.kill();
+		child.spawnSync('setup-local-env.sh', {stdio: 'inherit'});
+		child.spawnSync(
+			'supervisor.sh',
+			['restart', 'all'],
+			{stdio: 'inherit'});
+	} else {
+		main = child.spawn(
+			'migrate.sh',
+			['supervisor.sh'],
+			{stdio: 'inherit'});
 	}
-	main = child.spawn(
-		'setup-local-env.sh',
-		['migrate.sh', 'supervisor.sh'],
-		{stdio: 'inherit'});
 });
