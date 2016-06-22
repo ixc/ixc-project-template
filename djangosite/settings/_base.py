@@ -546,7 +546,6 @@ INSTALLED_APPS += (
     'icekit.plugins.page_anchor_list',
     'icekit.plugins.quote',
     'icekit.plugins.reusable_form',
-    'icekit.plugins.reusable_quote',
     'icekit.plugins.slideshow',
     'icekit.plugins.twitter_embed',
 )
