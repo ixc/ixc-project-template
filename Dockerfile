@@ -39,6 +39,9 @@ ENV PIP_INDEX_URL=$PIP_INDEX_URL
 COPY pip-accel.conf requirements.txt /opt/{{ project_name }}/
 RUN pip-accel install -r requirements.txt && rm -rf /var/cache/pip-accel
 
+COPY setup.py /opt/{{ project_name }}/
+RUN pip install -e .
+
 ENV DOCKERIZE_VERSION=0.2.0
 RUN wget -nv -O - "https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz" | tar -xz -C /usr/local/bin/ -f -
 
@@ -75,6 +78,5 @@ COPY . /opt/{{ project_name }}/
 
 ENV PYTHONWARNINGS=ignore
 
-RUN pip install -e . --no-deps
 RUN python manage.py collectstatic --noinput --verbosity=0
 RUN python manage.py compress
