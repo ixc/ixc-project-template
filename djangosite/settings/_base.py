@@ -534,6 +534,7 @@ INSTALLED_APPS += (
     'icekit.page_types.layout_page',
     'icekit.page_types.search_page',
 
+    # 'icekit.plugins.brightcove',
     'icekit.plugins.child_pages',
     'icekit.plugins.faq',
     'icekit.plugins.file',
