@@ -552,6 +552,9 @@ INSTALLED_APPS += (
     'icekit.plugins.twitter_embed',
 )
 
+# Must come first to override template load order.
+INSTALLED_APPS = ('icekit.integration.reversion', ) + INSTALLED_APPS
+
 # MASTER PASSWORD #############################################################
 
 AUTHENTICATION_BACKENDS = \
