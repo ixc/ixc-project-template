@@ -21,5 +21,5 @@ setup-postgres.sh
 
 python manage.py migrate --noinput
 
-coverage run manage.py test -v 2 --noinput {{ project_name }}} "$@"
+coverage run manage.py test -v 2 --noinput {{ project_name }} "$@"
 coverage report
