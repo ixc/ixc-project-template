@@ -54,7 +54,7 @@ ENV TINI_VERSION=0.9.0
 RUN wget -nv -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static"
 RUN chmod +x /usr/local/bin/tini
 
-ENV DOCKER_COMMIT=97171dc96ef9c4eb58031f1109b7448111bfd829
+ENV DOCKER_COMMIT=c18d83af84d5b5ff90981e165fcf7ee41053ccf5
 RUN cd /usr/local/bin \
     && wget -N -nv "https://raw.githubusercontent.com/ixc/docker/${DOCKER_COMMIT}/bin/gosu-dir.sh" \
     && wget -N -nv "https://raw.githubusercontent.com/ixc/docker/${DOCKER_COMMIT}/bin/gulp.sh" \
