@@ -9,6 +9,7 @@ django:
     # EMAIL_HOST:
     EMAIL_HOST_PASSWORD:
     # EMAIL_HOST_USER:
+    EXTRA_SETTINGS: http-request add-header X-Forwarded-Protocol https if { ssl_fc }
     # MASTER_PASSWORD:
     # MEDIA_AWS_ACCESS_KEY_ID:
     MEDIA_AWS_SECRET_ACCESS_KEY:
