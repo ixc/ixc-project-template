@@ -642,6 +642,13 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get(
 ENABLE_S3_MEDIA = False
 INSTALLED_APPS += ('storages', )
 
+# SUIT ########################################################################
+
+# INSTALLED_APPS = (
+#     'fluent_suit',
+#     'suit',
+# ) + INSTALLED_APPS
+
 # SUPERVISOR ##################################################################
 
 INSTALLED_APPS += ('djsupervisor', )
