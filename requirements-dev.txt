@@ -6,6 +6,7 @@
 -e git+ssh://git@github.com/ixc/django-dynamic-fixture.git@ixc/master#egg=django-dynamic-fixture
 -e git+ssh://git@github.com/ixc/django-fluent-contents.git@ixc#egg=django-fluent-contents[markup,oembeditem,text]
 -e git+ssh://git@github.com/ixc/django-fluent-pages.git@reversion_support#egg=django-fluent-pages[flatpage,fluentpage,redirectnode,reversion]
+-e git+ssh://git@github.com/ixc/django-fluent-suit.git@master#egg=django-fluent-suit
 -e git+ssh://git@github.com/ixc/django-multiurl.git@ixc#egg=django-multiurl
 -e git+ssh://git@github.com/ixc/django-test-without-migrations.git@ixc/nose-and-other-test-commands#egg=django-test-without-migrations
 
