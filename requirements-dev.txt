@@ -19,7 +19,7 @@
 -e git+ssh://git@github.com/ixc/glamkit-fallbackserve.git#egg=glamkit-fallbackserve
 
 # Private
-# -e git+ssh://git@github.com/ixc/deployo.git@develop#egg=deployo
-# -e git+ssh://git@github.com/ixc/django-glamkit.git@develop#egg=django-glamkit[api]
-# -e git+ssh://git@github.com/ixc/django-icekit.git@develop#egg=django-icekit[brightcove,forms,search]
-# -e git+ssh://git@github.com/ixc/icekit-notifications.git@master#egg=icekit-notifications
+-e git+ssh://git@github.com/ixc/deployo.git@develop#egg=deployo
+-e git+ssh://git@github.com/ixc/django-glamkit.git@develop#egg=django-glamkit[api]
+-e git+ssh://git@github.com/ixc/django-icekit.git@develop#egg=django-icekit[brightcove,forms,search]
+-e git+ssh://git@github.com/ixc/icekit-notifications.git@master#egg=icekit-notifications
