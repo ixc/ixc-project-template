@@ -269,12 +269,12 @@ TEMPLATES_DJANGO = {
             '{{ project_name }}.context_processors.environment',
         ],
         'loaders': [
+            # 3rd party.
+            'app_namespace.Loader',
+
             # Default.
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
-
-            # 3rd party.
-            'app_namespace.Loader',
         ],
     },
 }
