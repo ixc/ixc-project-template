@@ -269,7 +269,7 @@ TEMPLATES_DJANGO = {
             '{{ project_name }}.context_processors.environment',
         ],
         'loaders': [
-            # 3rd party.
+            # Must come first. See: https://github.com/Fantomas42/django-app-namespace-template-loader/issues/16
             'app_namespace.Loader',
 
             # Default.
