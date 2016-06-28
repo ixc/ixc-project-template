@@ -381,7 +381,7 @@ THUMBNAIL_HIGH_RESOLUTION = True
 # FLAT THEME ##################################################################
 
 # Must come before `django.contrib.admin`.
-INSTALLED_APPS = ('flat', ) + INSTALLED_APPS
+INSTALLED_APPS += ('flat', )
 
 # FLUENT ######################################################################
 
@@ -524,10 +524,11 @@ ICEKIT = {
 }
 
 # Must come before `django.contrib.admin` and `flat`.
-INSTALLED_APPS = ('icekit.dashboard', ) + INSTALLED_APPS
+INSTALLED_APPS += ('icekit.dashboard', )
 
 INSTALLED_APPS += (
     'icekit',
+    'icekit.integration.reversion',
     'icekit.response_pages',
     'notifications',
 
@@ -552,13 +553,9 @@ INSTALLED_APPS += (
     'icekit.plugins.twitter_embed',
 )
 
-# Must come first to override template load order.
-INSTALLED_APPS = ('icekit.integration.reversion', ) + INSTALLED_APPS
-
 # MASTER PASSWORD #############################################################
 
-AUTHENTICATION_BACKENDS = \
-    ('master_password.auth.ModelBackend', ) + AUTHENTICATION_BACKENDS
+AUTHENTICATION_BACKENDS += ('master_password.auth.ModelBackend', )
 
 INSTALLED_APPS += ('master_password', )
 MASTER_PASSWORD = os.environ.get('MASTER_PASSWORD')
@@ -644,10 +641,10 @@ INSTALLED_APPS += ('storages', )
 
 # SUIT ########################################################################
 
-# INSTALLED_APPS = (
+# INSTALLED_APPS += (
 #     'fluent_suit',
 #     'suit',
-# ) + INSTALLED_APPS
+# )
 
 # SUPERVISOR ##################################################################
 
@@ -680,7 +677,7 @@ SUPERVISOR = {
 
 # TEST WITHOUT MIGRATIONS #####################################################
 
-INSTALLED_APPS = ('test_without_migrations', ) + INSTALLED_APPS
+INSTALLED_APPS += ('test_without_migrations', )
 
 # Default: django.core.management.commands.test.Command
 TEST_WITHOUT_MIGRATIONS_COMMAND = \
@@ -689,17 +686,9 @@ TEST_WITHOUT_MIGRATIONS_COMMAND = \
 # WHITENOISE ##################################################################
 
 DEFAULT_FILE_STORAGE = 'ixc_whitenoise.HashedMediaStorage'
-
-# See: http://whitenoise.evans.io/en/latest/#quickstart-for-django-apps
-_index = MIDDLEWARE_CLASSES.index(
-    'django.middleware.security.SecurityMiddleware') + 1
-MIDDLEWARE_CLASSES = (
-    MIDDLEWARE_CLASSES[:_index] +
-    ('ixc_whitenoise.WhiteNoiseMiddleware', ) +
-    MIDDLEWARE_CLASSES[_index:]
-)
-
 STATICFILES_STORAGE = 'ixc_whitenoise.CompressedManifestStaticFilesStorage'
+
+MIDDLEWARE_CLASSES += ('ixc_whitenoise.WhiteNoiseMiddleware', )
 
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
