@@ -210,6 +210,9 @@ MIDDLEWARE_CLASSES = (
 
     # Contrib.
     'django.contrib.admindocs.middleware.XViewMiddleware',
+
+    # ICEKit
+    'icekit.publishing.middleware.PublishingMiddleware',
 )
 
 ROOT_URLCONF = 'djangosite.urls'
@@ -388,6 +391,8 @@ INSTALLED_APPS += ('flat', )
 DJANGO_WYSIWYG_FLAVOR = 'redactor'
 DJANGO_WYSIWYG_MEDIA_URL = '/'  # See redirects in `djangosite.urls`
 
+FLUENT_PAGES_PARENT_ADMIN_MIXIN = 'icekit.publishing.admin.ICEKitFluentPagesParentAdminMixin'
+
 FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
     # 'home': {
     #     'plugins': ('...', ),
@@ -532,6 +537,7 @@ INSTALLED_APPS += (
     'icekit.response_pages',
     'notifications',
 
+    'icekit.page_types.article',
     'icekit.page_types.layout_page',
     'icekit.page_types.search_page',
 
@@ -551,6 +557,7 @@ INSTALLED_APPS += (
     'icekit.plugins.reusable_form',
     'icekit.plugins.slideshow',
     'icekit.plugins.twitter_embed',
+    'icekit.publishing',
 )
 
 # MASTER PASSWORD #############################################################

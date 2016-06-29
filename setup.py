@@ -32,7 +32,7 @@ setuptools.setup(
         'django-generic',
         # 'django-glamkit',
         # 'django-hosts',
-        'django-icekit[forms,search]',  # brightcove
+        'django-icekit[forms,search,publishing]',  # brightcove
         'django-master-password',
         'django-model-settings',
         'django-multiurl',
