@@ -18,8 +18,8 @@ CACHES['default'].update({
     'LOCATION': 'redis://redis:6379/1',
 })
 
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
+# EMAIL_HOST = ''
+# EMAIL_HOST_USER = ''
 
 LOGGING['handlers']['logfile']['backupCount'] = 100
 
@@ -46,6 +46,6 @@ SUPERVISOR['wsgi'] = 'newrelic-admin run-program %s' % SUPERVISOR['wsgi']
 
 # STORAGES ####################################################################
 
-AWS_ACCESS_KEY_ID = ''
+# AWS_ACCESS_KEY_ID = ''
 AWS_STORAGE_BUCKET_NAME = '{{ project_name }}'
 ENABLE_S3_MEDIA = True
