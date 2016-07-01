@@ -6,6 +6,7 @@ cat <<'EOF'
 # runtests.sh [options]
 #
 # Setup environment for test project and run the `test` management command.
+#
 
 EOF
 
