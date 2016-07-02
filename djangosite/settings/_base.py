@@ -466,15 +466,15 @@ TEMPLATE_CONSTANTS = {
 
 # HAYSTACK ####################################################################
 
-# HAYSTACK_CONNECTIONS = {
-#     'default': {
-#         'ENGINE': 'elasticstack.backends.ConfigurableElasticSearchEngine',
-#         'INDEX_NAME': 'haystack-%s' % SETTINGS_MODULE_HASH,
-#         'URL': "http://elasticsearch:9200/",
-#     },
-# }
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'elasticstack.backends.ConfigurableElasticSearchEngine',
+        'INDEX_NAME': 'haystack-%s' % SETTINGS_MODULE_HASH,
+        'URL': "http://elasticsearch:9200/",
+    },
+}
 
-# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.BaseSignalProcessor'
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.BaseSignalProcessor'
 # INSTALLED_APPS += ('haystack', )
 
 # HOSTS #######################################################################
