@@ -5,6 +5,7 @@
 
 *.egg-info/
 *.py[co]
+/*.md5
 /.eggs/
 /.tox/
 /bower_components/

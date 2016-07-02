@@ -34,6 +34,7 @@ django:
     # - elasticsearch
     # - postgres
     - redis
+  read_only: true
   restart: on-failure
   sequential_deployment: true
   tags:
@@ -49,7 +50,7 @@ django:
 #   environment:
 #     - DEFAULT_SSL_CERT=
 #     - HTTP_BASIC_AUTH={USERNAME}:{PASSWORD}
-#   image: dockercloud/haproxy:1.2.1
+#   image: dockercloud/haproxy:1.5.1
 #   links:
 #     - django
 #   ports:
@@ -63,7 +64,7 @@ django:
 # postgres:
 #   environment:
 #     POSTGRES_PASSWORD:
-#   image: postgres:9.4
+#   image: onjin/alpine-postgres:9.4
 #   restart: on-failure
 #   tags:
 #     - {env}

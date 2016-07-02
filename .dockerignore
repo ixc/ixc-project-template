@@ -4,6 +4,7 @@
 **/*.swp
 **/.DS_Store
 *.egg-info/
+*.md5
 .eggs/
 .git/
 .idea/
