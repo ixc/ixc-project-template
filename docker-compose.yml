@@ -15,7 +15,7 @@ services:
     read_only: true
     volumes:
       - ./:/opt/{{ project_name }}
-      - ~/.ssh:/root/.ssh
+      - ~/.ssh:/opt/.ssh
   # elasticsearch:
   #   image: interaction/elasticsearch-icu:1
   postgres:

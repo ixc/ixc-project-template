@@ -15,4 +15,8 @@ set -e
 
 mkdir -p var
 
+if [[ -d /opt/.ssh ]]; then
+	cp -R /opt/.ssh /root
+fi
+
 exec npm-install.sh bower-install.sh pip-install.sh setup-postgres.sh "${@:-bash}"
