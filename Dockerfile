@@ -30,10 +30,8 @@ RUN md5sum bower.json > bower.json.md5
 RUN wget -nv -O - https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install --no-cache-dir pip-accel[s3]
 
-# pip-accel-s3-readonly
-ARG AWS_ACCESS_KEY_ID=AKIAI7XQPNFH5226SMSA
-ARG AWS_SECRET_ACCESS_KEY=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
-ARG PIP_ACCEL_S3_READONLY=yes
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
 ENV PIP_ACCEL_AUTO_INSTALL=no
 ENV PIP_ACCEL_CACHE=/root/.pip-accel
 ENV PIP_ACCEL_S3_BUCKET=ixc-pip-accel
@@ -63,7 +61,7 @@ ENV TINI_VERSION=0.9.0
 RUN wget -nv -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static"
 RUN chmod +x /usr/local/bin/tini
 
-ENV DOCKER_COMMIT=8ee9ddb0148b49c0a5c7888220a1bf72dd9038de
+ENV DOCKER_COMMIT=3000001ff3e0cc024fc81bf089721dd727855052
 RUN cd /usr/local/bin \
     && wget -N -nv "https://raw.githubusercontent.com/ixc/docker/${DOCKER_COMMIT}/bin/bower-install.sh" \
     && wget -N -nv "https://raw.githubusercontent.com/ixc/docker/${DOCKER_COMMIT}/bin/gulp.sh" \
