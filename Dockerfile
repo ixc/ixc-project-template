@@ -61,7 +61,7 @@ ENV TINI_VERSION=0.9.0
 RUN wget -nv -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static"
 RUN chmod +x /usr/local/bin/tini
 
-ENV DOCKER_COMMIT=3000001ff3e0cc024fc81bf089721dd727855052
+ENV DOCKER_COMMIT=0a214841ace30f8ff67cd1c3a9c2214b62eb4619
 RUN cd /usr/local/bin \
     && wget -N -nv "https://raw.githubusercontent.com/ixc/docker/${DOCKER_COMMIT}/bin/bower-install.sh" \
     && wget -N -nv "https://raw.githubusercontent.com/ixc/docker/${DOCKER_COMMIT}/bin/gulp.sh" \
