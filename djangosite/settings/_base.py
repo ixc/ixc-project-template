@@ -408,6 +408,8 @@ FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
 
 # Set the admin class to use for Polymorphic parents
 FLUENT_PAGES_PARENT_ADMIN_MIXIN = 'icekit.publishing.admin.ICEKitFluentPagesParentAdminMixin'
+# Enable viewing and automatic redirect to draft content
+MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('icekit.publishing.middleware.PublishingMiddleware', )
 
 INSTALLED_APPS += (
     # Fluent.
