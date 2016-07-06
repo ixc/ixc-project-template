@@ -1,11 +1,12 @@
 #!/bin/bash
 
-cat <<'EOF'
+cat <<EOF
 
 #
-# runtests.sh [options]
+# `whoami`@`hostname`:$PWD$ runtests.sh $@
 #
-# Setup environment for test project and run the `test` management command.
+# Setup environment for test project and run the 'test' management command.
+#
 
 EOF
 
@@ -21,5 +22,5 @@ setup-postgres.sh
 
 python manage.py migrate --noinput
 
-coverage run manage.py test -v 2 --noinput {{ project_name }}} "$@"
+coverage run manage.py test -v 2 --noinput "$@"
 coverage report

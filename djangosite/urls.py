@@ -7,9 +7,8 @@ URLs should go in ``{{ project_name }}.urls`` instead (included below).
 
 from django.conf import settings
 from django.conf.urls import include, patterns, url
-from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView, TemplateView
 from fluent_pages.sitemaps import PageSitemap
 
 admin.autodiscover()
@@ -20,6 +19,17 @@ sitemaps = {
 
 urlpatterns = patterns(
     '',
+
+    # Add redirects for updated paths in redactor package that don't match the
+    # `django-wysiwyg` template.
+    url(r'^css/redactor.css$',
+        RedirectView.as_view(
+            url=settings.STATIC_URL + 'redactor/redactor/redactor.css',
+            permanent=True)),
+    url(r'^redactor.min.js$',
+        RedirectView.as_view(
+            url=settings.STATIC_URL + 'redactor/redactor/redactor.min.js',
+            permanent=True)),
 
     # Sitemap.
     url(r'^sitemap\.xml$',

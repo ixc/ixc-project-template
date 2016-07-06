@@ -21,53 +21,37 @@ Run the project with [Docker][docker]:
     $ cd {{ project_name }}
     $ docker-compose up
 
-Some local setup will be performed on first run, which might take a while, so
-make yourself a cup of tea. Subsequent runs will skip the local setup unless
-the project dependencies have been updated.
+Local NPM packages, Bower components and python packages will be installed on
+first run, which might take a few minutes, so make yourself a cup of tea.
+Subsequent runs will only update local packages when dependencies have changed.
 
 That's it! Open the site in a browser:
 
+    http://{{ project_name }}.lvh.me:8000  # Docker for Mac/Win, Linux
     http://{{ project_name }}.docker:8000  # OS X with Dinghy
-    http://{{ project_name }}.lvh.me:8000  # Linux
 
 ## Container Entrypoint
 
-The default entrypoint scripts take care of a few things for us:
+The entrypoint scripts take care of a few things for us:
 
-  * Create and switch to an unprivileged user.
+  * Install NPM packages, Bower components, and Python packages, to ensure the
+    local environment matches the local dependencies.
 
-  * Ensure the unprivileged user and variable files directory have the same UID
-    and GID, to avoid permissions problems when bind mounting the source into
-    the container.
+  * Wait up to 10 seconds for PostgreSQL to become available, so Django doesn't
+    complain about being unable to connect.
 
-  * Derive the database name from the current git branch, when bind mounting
-    the source into the container.
-
-  * Wait up to 10 seconds for PostgreSQL to become available.
+  * Derive the database name from the current git branch, so we can switch
+    branches without losing our working database.
 
   * Create a database, and optionally restore from a file or source database.
-
-  * Perform some local setup to ensure the environment inside the container
-    matches the source.
 
   * Apply Django migrations, if required.
 
   * Run `manage.py supervisor`.
 
-In particular, the automated database creation, restore, and migrations make it
-easy to switch between and test feature branches during development, without
-losing your current data.
-
-## Gulp
-
-The `docker-compose.yml` file uses [Gulp][gulp] as the default command during
-local development, which watches the file system and automates a few tasks when
-changes are detected:
-
-  * Restart the main command when `*.py` files are changed.
-  * Reinstall Node.js packages when `package.json` is changed.
-  * Reinstall Bower components when `bower.json` is changed.
-  * Reinstall Python packages when `setup.py` is changed.
+  * Use [Gulp][gulp] to watch the file system to automatically update NPM
+    packages, Bower components and Python packages when dependencies change,
+    and restart supervisor when Python source changes.
 
 ## Shared Directories
 
@@ -77,11 +61,8 @@ container:
   * `.` at `/opt/{{ project_name }}` - Your local changes will be visible
     immediately, and you won't need to rebuild the image to test every change.
 
-  * `./var` at `/opt/{{ project_name }}/var` - For variable data like logs,
-    media, etc.
-
-The `docker-compose.override.sample.yml` file also bind mounts your `~/.ssh`
-directory, so you can access private git repositories inside the container.
+  * `~/.ssh` at `/root/.ssh`, so you can access private git repositories inside
+    the container.
 
 ## Local Settings
 

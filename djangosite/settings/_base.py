@@ -231,7 +231,6 @@ SILENCED_SYSTEM_CHECKS = (
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'djangosite', 'static'),
-    os.path.join(VAR_DIR, 'bower_components'),
     os.path.join(BASE_DIR, 'bower_components'),
 )
 
@@ -269,12 +268,12 @@ TEMPLATES_DJANGO = {
             '{{ project_name }}.context_processors.environment',
         ],
         'loaders': [
+            # Must come first. See: https://github.com/Fantomas42/django-app-namespace-template-loader/issues/16
+            'app_namespace.Loader',
+
             # Default.
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
-
-            # 3rd party.
-            'app_namespace.Loader',
         ],
     },
 }
@@ -318,6 +317,7 @@ SITE_ID = 1
 # CELERY ######################################################################
 
 BROKER_URL = CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json', 'msgpack', 'yaml']  # 'pickle'
 
 # CELERY EMAIL ################################################################
 
@@ -334,19 +334,19 @@ COMPRESS_CSS_FILTERS = (
 COMPRESS_OFFLINE = True
 COMPRESS_OFFLINE_CONTEXT = 'ixc_compressor.get_compress_offline_context'
 
-_NODE_MODULES_BIN = os.environ.get(
-    'NODE_MODULES_BIN', os.path.join(BASE_DIR, 'node_modules', '.bin'))
-
 COMPRESS_PRECOMPILERS = (
     (
         'text/less',
-        '%s {infile} {outfile} --autoprefix' % os.path.join(
-            _NODE_MODULES_BIN, 'lessc'),
+        '%s {infile} {outfile} --autoprefix' % (
+            os.path.join(BASE_DIR, 'node_modules', '.bin', 'lessc'),
+        ),
     ),
     (
         'text/x-scss',
-        '%s {infile} {outfile} --autoprefix' % os.path.join(
-            _NODE_MODULES_BIN, 'node-sass'),
+        '%s {infile} {outfile} --autoprefix --include-path %s' % (
+            os.path.join(BASE_DIR, 'node_modules', '.bin', 'node-sass'),
+            os.path.join(BASE_DIR, 'bower_components'),
+        ),
     ),
 )
 
@@ -357,16 +357,11 @@ STATICFILES_FINDERS += ('compressor.finders.CompressorFinder', )
 # IXC_COMPRESSOR_REQUEST = False  # Default: True
 
 # A sequence of key/value tuples to be included in every generated context.
-IXC_COMPRESSOR_GLOBAL_CONTEXT = (
-    ('base_change_form_template', 'admin/change_form.html'),
-    ('change_form_template', 'admin/change_form.html'),
-)
+IXC_COMPRESSOR_GLOBAL_CONTEXT = ()
 
 # A sequence of key/value tuples, every combination of which will be combined
 # with the global context when generating contexts.
-IXC_COMPRESSOR_OPTIONAL_CONTEXT = (
-    ('base_change_form_template', 'admin/fluent_pages/page/base_change_form.html'),
-)
+IXC_COMPRESSOR_OPTIONAL_CONTEXT = ()
 
 # DYNAMIC FIXTURES ############################################################
 
@@ -381,12 +376,12 @@ THUMBNAIL_HIGH_RESOLUTION = True
 # FLAT THEME ##################################################################
 
 # Must come before `django.contrib.admin`.
-INSTALLED_APPS = ('flat', ) + INSTALLED_APPS
+INSTALLED_APPS += ('flat', )
 
 # FLUENT ######################################################################
 
 DJANGO_WYSIWYG_FLAVOR = 'redactor'
-DJANGO_WYSIWYG_MEDIA_URL = posixpath.join(STATIC_URL, 'redactor/')
+DJANGO_WYSIWYG_MEDIA_URL = '/'  # See redirects in `djangosite.urls`
 
 FLUENT_CONTENTS_PLACEHOLDER_CONFIG = {
     # 'home': {
@@ -450,10 +445,11 @@ INSTALLED_APPS += (
     'any_urlfield',
     'django_wysiwyg',
     'micawber',
-    'generic',
 )
 
 # GENERIC #####################################################################
+
+INSTALLED_APPS += ('generic', )
 
 TEMPLATES_DJANGO['OPTIONS']['context_processors'].append(
     'generic.context_processors.generic')
@@ -479,7 +475,7 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.BaseSignalProcessor'
-# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+# INSTALLED_APPS += ('haystack', )
 
 # HOSTS #######################################################################
 
@@ -523,16 +519,18 @@ ICEKIT = {
 }
 
 # Must come before `django.contrib.admin` and `flat`.
-INSTALLED_APPS = ('icekit.dashboard', ) + INSTALLED_APPS
+INSTALLED_APPS += ('icekit.dashboard', )
 
 INSTALLED_APPS += (
     'icekit',
+    'icekit.integration.reversion',
     'icekit.response_pages',
     'notifications',
 
     'icekit.page_types.layout_page',
     'icekit.page_types.search_page',
 
+    # 'icekit.plugins.brightcove',
     'icekit.plugins.child_pages',
     'icekit.plugins.faq',
     'icekit.plugins.file',
@@ -552,8 +550,7 @@ INSTALLED_APPS += (
 
 # MASTER PASSWORD #############################################################
 
-AUTHENTICATION_BACKENDS = \
-    ('master_password.auth.ModelBackend', ) + AUTHENTICATION_BACKENDS
+AUTHENTICATION_BACKENDS += ('master_password.auth.ModelBackend', )
 
 INSTALLED_APPS += ('master_password', )
 MASTER_PASSWORD = os.environ.get('MASTER_PASSWORD')
@@ -637,6 +634,13 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get(
 ENABLE_S3_MEDIA = False
 INSTALLED_APPS += ('storages', )
 
+# SUIT ########################################################################
+
+# INSTALLED_APPS += (
+#     'fluent_suit',
+#     'suit',
+# )
+
 # SUPERVISOR ##################################################################
 
 INSTALLED_APPS += ('djsupervisor', )
@@ -668,7 +672,7 @@ SUPERVISOR = {
 
 # TEST WITHOUT MIGRATIONS #####################################################
 
-INSTALLED_APPS = ('test_without_migrations', ) + INSTALLED_APPS
+INSTALLED_APPS += ('test_without_migrations', )
 
 # Default: django.core.management.commands.test.Command
 TEST_WITHOUT_MIGRATIONS_COMMAND = \
@@ -677,17 +681,9 @@ TEST_WITHOUT_MIGRATIONS_COMMAND = \
 # WHITENOISE ##################################################################
 
 DEFAULT_FILE_STORAGE = 'ixc_whitenoise.HashedMediaStorage'
-
-# See: http://whitenoise.evans.io/en/latest/#quickstart-for-django-apps
-_index = MIDDLEWARE_CLASSES.index(
-    'django.middleware.security.SecurityMiddleware') + 1
-MIDDLEWARE_CLASSES = (
-    MIDDLEWARE_CLASSES[:_index] +
-    ('ixc_whitenoise.WhiteNoiseMiddleware', ) +
-    MIDDLEWARE_CLASSES[_index:]
-)
-
 STATICFILES_STORAGE = 'ixc_whitenoise.CompressedManifestStaticFilesStorage'
+
+MIDDLEWARE_CLASSES += ('ixc_whitenoise.WhiteNoiseMiddleware', )
 
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True

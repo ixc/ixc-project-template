@@ -7,19 +7,19 @@ services:
       MASTER_PASSWORD: abc123
     image: interaction/{{ project_name }}:latest
     links:
-      - elasticsearch
+      # - elasticsearch
       - postgres
       - redis
     ports:
-      - 8000:8000
-    # tty: true  # Enable colour output in logs. Disconnects after 60 second timeout. See: https://github.com/docker/compose/issues/3106
+      - "8000:8000"
+    read_only: true
     volumes:
       - ./:/opt/{{ project_name }}
-      - ./var:/opt/{{ project_name }}/var
-  elasticsearch:
-    image: interaction/elasticsearch-icu:1
+      - ~/.ssh:/opt/.ssh
+  # elasticsearch:
+  #   image: interaction/elasticsearch-icu:1
   postgres:
-    image: postgres:9.4
+    image: onjin/alpine-postgres:9.4
   redis:
     command: redis-server --appendonly yes
     image: redis:3-alpine
