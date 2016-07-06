@@ -523,6 +523,7 @@ INSTALLED_APPS += ('icekit.dashboard', )
 
 INSTALLED_APPS += (
     'icekit',
+    'icekit.publishing',
     'icekit.integration.reversion',
     'icekit.response_pages',
     'notifications',
