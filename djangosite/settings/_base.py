@@ -406,6 +406,9 @@ FLUENT_PAGES_TEMPLATE_DIR = os.path.join(
 # FLUENT_TEXT_CLEAN_HTML = True  # Default: False
 # FLUENT_TEXT_SANITIZE_HTML = True  # Default: False
 
+# Set the admin class to use for Polymorphic parents
+FLUENT_PAGES_PARENT_ADMIN_MIXIN = 'icekit.publishing.admin.ICEKitFluentPagesParentAdminMixin'
+
 INSTALLED_APPS += (
     # Fluent.
     'fluent_contents',
