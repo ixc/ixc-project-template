@@ -54,14 +54,14 @@
 			{% block head_js %}{% endblock %}
 
 			{% block analytics %}
-				{% if SETTINGS.GOOGLE_ANALYTICS_CODE %}
+				{% if GOOGLE_ANALYTICS_CODE %}
 					<script>
 						(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
 						function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
 						e=o.createElement(i);r=o.getElementsByTagName(i)[0];
 						e.src='//www.google-analytics.com/analytics.js';
 						r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-						ga('create','{{ SETTINGS.GOOGLE_ANALYTICS_CODE }}','{% if SETTINGS.GOOGLE_ANALYTICS_ADDRESS %}{{ SETTINGS.GOOGLE_ANALYTICS_ADDRESS }}{% else %}auto{% endif %}');ga('send','pageview');
+						ga('create','{{ GOOGLE_ANALYTICS_CODE }}','{% if GOOGLE_ANALYTICS_ADDRESS %}{{ GOOGLE_ANALYTICS_ADDRESS }}{% else %}auto{% endif %}');ga('send','pageview');
 					</script>
 				{% endif %}
 			{% endblock %}
